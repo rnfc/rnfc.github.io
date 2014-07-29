@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+ <title>Rafael Nicolas Fermin Cota</title>
+ <link href="http://localhost:4000/atom.xml" rel="self"/>
+ <link href="http://localhost:4000/"/>
+ <updated>2014-07-28T20:45:20-04:00</updated>
+ <id>http://localhost:4000</id>
+ <author>
+   <name>Rafael Nicolas Fermin Cota</name>
+ </author>
+ 
+ 
+ <entry>
+   <title>EUM Tutorial #1</title>
+   <link href="http://localhost:4000/eum/2014/07/29/EUM-tutorial"/>
+   <updated>2014-07-29T00:00:00-04:00</updated>
+   <id>http://localhost:4000/eum/2014/07/29/EUM-tutorial</id>
+   <content type="html">&lt;h1 id=&quot;this-is-a-markdown-post-test&quot;&gt;This is a markdown post test&lt;/h1&gt;
+
+&lt;h2 id=&quot;this-is-a-markdown-post-test1&quot;&gt;This is a markdown post test&lt;a href=&quot;http://markdowntest.testurl&quot;&gt;1&lt;/a&gt;&lt;/h2&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>AEUM Tutorial</title>
+   <link href="http://localhost:4000/aeum/2014/07/29/AEUM-tutorial"/>
+   <updated>2014-07-29T00:00:00-04:00</updated>
+   <id>http://localhost:4000/aeum/2014/07/29/AEUM-tutorial</id>
+   <content type="html">&lt;h1 id=&quot;this-is-a-markdown-post-test&quot;&gt;This is a markdown post test&lt;/h1&gt;
+
+&lt;h2 id=&quot;this-is-a-markdown-post-test1&quot;&gt;This is a markdown post test&lt;a href=&quot;http://markdowntest.testurl&quot;&gt;1&lt;/a&gt;&lt;/h2&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>This is a blog post title</title>
+   <link href="http://localhost:4000/blog/2014/07/27/blog"/>
+   <updated>2014-07-27T00:00:00-04:00</updated>
+   <id>http://localhost:4000/blog/2014/07/27/blog</id>
+   <content type="html">&lt;h2 id=&quot;this-is-in-body-paragraph-1&quot;&gt;This is in body paragraph &lt;a href=&quot;http://markdowntest.testurl&quot;&gt;1&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This is body paragraph.&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>This is also a test blog article</title>
+   <link href="http://localhost:4000/blog/2014/07/26/blog"/>
+   <updated>2014-07-26T00:00:00-04:00</updated>
+   <id>http://localhost:4000/blog/2014/07/26/blog</id>
+   <content type="html">&lt;h2 id=&quot;this-is-markdownified-using-kramdown&quot;&gt;This is markdownified using kramdown&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;# This is a code snippet
+alert(&quot;Nico&quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Above code is a JavaScript code that pops up an alert window to the browser.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>This is a blog post title</title>
+   <link href="http://localhost:4000/blog/2014/07/25/blog"/>
+   <updated>2014-07-25T00:00:00-04:00</updated>
+   <id>http://localhost:4000/blog/2014/07/25/blog</id>
+   <content type="html">&lt;h2 id=&quot;this-is-in-body-paragraph-1&quot;&gt;This is in body paragraph &lt;a href=&quot;http://markdowntest.testurl&quot;&gt;1&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This is markdownified.&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ 
+</feed>

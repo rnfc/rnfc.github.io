@@ -1,0 +1,14 @@
+---
+title: Advanced End User Modeling
+layout: layout
+---
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      {% capture course_summary %}
+        {% include courses/aeum-course-summary.md %}
+      {% endcapture %}
+      {{ course_summary | markdownify }}
+    </div>
+  </div>
+</div>

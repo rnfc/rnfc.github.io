@@ -1,0 +1,48 @@
+<!-- Fixed navbar -->
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{{ site.url }}">{{ site.title }}</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+
+        <!-- Home -->
+        <li class="active"><a href="{{ site.url }}">Home</a></li>
+
+        <!-- Blog -->
+        <li><a href="{{ site.url }}/blog/">Blog</a></li>
+
+        <!-- Courses -->
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Courses <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li class="dropdown-header">Analytics</li>
+            <li><a href="{{ site.url }}/eum/">End User Modeling</a></li>
+            <li><a href="{{ site.url }}/aeum/">Adv. End User Modeling</a></li>
+          </ul>
+        </li>
+
+        <!-- Projects -->
+        <li><a href="{{ site.url }}/projects/">Projects</a></li>
+
+        <!-- Projects -->
+        <li><a href="{{ site.url }}/research/">Research</a></li>
+
+
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</div>
+
+
+
+
+
+

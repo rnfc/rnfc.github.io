@@ -1,0 +1,27 @@
+title: RNFC
+
+markdown: kramdown
+
+highlighter: true
+url: http://localhost:4000
+
+permalink: /:categories/:year/:month/:day/:title
+
+author:
+    name: Rafael Nicolas Fermin Cota
+    email: rafael_nicolas@me.com
+    github: rnfc
+
+kramdown:
+    input: GFM
+
+comments:
+    provider: false
+    disqus:
+    short_name: intheatticuk
+
+analytics:
+    provider: false 
+    google: 
+        tracking_id: 'UA-18015420-1'
+        domain: ''

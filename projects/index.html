@@ -1,0 +1,44 @@
+---
+title: Projects
+layout: layout
+project_list:
+    - projects/rcpp.md
+---
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            {% capture project_summary %}
+            {% include projects/project-summary.md %}
+            {% endcapture %}
+            {{ project_summary | markdownify }}
+        </div>
+        
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+
+        {{page.project_list}}
+            {% for project in page.project_list %}
+                {{ pgae.title }}
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    {% for post in site.categories.projects reversed %}
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <h2> {{ post.title }} </h2>
+            {{ post.content }}
+            <hr>
+        </div>
+    </div>
+    {% endfor %}
+</div>
