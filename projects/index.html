@@ -3,15 +3,16 @@ title: Projects
 layout: layout
 project_list:
     - projects/rcpp.md
+    - projects/rcpparmadillo.md
 ---
 
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            {% capture project_summary %}
+            {% capture overall_summary %}
             {% include projects/project-summary.md %}
             {% endcapture %}
-            {{ project_summary | markdownify }}
+            {{ overall_summary | markdownify }}
         </div>
         
     </div>
@@ -20,25 +21,13 @@ project_list:
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-
-        {{page.project_list}}
             {% for project in page.project_list %}
-                {{ pgae.title }}
+                {% capture project_summary %}
+                {% include {{ project }} %}
+                {% endcapture %}
+                {{ project_summary | markdownify }}
+                <hr>
             {% endfor %}
-
         </div>
     </div>
-</div>
-
-
-<div class="container">
-    {% for post in site.categories.projects reversed %}
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <h2> {{ post.title }} </h2>
-            {{ post.content }}
-            <hr>
-        </div>
-    </div>
-    {% endfor %}
 </div>
