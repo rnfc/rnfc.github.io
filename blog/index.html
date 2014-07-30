@@ -13,6 +13,7 @@
     <script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="/assets/css/sidebar.css" rel="stylesheet">
     <link rel="shortcut icon" href="/favicon.ico">
   
     <style>
@@ -41,32 +42,32 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="http://rnfc.github.io">RNFC</a>
+      <a class="navbar-brand" href="http://localhost:4000">RNFC</a>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 
         <!-- Home -->
-        <li  ><a href="http://rnfc.github.io">Home</a></li>
+        <li  ><a href="http://localhost:4000">Home</a></li>
 
         <!-- Blog -->
-        <li class="active"><a href="http://rnfc.github.io/blog/">Blog</a></li>
+        <li class="active"><a href="http://localhost:4000/blog/">Blog</a></li>
 
         <!-- Courses -->
         <li  class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Courses <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li class="dropdown-header">Analytics</li>
-            <li><a href="http://rnfc.github.io/eum/">End User Modeling</a></li>
-            <li><a href="http://rnfc.github.io/aeum/">Adv. End User Modeling</a></li>
+            <li><a href="http://localhost:4000/eum/">End User Modeling</a></li>
+            <li><a href="http://localhost:4000/aeum/">Adv. End User Modeling</a></li>
           </ul>
         </li>
 
         <!-- Projects -->
-        <li ><a href="http://rnfc.github.io/projects/">Projects</a></li>
+        <li ><a href="http://localhost:4000/projects/">Projects</a></li>
 
         <!-- Research -->
-        <li ><a href="http://rnfc.github.io/research/">Research</a></li>
+        <li ><a href="http://localhost:4000/research/">Research</a></li>
 
 
       </ul>
@@ -80,66 +81,81 @@
 
 
 
-    <div class="container">
-  <div class="content">
-    <div class="row">
-      <div class="col-xs-8">
-        <div class="container">
-    
-    <div class="row">
-        <div class="col-xs-8">
-            <h2> 27 Jul 2014 - This is a blog post title </h2>
-            <h2 id="this-is-in-body-paragraph-1">This is in body paragraph <a href="http://markdowntest.testurl">1</a></h2>
+    <!-- for bio container -->
+<style>
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) { #bio { width: 248px; } }
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) { #bio { width: 324px; } }
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { #bio { width: 388px; } }
+</style>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      
+      <div class="row">
+        <div class="col-md-12">
+          <h2> 27 Jul 2014 - This is a blog post title </h2>
+          <h2 id="this-is-in-body-paragraph-1">This is in body paragraph <a href="http://markdowntest.testurl">1</a></h2>
 <p>This is body paragraph.</p>
 
 
-            <hr>
+          <hr>
         </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-xs-8">
-            <h2> 26 Jul 2014 - This is also a test blog article </h2>
-            <h2 id="this-is-markdownified-using-kramdown">This is markdownified using kramdown</h2>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-12">
+          <h2> 26 Jul 2014 - This is also a test blog article </h2>
+          <h2 id="this-is-markdownified-using-kramdown">This is markdownified using kramdown</h2>
 
 <pre><code># This is a code snippet
 alert("Nico")
 </code></pre>
 <p>Above code is a JavaScript code that pops up an alert window to the browser.</p>
 
-            <hr>
+          <hr>
         </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-xs-8">
-            <h2> 25 Jul 2014 - This is a blog post title </h2>
-            <h2 id="this-is-in-body-paragraph-1">This is in body paragraph <a href="http://markdowntest.testurl">1</a></h2>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-12">
+          <h2> 25 Jul 2014 - This is a blog post title </h2>
+          <h2 id="this-is-in-body-paragraph-1">This is in body paragraph <a href="http://markdowntest.testurl">1</a></h2>
 <p>This is markdownified.</p>
 
 
-            <hr>
+          <hr>
         </div>
-    </div>
-    
-</div>
       </div>
-      <div class="col-md-4">
-        <h2>Nico</h2>
+      
+    </div>
+
+    <div class="col-md-4">
+      <div id="bio" data-spy="affix">
+        <style>
+  div#image img {
+    margin-right: 5px;
+  }
+</style>
+
+<h2>Nico</h2>
 <p>
-    <img src="" alt="Rafael Nicolas Fermin Cota" title="Follow me on Twitter @"  class="img-rounded floatLeft" />
-    Summary of Nico's bio.. or punch line? :D
+    <div id="image">
+    <img src="/img/rnfc.jpg" width="80" height="80" alt="Rafael Nicolas Fermin Cota" title="Rafael Nicolas Fermin Cota"  class="img-rounded pull-left" />
+    </div>
+    <div id="summary">
+    I am Nico. I am Nico. I am Nico. I am Nico. I am Nico. I am Nico. I am Nico. I am Nico. I am Nico. I am Nico. I am Nico. I am Nico. I am Nico. I am Nico. I am Nico. I am Nico. I am Nico. I am Nico. I am Nico. I am Nico. I am Nico. I am Nico. I am Nico. I am Nico. I am Nico. I am Nico. I am Nico. I am Nico. I am Nico. I am Nico. I am Nico. 
+    </div>
+
 </p>                    
 <p>
     <h6>github.com/rnfc</h6>
-</p>
-
-
-<p>
-    <ul class="buttons unstyled">
-        <li><a href="https://github.com/rnfc" rel="me" class="social github" title="Go to github.com/rnfc" target="_blank"></a></li>
-        <li><a href="http://www.twitter.com/" rel="me" class="social twitter" title="Go to twitter.com/" target="_blank"></a></li>                
-    </ul>
 </p>
       </div>
     </div>
