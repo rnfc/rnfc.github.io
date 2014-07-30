@@ -4,36 +4,12 @@
  <title>Rafael Nicolas Fermin Cota</title>
  <link href="http://rnfc.github.io/atom.xml" rel="self"/>
  <link href="http://rnfc.github.io/"/>
- <updated>2014-07-30T04:42:44-04:00</updated>
+ <updated>2014-07-30T13:28:37-04:00</updated>
  <id>http://rnfc.github.io</id>
  <author>
    <name>Rafael Nicolas Fermin Cota</name>
  </author>
  
- 
- <entry>
-   <title>EUM Tutorial #1</title>
-   <link href="http://rnfc.github.io/eum/2014/07/29/EUM-tutorial"/>
-   <updated>2014-07-29T00:00:00-04:00</updated>
-   <id>http://rnfc.github.io/eum/2014/07/29/EUM-tutorial</id>
-   <content type="html">&lt;h1 id=&quot;this-is-a-markdown-post-test&quot;&gt;This is a markdown post test&lt;/h1&gt;
-
-&lt;h2 id=&quot;this-is-a-markdown-post-test1&quot;&gt;This is a markdown post test&lt;a href=&quot;http://markdowntest.testurl&quot;&gt;1&lt;/a&gt;&lt;/h2&gt;
-
-</content>
- </entry>
- 
- <entry>
-   <title>AEUM Tutorial</title>
-   <link href="http://rnfc.github.io/aeum/2014/07/29/AEUM-tutorial"/>
-   <updated>2014-07-29T00:00:00-04:00</updated>
-   <id>http://rnfc.github.io/aeum/2014/07/29/AEUM-tutorial</id>
-   <content type="html">&lt;h1 id=&quot;this-is-a-markdown-post-test&quot;&gt;This is a markdown post test&lt;/h1&gt;
-
-&lt;h2 id=&quot;this-is-a-markdown-post-test1&quot;&gt;This is a markdown post test&lt;a href=&quot;http://markdowntest.testurl&quot;&gt;1&lt;/a&gt;&lt;/h2&gt;
-
-</content>
- </entry>
  
  <entry>
    <title>This is a blog post title</title>
