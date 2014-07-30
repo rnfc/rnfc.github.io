@@ -3,7 +3,7 @@ title: RNFC
 markdown: kramdown
 
 highlighter: true
-url: http://localhost:4000
+url: http://rnfc.github.io
 
 permalink: /:categories/:year/:month/:day/:title
 
