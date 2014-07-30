@@ -15,14 +15,23 @@
     <link href="/assets/css/bootstrap-theme.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="/favicon.ico">
   
-    <!-- to avoid navbar overlapping sites -->
     <style>
-      body { padding-top: 80px; }
+      /* This is to avoid navbar overlapping sites */
+      body {
+        position: relative;
+        padding-top: 80px;
+      }
+      /* This is for correct positioning when anchoring */
+      section { 
+        padding-top: 40px;
+        margin-top:-40px;
+      }
     </style>
   </head>
 
   <body>
-    <!-- Fixed navbar -->
+    
+<!-- Fixed navbar -->
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -32,32 +41,32 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="http://rnfc.github.io">RNFC</a>
+      <a class="navbar-brand" href="http://localhost:4000">RNFC</a>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 
         <!-- Home -->
-        <li class="active"><a href="http://rnfc.github.io">Home</a></li>
+        <li  ><a href="http://localhost:4000">Home</a></li>
 
         <!-- Blog -->
-        <li><a href="http://rnfc.github.io/blog/">Blog</a></li>
+        <li ><a href="http://localhost:4000/blog/">Blog</a></li>
 
         <!-- Courses -->
-        <li class="dropdown">
+        <li class="active" class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Courses <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li class="dropdown-header">Analytics</li>
-            <li><a href="http://rnfc.github.io/eum/">End User Modeling</a></li>
-            <li><a href="http://rnfc.github.io/aeum/">Adv. End User Modeling</a></li>
+            <li><a href="http://localhost:4000/eum/">End User Modeling</a></li>
+            <li><a href="http://localhost:4000/aeum/">Adv. End User Modeling</a></li>
           </ul>
         </li>
 
         <!-- Projects -->
-        <li><a href="http://rnfc.github.io/projects/">Projects</a></li>
+        <li ><a href="http://localhost:4000/projects/">Projects</a></li>
 
-        <!-- Projects -->
-        <li><a href="http://rnfc.github.io/research/">Research</a></li>
+        <!-- Research -->
+        <li ><a href="http://localhost:4000/research/">Research</a></li>
 
 
       </ul>
@@ -111,7 +120,7 @@
   <hr>
 	<p class="pull-right"> <a href="/blog/2014/07/27/blog" title="Previous Post: This is a blog post title">&laquo; Previous Post</a>
       |  <a href="#">Back to top</a>  |   	<a href="/eum/2014/07/29/EUM-tutorial" title="Next Post: EUM Tutorial #1">Next Post &raquo; </a> 	 </p>
-	<p>Page last updated on July 29, 2014</p>
+	<p>Page last updated on July 30, 2014</p>
   </div>
 </footer>
   </body>

@@ -15,14 +15,23 @@
     <link href="/assets/css/bootstrap-theme.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="/favicon.ico">
   
-    <!-- to avoid navbar overlapping sites -->
     <style>
-      body { padding-top: 80px; }
+      /* This is to avoid navbar overlapping sites */
+      body {
+        position: relative;
+        padding-top: 80px;
+      }
+      /* This is for correct positioning when anchoring */
+      section { 
+        padding-top: 40px;
+        margin-top:-40px;
+      }
     </style>
   </head>
 
   <body>
-    <!-- Fixed navbar -->
+    
+<!-- Fixed navbar -->
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -32,32 +41,32 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="http://rnfc.github.io">RNFC</a>
+      <a class="navbar-brand" href="http://localhost:4000">RNFC</a>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 
         <!-- Home -->
-        <li class="active"><a href="http://rnfc.github.io">Home</a></li>
+        <li  ><a href="http://localhost:4000">Home</a></li>
 
         <!-- Blog -->
-        <li><a href="http://rnfc.github.io/blog/">Blog</a></li>
+        <li ><a href="http://localhost:4000/blog/">Blog</a></li>
 
         <!-- Courses -->
-        <li class="dropdown">
+        <li class="active" class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Courses <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li class="dropdown-header">Analytics</li>
-            <li><a href="http://rnfc.github.io/eum/">End User Modeling</a></li>
-            <li><a href="http://rnfc.github.io/aeum/">Adv. End User Modeling</a></li>
+            <li><a href="http://localhost:4000/eum/">End User Modeling</a></li>
+            <li><a href="http://localhost:4000/aeum/">Adv. End User Modeling</a></li>
           </ul>
         </li>
 
         <!-- Projects -->
-        <li><a href="http://rnfc.github.io/projects/">Projects</a></li>
+        <li ><a href="http://localhost:4000/projects/">Projects</a></li>
 
-        <!-- Projects -->
-        <li><a href="http://rnfc.github.io/research/">Research</a></li>
+        <!-- Research -->
+        <li ><a href="http://localhost:4000/research/">Research</a></li>
 
 
       </ul>
@@ -79,13 +88,207 @@
 <h1 id="end-user-modeling">End User Modeling</h1>
 <hr />
 
+<section id="Overview"></section>
+
 <h4 id="course-summary">Course summary</h4>
 
 <p>A minimal standard for data analysis and other scientific computations is that they be reproducible: that the code and data are assembled in a way so that another group can re-create all of the results (e.g., the figures in a paper). The importance of such reproducibility is now widely recognized, but it is still not so widely practiced as it should be, in large part because many computational scientists (and particularly statisticians) have not fully adopted the required tools for reproducible research.</p>
 
 <p>In this course, we will discuss general principles for reproducible research but will focus primarily on the use of relevant tools (particularly make, git, and knitr), with the goal that the students leave the course ready and willing to ensure that all aspects of their computational research (software, data analyses, papers, presentations, posters) are reproducible.</p>
 
+<p>A minimal standard for data analysis and other scientific computations is that they be reproducible: that the code and data are assembled in a way so that another group can re-create all of the results (e.g., the figures in a paper). The importance of such reproducibility is now widely recognized, but it is still not so widely practiced as it should be, in large part because many computational scientists (and particularly statisticians) have not fully adopted the required tools for reproducible research.</p>
 
+<p>In this course, we will discuss general principles for reproducible research but will focus primarily on the use of relevant tools (particularly make, git, and knitr), with the goal that the students leave the course ready and willing to ensure that all aspects of their computational research (software, data analyses, papers, presentations, posters) are reproducible.</p>
+
+<p>A minimal standard for data analysis and other scientific computations is that they be reproducible: that the code and data are assembled in a way so that another group can re-create all of the results (e.g., the figures in a paper). The importance of such reproducibility is now widely recognized, but it is still not so widely practiced as it should be, in large part because many computational scientists (and particularly statisticians) have not fully adopted the required tools for reproducible research.</p>
+
+<p>In this course, we will discuss general principles for reproducible research but will focus primarily on the use of relevant tools (particularly make, git, and knitr), with the goal that the students leave the course ready and willing to ensure that all aspects of their computational research (software, data analyses, papers, presentations, posters) are reproducible.</p>
+
+<p>A minimal standard for data analysis and other scientific computations is that they be reproducible: that the code and data are assembled in a way so that another group can re-create all of the results (e.g., the figures in a paper). The importance of such reproducibility is now widely recognized, but it is still not so widely practiced as it should be, in large part because many computational scientists (and particularly statisticians) have not fully adopted the required tools for reproducible research.</p>
+
+<p>In this course, we will discuss general principles for reproducible research but will focus primarily on the use of relevant tools (particularly make, git, and knitr), with the goal that the students leave the course ready and willing to ensure that all aspects of their computational research (software, data analyses, papers, presentations, posters) are reproducible.</p>
+
+<p>A minimal standard for data analysis and other scientific computations is that they be reproducible: that the code and data are assembled in a way so that another group can re-create all of the results (e.g., the figures in a paper). The importance of such reproducibility is now widely recognized, but it is still not so widely practiced as it should be, in large part because many computational scientists (and particularly statisticians) have not fully adopted the required tools for reproducible research.</p>
+
+<p>In this course, we will discuss general principles for reproducible research but will focus primarily on the use of relevant tools (particularly make, git, and knitr), with the goal that the students leave the course ready and willing to ensure that all aspects of their computational research (software, data analyses, papers, presentations, posters) are reproducible.</p>
+
+<p>A minimal standard for data analysis and other scientific computations is that they be reproducible: that the code and data are assembled in a way so that another group can re-create all of the results (e.g., the figures in a paper). The importance of such reproducibility is now widely recognized, but it is still not so widely practiced as it should be, in large part because many computational scientists (and particularly statisticians) have not fully adopted the required tools for reproducible research.</p>
+
+<p>In this course, we will discuss general principles for reproducible research but will focus primarily on the use of relevant tools (particularly make, git, and knitr), with the goal that the students leave the course ready and willing to ensure that all aspects of their computational research (software, data analyses, papers, presentations, posters) are reproducible.</p>
+
+<p>A minimal standard for data analysis and other scientific computations is that they be reproducible: that the code and data are assembled in a way so that another group can re-create all of the results (e.g., the figures in a paper). The importance of such reproducibility is now widely recognized, but it is still not so widely practiced as it should be, in large part because many computational scientists (and particularly statisticians) have not fully adopted the required tools for reproducible research.</p>
+
+<p>In this course, we will discuss general principles for reproducible research but will focus primarily on the use of relevant tools (particularly make, git, and knitr), with the goal that the students leave the course ready and willing to ensure that all aspects of their computational research (software, data analyses, papers, presentations, posters) are reproducible.</p>
+
+<p>A minimal standard for data analysis and other scientific computations is that they be reproducible: that the code and data are assembled in a way so that another group can re-create all of the results (e.g., the figures in a paper). The importance of such reproducibility is now widely recognized, but it is still not so widely practiced as it should be, in large part because many computational scientists (and particularly statisticians) have not fully adopted the required tools for reproducible research.</p>
+
+<p>In this course, we will discuss general principles for reproducible research but will focus primarily on the use of relevant tools (particularly make, git, and knitr), with the goal that the students leave the course ready and willing to ensure that all aspects of their computational research (software, data analyses, papers, presentations, posters) are reproducible.</p>
+
+<p>A minimal standard for data analysis and other scientific computations is that they be reproducible: that the code and data are assembled in a way so that another group can re-create all of the results (e.g., the figures in a paper). The importance of such reproducibility is now widely recognized, but it is still not so widely practiced as it should be, in large part because many computational scientists (and particularly statisticians) have not fully adopted the required tools for reproducible research.</p>
+
+<p>In this course, we will discuss general principles for reproducible research but will focus primarily on the use of relevant tools (particularly make, git, and knitr), with the goal that the students leave the course ready and willing to ensure that all aspects of their computational research (software, data analyses, papers, presentations, posters) are reproducible.</p>
+
+<section id="Reports"></section>
+
+<h4 id="reports">Reports</h4>
+
+<p>A minimal standard for data analysis and other scientific computations is that they be reproducible: that the code and data are assembled in a way so that another group can re-create all of the results (e.g., the figures in a paper). The importance of such reproducibility is now widely recognized, but it is still not so widely practiced as it should be, in large part because many computational scientists (and particularly statisticians) have not fully adopted the required tools for reproducible research.</p>
+
+<p>In this course, we will discuss general principles for reproducible research but will focus primarily on the use of relevant tools (particularly make, git, and knitr), with the goal that the students leave the course ready and willing to ensure that all aspects of their computational research (software, data analyses, papers, presentations, posters) are reproducible.</p>
+
+<p>A minimal standard for data analysis and other scientific computations is that they be reproducible: that the code and data are assembled in a way so that another group can re-create all of the results (e.g., the figures in a paper). The importance of such reproducibility is now widely recognized, but it is still not so widely practiced as it should be, in large part because many computational scientists (and particularly statisticians) have not fully adopted the required tools for reproducible research.</p>
+
+<p>In this course, we will discuss general principles for reproducible research but will focus primarily on the use of relevant tools (particularly make, git, and knitr), with the goal that the students leave the course ready and willing to ensure that all aspects of their computational research (software, data analyses, papers, presentations, posters) are reproducible.</p>
+
+<p>A minimal standard for data analysis and other scientific computations is that they be reproducible: that the code and data are assembled in a way so that another group can re-create all of the results (e.g., the figures in a paper). The importance of such reproducibility is now widely recognized, but it is still not so widely practiced as it should be, in large part because many computational scientists (and particularly statisticians) have not fully adopted the required tools for reproducible research.</p>
+
+<p>In this course, we will discuss general principles for reproducible research but will focus primarily on the use of relevant tools (particularly make, git, and knitr), with the goal that the students leave the course ready and willing to ensure that all aspects of their computational research (software, data analyses, papers, presentations, posters) are reproducible.</p>
+
+<p>A minimal standard for data analysis and other scientific computations is that they be reproducible: that the code and data are assembled in a way so that another group can re-create all of the results (e.g., the figures in a paper). The importance of such reproducibility is now widely recognized, but it is still not so widely practiced as it should be, in large part because many computational scientists (and particularly statisticians) have not fully adopted the required tools for reproducible research.</p>
+
+<p>In this course, we will discuss general principles for reproducible research but will focus primarily on the use of relevant tools (particularly make, git, and knitr), with the goal that the students leave the course ready and willing to ensure that all aspects of their computational research (software, data analyses, papers, presentations, posters) are reproducible.</p>
+
+<p>A minimal standard for data analysis and other scientific computations is that they be reproducible: that the code and data are assembled in a way so that another group can re-create all of the results (e.g., the figures in a paper). The importance of such reproducibility is now widely recognized, but it is still not so widely practiced as it should be, in large part because many computational scientists (and particularly statisticians) have not fully adopted the required tools for reproducible research.</p>
+
+<p>In this course, we will discuss general principles for reproducible research but will focus primarily on the use of relevant tools (particularly make, git, and knitr), with the goal that the students leave the course ready and willing to ensure that all aspects of their computational research (software, data analyses, papers, presentations, posters) are reproducible.</p>
+
+<p>A minimal standard for data analysis and other scientific computations is that they be reproducible: that the code and data are assembled in a way so that another group can re-create all of the results (e.g., the figures in a paper). The importance of such reproducibility is now widely recognized, but it is still not so widely practiced as it should be, in large part because many computational scientists (and particularly statisticians) have not fully adopted the required tools for reproducible research.</p>
+
+<p>In this course, we will discuss general principles for reproducible research but will focus primarily on the use of relevant tools (particularly make, git, and knitr), with the goal that the students leave the course ready and willing to ensure that all aspects of their computational research (software, data analyses, papers, presentations, posters) are reproducible.</p>
+
+<p>A minimal standard for data analysis and other scientific computations is that they be reproducible: that the code and data are assembled in a way so that another group can re-create all of the results (e.g., the figures in a paper). The importance of such reproducibility is now widely recognized, but it is still not so widely practiced as it should be, in large part because many computational scientists (and particularly statisticians) have not fully adopted the required tools for reproducible research.</p>
+
+<p>In this course, we will discuss general principles for reproducible research but will focus primarily on the use of relevant tools (particularly make, git, and knitr), with the goal that the students leave the course ready and willing to ensure that all aspects of their computational research (software, data analyses, papers, presentations, posters) are reproducible.</p>
+
+<p>A minimal standard for data analysis and other scientific computations is that they be reproducible: that the code and data are assembled in a way so that another group can re-create all of the results (e.g., the figures in a paper). The importance of such reproducibility is now widely recognized, but it is still not so widely practiced as it should be, in large part because many computational scientists (and particularly statisticians) have not fully adopted the required tools for reproducible research.</p>
+
+<p>In this course, we will discuss general principles for reproducible research but will focus primarily on the use of relevant tools (particularly make, git, and knitr), with the goal that the students leave the course ready and willing to ensure that all aspects of their computational research (software, data analyses, papers, presentations, posters) are reproducible.</p>
+
+<p>A minimal standard for data analysis and other scientific computations is that they be reproducible: that the code and data are assembled in a way so that another group can re-create all of the results (e.g., the figures in a paper). The importance of such reproducibility is now widely recognized, but it is still not so widely practiced as it should be, in large part because many computational scientists (and particularly statisticians) have not fully adopted the required tools for reproducible research.</p>
+
+<p>In this course, we will discuss general principles for reproducible research but will focus primarily on the use of relevant tools (particularly make, git, and knitr), with the goal that the students leave the course ready and willing to ensure that all aspects of their computational research (software, data analyses, papers, presentations, posters) are reproducible.</p>
+
+<section id="Analytics"></section>
+
+<h4 id="analytics">Analytics</h4>
+
+<p>A minimal standard for data analysis and other scientific computations is that they be reproducible: that the code and data are assembled in a way so that another group can re-create all of the results (e.g., the figures in a paper). The importance of such reproducibility is now widely recognized, but it is still not so widely practiced as it should be, in large part because many computational scientists (and particularly statisticians) have not fully adopted the required tools for reproducible research.</p>
+
+<p>In this course, we will discuss general principles for reproducible research but will focus primarily on the use of relevant tools (particularly make, git, and knitr), with the goal that the students leave the course ready and willing to ensure that all aspects of their computational research (software, data analyses, papers, presentations, posters) are reproducible.</p>
+
+<p>A minimal standard for data analysis and other scientific computations is that they be reproducible: that the code and data are assembled in a way so that another group can re-create all of the results (e.g., the figures in a paper). The importance of such reproducibility is now widely recognized, but it is still not so widely practiced as it should be, in large part because many computational scientists (and particularly statisticians) have not fully adopted the required tools for reproducible research.</p>
+
+<p>In this course, we will discuss general principles for reproducible research but will focus primarily on the use of relevant tools (particularly make, git, and knitr), with the goal that the students leave the course ready and willing to ensure that all aspects of their computational research (software, data analyses, papers, presentations, posters) are reproducible.</p>
+
+<p>A minimal standard for data analysis and other scientific computations is that they be reproducible: that the code and data are assembled in a way so that another group can re-create all of the results (e.g., the figures in a paper). The importance of such reproducibility is now widely recognized, but it is still not so widely practiced as it should be, in large part because many computational scientists (and particularly statisticians) have not fully adopted the required tools for reproducible research.</p>
+
+<p>In this course, we will discuss general principles for reproducible research but will focus primarily on the use of relevant tools (particularly make, git, and knitr), with the goal that the students leave the course ready and willing to ensure that all aspects of their computational research (software, data analyses, papers, presentations, posters) are reproducible.</p>
+
+<p>A minimal standard for data analysis and other scientific computations is that they be reproducible: that the code and data are assembled in a way so that another group can re-create all of the results (e.g., the figures in a paper). The importance of such reproducibility is now widely recognized, but it is still not so widely practiced as it should be, in large part because many computational scientists (and particularly statisticians) have not fully adopted the required tools for reproducible research.</p>
+
+<p>In this course, we will discuss general principles for reproducible research but will focus primarily on the use of relevant tools (particularly make, git, and knitr), with the goal that the students leave the course ready and willing to ensure that all aspects of their computational research (software, data analyses, papers, presentations, posters) are reproducible.</p>
+
+<p>A minimal standard for data analysis and other scientific computations is that they be reproducible: that the code and data are assembled in a way so that another group can re-create all of the results (e.g., the figures in a paper). The importance of such reproducibility is now widely recognized, but it is still not so widely practiced as it should be, in large part because many computational scientists (and particularly statisticians) have not fully adopted the required tools for reproducible research.</p>
+
+<p>In this course, we will discuss general principles for reproducible research but will focus primarily on the use of relevant tools (particularly make, git, and knitr), with the goal that the students leave the course ready and willing to ensure that all aspects of their computational research (software, data analyses, papers, presentations, posters) are reproducible.</p>
+
+<p>A minimal standard for data analysis and other scientific computations is that they be reproducible: that the code and data are assembled in a way so that another group can re-create all of the results (e.g., the figures in a paper). The importance of such reproducibility is now widely recognized, but it is still not so widely practiced as it should be, in large part because many computational scientists (and particularly statisticians) have not fully adopted the required tools for reproducible research.</p>
+
+<p>In this course, we will discuss general principles for reproducible research but will focus primarily on the use of relevant tools (particularly make, git, and knitr), with the goal that the students leave the course ready and willing to ensure that all aspects of their computational research (software, data analyses, papers, presentations, posters) are reproducible.</p>
+
+<p>A minimal standard for data analysis and other scientific computations is that they be reproducible: that the code and data are assembled in a way so that another group can re-create all of the results (e.g., the figures in a paper). The importance of such reproducibility is now widely recognized, but it is still not so widely practiced as it should be, in large part because many computational scientists (and particularly statisticians) have not fully adopted the required tools for reproducible research.</p>
+
+<p>In this course, we will discuss general principles for reproducible research but will focus primarily on the use of relevant tools (particularly make, git, and knitr), with the goal that the students leave the course ready and willing to ensure that all aspects of their computational research (software, data analyses, papers, presentations, posters) are reproducible.</p>
+
+<p>A minimal standard for data analysis and other scientific computations is that they be reproducible: that the code and data are assembled in a way so that another group can re-create all of the results (e.g., the figures in a paper). The importance of such reproducibility is now widely recognized, but it is still not so widely practiced as it should be, in large part because many computational scientists (and particularly statisticians) have not fully adopted the required tools for reproducible research.</p>
+
+<p>In this course, we will discuss general principles for reproducible research but will focus primarily on the use of relevant tools (particularly make, git, and knitr), with the goal that the students leave the course ready and willing to ensure that all aspects of their computational research (software, data analyses, papers, presentations, posters) are reproducible.</p>
+
+<p>A minimal standard for data analysis and other scientific computations is that they be reproducible: that the code and data are assembled in a way so that another group can re-create all of the results (e.g., the figures in a paper). The importance of such reproducibility is now widely recognized, but it is still not so widely practiced as it should be, in large part because many computational scientists (and particularly statisticians) have not fully adopted the required tools for reproducible research.</p>
+
+<p>In this course, we will discuss general principles for reproducible research but will focus primarily on the use of relevant tools (particularly make, git, and knitr), with the goal that the students leave the course ready and willing to ensure that all aspects of their computational research (software, data analyses, papers, presentations, posters) are reproducible.</p>
+
+
+    </div>
+    <div class="col-md-4 sidebar">
+      <script>
+$('body').scrollspy({
+    target: '.bs-docs-sidebar',
+    offset: 40
+});
+</script>
+
+<!-- fixed sidebar - responsive with scroll using affix -->
+<style>
+@media screen and (max-width: 768px){
+    .bs-docs-sidebar {
+        display:none
+    }
+}
+/* scrollable sidebar */
+.bs-docs-sidebar > ul {
+    overflow-y: auto;
+    height: 100%;
+}
+/* sidebar */
+.bs-docs-sidebar {
+    padding-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+/* all links */
+.bs-docs-sidebar .nav>li>a {
+    color: #999;
+    border-left: 2px solid transparent;
+    padding: 4px 20px;
+    font-size: 20px;
+    font-weight: 400;
+}
+/* nested links */
+.bs-docs-sidebar .nav .nav>li>a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+}
+/* active & hover links */
+.bs-docs-sidebar .nav>.active>a, 
+.bs-docs-sidebar .nav>li>a:hover, 
+.bs-docs-sidebar .nav>li>a:focus {
+    color: #563d7c;                 
+    text-decoration: none;          
+    background-color: transparent;  
+    border-left-color: #563d7c; 
+}
+/* all active links */
+.bs-docs-sidebar .nav>.active>a, 
+.bs-docs-sidebar .nav>.active:hover>a,
+.bs-docs-sidebar .nav>.active:focus>a {
+    font-weight: 700;
+}
+/* nested active links */
+.bs-docs-sidebar .nav .nav>.active>a, 
+.bs-docs-sidebar .nav .nav>.active:hover>a,
+.bs-docs-sidebar .nav .nav>.active:focus>a {
+    font-weight: 500;
+}
+/* hide inactive nested list */
+.bs-docs-sidebar .nav ul.nav {
+    display: none;           
+}
+/* show active nested list */
+.bs-docs-sidebar .nav>.active>ul.nav {
+    display: block;           
+}
+</style>
+
+<nav class="bs-docs-sidebar">
+  <ul class="nav nav-stacked fixed" data-spy="affix">
+    <li><a href="#Overview">This sidebar is an example</a></li>
+    <li><a href="#Reports">Reports</a></li>
+    <li><a href="#Analytics">Analytics</a></li>
+  </ul>
+</nav>
     </div>
   </div>
 </div>
@@ -94,7 +297,7 @@
   <div class="container">
   <hr>
 	<p class="pull-right">  |  <a href="#">Back to top</a>  |   </p>
-	<p>Page last updated on July 29, 2014</p>
+	<p>Page last updated on July 30, 2014</p>
   </div>
 </footer>
   </body>
