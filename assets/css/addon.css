@@ -1,3 +1,15 @@
+/* This is to avoid navbar overlapping sites */
+body {
+    position: relative;
+    padding-top: 80px;
+}
+/* This is for correct positioning when anchoring */
+section { 
+    padding-top: 40px;
+    margin-top:-40px;
+}
+
+/* to hide sidebar */
 @media screen and (max-width: 768px){
     .bs-docs-sidebar {
         display:none
