@@ -4,7 +4,7 @@
  <title>rnfc</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2014-08-02T02:45:44-04:00</updated>
+ <updated>2014-08-02T02:54:52-04:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Rafael Nicolas Fermin Cota</name>
@@ -13,194 +13,116 @@
 
  
  <entry>
-   <title>Introducing Lanyon</title>
-   <link href="http://localhost:4000/2014/01/02/introducing-lanyon/"/>
-   <updated>2014-01-02T00:00:00-05:00</updated>
-   <id>http://localhost:4000/2014/01/02/introducing-lanyon</id>
-   <content type="html">&lt;p&gt;Lanyon is an unassuming &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt; theme that places content first by tucking away navigation in a hidden drawer. It&amp;#39;s based on &lt;a href=&quot;http://getpoole.com&quot;&gt;Poole&lt;/a&gt;, the Jekyll butler.&lt;/p&gt;
+   <title>Interactive Playground for R Packages: Part 1</title>
+   <link href="http://localhost:4000/2014/08/02/Interactive-Playground%20for-R/"/>
+   <updated>2014-08-02T00:00:00-04:00</updated>
+   <id>http://localhost:4000/2014/08/02/Interactive-Playground for-R</id>
+   <content type="html">&lt;p&gt;An &lt;a href=&quot;http://rcharts.io/playground&quot;&gt;interactive playground&lt;/a&gt; is an online web app that allows a user to check out the functionality of a tool without having to install it on their computers. It can also be used to share examples and interactive tutorials, that allow users to experiment and learn. From the time I wrote &lt;a href=&quot;http://slidify.github.io&quot;&gt;Slidify&lt;/a&gt; and &lt;a href=&quot;http://rcharts.io&quot;&gt;rCharts&lt;/a&gt;, I have always wanted to create such a playground. My main motivation to do this was to allow non-R users to experiment with these packages and experience the range of cool things that one could do with R!&lt;/p&gt;
 
-&lt;h3&gt;Built on Poole&lt;/h3&gt;
+&lt;p&gt;My first attempt at doing this was to use &lt;a href=&quot;http://rstudio.com/shiny&quot;&gt;Shiny&lt;/a&gt; by &lt;a href=&quot;http://rstudio.com&quot;&gt;RStudio&lt;/a&gt;. However, I was soon told that allowing users to execute arbitrary code on a Shiny server was a really bad idea. This was when I started experimenting with &lt;a href=&quot;http://opencpu.org&quot;&gt;OpenCPU&lt;/a&gt;, an elegant and powerful framework created by &lt;a href=&quot;http://jeroenooms.github.io/&quot;&gt;Jeroen Ooms&lt;/a&gt;, that provides a simple RESTful interface to call R from the web. OpenCPU uses the R package &lt;a href=&quot;http://cran.r-project.org/web/packages/RAppArmor/index.html&quot;&gt;RAppArmor&lt;/a&gt; (also written by Jeroen), to secure/sandbox execution of R code. This was exactly what I was looking for!&lt;/p&gt;
 
-&lt;p&gt;Poole is the Jekyll Butler, serving as an upstanding and effective foundation for Jekyll themes by &lt;a href=&quot;https://twitter.com/mdo&quot;&gt;@mdo&lt;/a&gt;. Poole, and every theme built on it (like Lanyon here) includes the following:&lt;/p&gt;
+&lt;p&gt;One of the cool things about &lt;a href=&quot;http://rstudio.com/shiny&quot;&gt;Shiny&lt;/a&gt; is that it is a reactive framework, that makes building web based applications using R, really easy! &lt;a href=&quot;http://opencpu.org&quot;&gt;OpenCPU&lt;/a&gt; on the other hand does not come pre-baked with reactive capabilities. So, I had to look for a javascript framework that would do this. After a lot of exploration, I settled on &lt;a href=&quot;http://angularjs.org&quot;&gt;AngularJS&lt;/a&gt;, an MVC framework that allows one to build very powerful web applications, and comes packaged with a lot of reactive goodness. It has a little bit of a steep learning curve, but I promise it is worth learning AngularJS, if you are looking to build really powerful, sophisticated apps.&lt;/p&gt;
 
-&lt;ul&gt;
-&lt;li&gt;Complete Jekyll setup included (layouts, config, &lt;a href=&quot;/404&quot;&gt;404&lt;/a&gt;, &lt;a href=&quot;/atom.xml&quot;&gt;RSS feed&lt;/a&gt;, posts, and &lt;a href=&quot;/about&quot;&gt;example page&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;Mobile friendly design and development&lt;/li&gt;
-&lt;li&gt;Easily scalable text and component sizing with &lt;code&gt;rem&lt;/code&gt; units in the CSS&lt;/li&gt;
-&lt;li&gt;Support for a wide gamut of HTML elements&lt;/li&gt;
-&lt;li&gt;Related posts (time-based, because Jekyll) below each post&lt;/li&gt;
-&lt;li&gt;Syntax highlighting, courtesy Pygments (the Python-based code snippet highlighter)&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;With that background, let me dive straight into the main content of this post, where I will show you step-by-step, how to create an interactive playground for an R package, using OpenCPU and AngularJS.&lt;/p&gt;
 
-&lt;h3&gt;Lanyon features&lt;/h3&gt;
+&lt;h3&gt;Add Dependencies&lt;/h3&gt;
 
-&lt;p&gt;In addition to the features of Poole, Lanyon adds the following:&lt;/p&gt;
+&lt;p&gt;Our first step is to  add the basic js/css dependencies for the app we are building. We add &lt;code&gt;bootstrap&lt;/code&gt; for styling, &lt;code&gt;angularjs&lt;/code&gt; for data-binding/reactivity (it is like &lt;a href=&quot;http://rstudio.com/shiny&quot;&gt;Shiny&lt;/a&gt;), the &lt;code&gt;ace&lt;/code&gt; widget for generating a code editor and the &lt;code&gt;ui-ace&lt;/code&gt; widget that allows the &lt;code&gt;ace&lt;/code&gt; widget to integrate seamlessly with &lt;code&gt;angularjs&lt;/code&gt;. Finally we add &lt;code&gt;opencpu-0.4.js&lt;/code&gt; and its dependency &lt;code&gt;jquery.min.js&lt;/code&gt;. &lt;/p&gt;
 
-&lt;ul&gt;
-&lt;li&gt;Toggleable sliding sidebar (built with only CSS) via &lt;strong&gt;☰&lt;/strong&gt; link in top corner&lt;/li&gt;
-&lt;li&gt;Sidebar includes support for textual modules and a dynamically generated navigation with active link support&lt;/li&gt;
-&lt;li&gt;Two orientations for content and sidebar, default (left sidebar) and &lt;a href=&quot;https://github.com/poole/lanyon#reverse-layout&quot;&gt;reverse&lt;/a&gt; (right sidebar), available via &lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt; classes&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/poole/lanyon#themes&quot;&gt;Eight optional color schemes&lt;/a&gt;, available via &lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt; classes&lt;/li&gt;
-&lt;/ul&gt;
+&lt;iframe width=&quot;100%&quot; height=&quot;300&quot; src=&quot;http://jsfiddle.net/ramnathv/9Z9ja/10/embedded/resources&quot; allowfullscreen=&quot;allowfullscreen&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://github.com/poole/lanyon#readme&quot;&gt;Head to the readme&lt;/a&gt; to learn more.&lt;/p&gt;
+&lt;h3&gt;Setup UI&lt;/h3&gt;
 
-&lt;h3&gt;Browser support&lt;/h3&gt;
+&lt;p&gt;Now that we have our dependencies laid out, let us work on settin up the basic UI for the page. Bootstrap makes it easy to create nice layouts. I like to use a two column layout, with the code editor on the left and the generated output on the right. The HTML is fairly self-explanatory and basic &lt;a href=&quot;http://getbootstrap.com/css/#grid&quot;&gt;bootstrap stuff&lt;/a&gt;. Here is what we have so far.&lt;/p&gt;
 
-&lt;p&gt;Lanyon is by preference a forward-thinking project. In addition to the latest versions of Chrome, Safari (mobile and desktop), and Firefox, it is only compatible with Internet Explorer 9 and above.&lt;/p&gt;
+&lt;iframe width=&quot;100%&quot; height=&quot;300&quot; src=&quot;http://jsfiddle.net/ramnathv/9Z9ja/5/embedded/html,result&quot; allowfullscreen=&quot;allowfullscreen&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
 
-&lt;h3&gt;Download&lt;/h3&gt;
+&lt;h3&gt;Add Ace Editor&lt;/h3&gt;
 
-&lt;p&gt;Lanyon is developed on and hosted with GitHub. Head to the &lt;a href=&quot;https://github.com/poole/lanyon&quot;&gt;GitHub repository&lt;/a&gt; for downloads, bug reports, and features requests.&lt;/p&gt;
+&lt;p&gt;We are now ready to add the &lt;code&gt;ace&lt;/code&gt; editor to the page. We do this in two steps. First, we modify the HTML as indicated by the highlighted lines.&lt;/p&gt;
 
-&lt;p&gt;Thanks!&lt;/p&gt;
-</content>
- </entry>
- 
- <entry>
-   <title>Example content</title>
-   <link href="http://localhost:4000/2014/01/01/example-content/"/>
-   <updated>2014-01-01T00:00:00-05:00</updated>
-   <id>http://localhost:4000/2014/01/01/example-content</id>
-   <content type="html">&lt;div class=&quot;message&quot;&gt;
-  Howdy! This is an example blog post that shows several types of HTML content supported in this theme.
-&lt;/div&gt;
-
-&lt;p&gt;Cum sociis natoque penatibus et magnis &lt;a href=&quot;#&quot;&gt;dis parturient montes&lt;/a&gt;, nascetur ridiculus mus. &lt;em&gt;Aenean eu leo quam.&lt;/em&gt; Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Etiam porta &lt;strong&gt;sem malesuada magna&lt;/strong&gt; mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.&lt;/p&gt;
-
-&lt;h2&gt;Inline HTML elements&lt;/h2&gt;
-
-&lt;p&gt;HTML defines a long list of available inline tags, a complete list of which can be found on the &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/HTML/Element&quot;&gt;Mozilla Developer Network&lt;/a&gt;.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;To bold text&lt;/strong&gt;, use &lt;code&gt;&amp;lt;strong&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;To italicize text&lt;/em&gt;, use &lt;code&gt;&amp;lt;em&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Abbreviations, like &lt;abbr title=&quot;HyperText Markup Langage&quot;&gt;HTML&lt;/abbr&gt; should use &lt;code&gt;&amp;lt;abbr&amp;gt;&lt;/code&gt;, with an optional &lt;code&gt;title&lt;/code&gt; attribute for the full phrase.&lt;/li&gt;
-&lt;li&gt;Citations, like &lt;cite&gt;&amp;mdash; Mark otto&lt;/cite&gt;, should use &lt;code&gt;&amp;lt;cite&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;del&gt;Deleted&lt;/del&gt; text should use &lt;code&gt;&amp;lt;del&amp;gt;&lt;/code&gt; and &lt;ins&gt;inserted&lt;/ins&gt; text should use &lt;code&gt;&amp;lt;ins&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Superscript &lt;sup&gt;text&lt;/sup&gt; uses &lt;code&gt;&amp;lt;sup&amp;gt;&lt;/code&gt; and subscript &lt;sub&gt;text&lt;/sub&gt; uses &lt;code&gt;&amp;lt;sub&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Most of these elements are styled by browsers with few modifications on our part.&lt;/p&gt;
-
-&lt;h2&gt;Heading&lt;/h2&gt;
-
-&lt;p&gt;Vivamus sagittis lacus vel augue rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.&lt;/p&gt;
-
-&lt;h3&gt;Code&lt;/h3&gt;
-
-&lt;p&gt;Cum sociis natoque penatibus et magnis dis &lt;code&gt;code element&lt;/code&gt; montes, nascetur ridiculus mus.&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// Example can be run directly in your JavaScript console&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// Create a function that takes two arguments and returns the sum of those arguments&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;adder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;a&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;b&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;return a + b&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// Call the function&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;adder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// &amp;gt; 8&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.&lt;/p&gt;
-
-&lt;h3&gt;Lists&lt;/h3&gt;
-
-&lt;p&gt;Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Praesent commodo cursus magna, vel scelerisque nisl consectetur et.&lt;/li&gt;
-&lt;li&gt;Donec id elit non mi porta gravida at eget metus.&lt;/li&gt;
-&lt;li&gt;Nulla vitae elit libero, a pharetra augue.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Vestibulum id ligula porta felis euismod semper.&lt;/li&gt;
-&lt;li&gt;Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.&lt;/li&gt;
-&lt;li&gt;Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.&lt;/p&gt;
-
-&lt;dl&gt;
-  &lt;dt&gt;HyperText Markup Language (HTML)&lt;/dt&gt;
-  &lt;dd&gt;The language used to describe and define the content of a Web page&lt;/dd&gt;
-
-  &lt;dt&gt;Cascading Style Sheets (CSS)&lt;/dt&gt;
-  &lt;dd&gt;Used to describe the appearance of Web content&lt;/dd&gt;
-
-  &lt;dt&gt;JavaScript (JS)&lt;/dt&gt;
-  &lt;dd&gt;The programming language used to build advanced Web sites and applications&lt;/dd&gt;
-&lt;/dl&gt;
-
-&lt;p&gt;Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nullam quis risus eget urna mollis ornare vel eu leo.&lt;/p&gt;
-
-&lt;h3&gt;Tables&lt;/h3&gt;
-
-&lt;p&gt;Aenean lacinia bibendum nulla sed consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Name&lt;/th&gt;
-      &lt;th&gt;Upvotes&lt;/th&gt;
-      &lt;th&gt;Downvotes&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tfoot&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Totals&lt;/td&gt;
-      &lt;td&gt;21&lt;/td&gt;
-      &lt;td&gt;23&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tfoot&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Alice&lt;/td&gt;
-      &lt;td&gt;10&lt;/td&gt;
-      &lt;td&gt;11&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Bob&lt;/td&gt;
-      &lt;td&gt;4&lt;/td&gt;
-      &lt;td&gt;3&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Charlie&lt;/td&gt;
-      &lt;td&gt;7&lt;/td&gt;
-      &lt;td&gt;9&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Nullam id dolor id nibh ultricies vehicula ut id elit. Sed posuere consectetur est at lobortis. Nullam quis risus eget urna mollis ornare vel eu leo.&lt;/p&gt;
+&lt;p&gt;--- .RAW&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;ng-app=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;myApp&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;ng-controller=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;MainCtrl&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;container&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;row&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;col-sm-4&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;ng-model=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;example&amp;#39;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;ui-ace=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;aceOptions&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;col-sm-8&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;nt&quot;&gt;&amp;lt;iframe&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;output&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;seamless&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/iframe&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We are doing several things here. &lt;code&gt;ng-app=&amp;quot;myApp&amp;quot;&lt;/code&gt; tells AngularJS to be active inside the body of this app. &lt;code&gt;ng-controller=&amp;quot;MainCtrl&amp;quot;&lt;/code&gt; states that the behavior of elements inside the body will be controlled by the controller function &lt;code&gt;MainCtrl&lt;/code&gt;. &lt;code&gt;ng-model=&amp;#39;example&amp;#39;&lt;/code&gt; binds this div to the variable named &lt;code&gt;example&lt;/code&gt;, specified in &lt;code&gt;MainCtrl&lt;/code&gt;. &lt;code&gt;ui-ace=&amp;#39;aceOptions&amp;#39;&lt;/code&gt; is an angularjs &lt;a href=&quot;http://docs.angularjs.org/guide/directive&quot;&gt;directive&lt;/a&gt; that transforms this &lt;code&gt;div&lt;/code&gt; into an ace editor instance, where &lt;code&gt;aceOptions&lt;/code&gt; are specified inside &lt;code&gt;MainCtrl&lt;/code&gt;. `&lt;code&gt;displays the variable&lt;/code&gt;example` on the page.&lt;/p&gt;
 
 &lt;hr&gt;
 
-&lt;p&gt;Want to see something else added? &lt;a href=&quot;https://github.com/poole/poole/issues/new&quot;&gt;Open an issue.&lt;/a&gt;&lt;/p&gt;
-</content>
- </entry>
- 
- <entry>
-   <title>What's Jekyll?</title>
-   <link href="http://localhost:4000/2013/12/31/whats-jekyll/"/>
-   <updated>2013-12-31T00:00:00-05:00</updated>
-   <id>http://localhost:4000/2013/12/31/whats-jekyll</id>
-   <content type="html">&lt;p&gt;&lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt; is a static site generator, an open-source tool for creating simple yet powerful websites of all shapes and sizes. From &lt;a href=&quot;https://github.com/mojombo/jekyll/blob/master/README.markdown&quot;&gt;the project&amp;#39;s readme&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;Next, we need to add the necessary javascript that will define these variables and control them. &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;myApp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;angular&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;myApp&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;ui.ace&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
 
-&lt;blockquote&gt;
-&lt;p&gt;Jekyll is a simple, blog aware, static site generator. It takes a template directory [...] and spits out a complete, static website suitable for serving with Apache or your favorite web server. This is also the engine behind GitHub Pages, which you can use to host your project’s page or blog right here from GitHub.&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;span class=&quot;nx&quot;&gt;myApp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;controller&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;MainCtrl&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$scope&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+   &lt;span class=&quot;nx&quot;&gt;$scope&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;aceOptions&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+     &lt;span class=&quot;nx&quot;&gt;theme&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;solarized_dark&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+     &lt;span class=&quot;nx&quot;&gt;mode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+     &lt;span class=&quot;nx&quot;&gt;useWrapMode&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
+   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+   &lt;span class=&quot;nx&quot;&gt;$scope&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;example&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;require(rCharts)\nrPlot(mpg ~ wt, data = mtcars,type = &amp;quot;point&amp;quot;)&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Once agin, we are doing a number of things here. We define &lt;code&gt;myApp&lt;/code&gt; as an angular module named &lt;code&gt;myApp&lt;/code&gt; and inject &lt;code&gt;ui.ace&lt;/code&gt; as a dependency. We then define a &lt;a href=&quot;http://docs.angularjs.org/guide/controller&quot;&gt;controller&lt;/a&gt; function named &lt;code&gt;MainCtrl&lt;/code&gt;. The argument &lt;code&gt;$scope&lt;/code&gt; contains all the data variables in the model and is the glue between the HTML view and the controller function, allowing them to communicate with each other. We initialize the model data variables &lt;code&gt;aceOptions&lt;/code&gt; and &lt;code&gt;example&lt;/code&gt;. You can see the result in the embedded fiddle below. You can fork the fiddle and play around with the options, especially changing the default &lt;code&gt;theme&lt;/code&gt; to something like &lt;code&gt;solarized_light&lt;/code&gt;. &lt;/p&gt;
 
-&lt;p&gt;It&amp;#39;s an immensely useful tool and one we encourage you to use here with Hyde.&lt;/p&gt;
+&lt;iframe width=&quot;100%&quot; height=&quot;300&quot; src=&quot;http://jsfiddle.net/ramnathv/9Z9ja/12/embedded/result,js,html&quot; allowfullscreen=&quot;allowfullscreen&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
 
-&lt;p&gt;Find out more by &lt;a href=&quot;https://github.com/mojombo/jekyll&quot;&gt;visiting the project on GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Add Submit Button&lt;/h3&gt;
+
+&lt;p&gt;Now, we want to be able to add a submit button that will allow the code to be submitted to the OpenCPU server, which in turn will generate the chart. As usual, we take care of the UI first, and add an &lt;code&gt;input&lt;/code&gt; element styled as a &lt;code&gt;btn&lt;/code&gt;, right below the &lt;code&gt;div&lt;/code&gt; with the ace-editor. We also add an attribute &lt;code&gt;ng-click&lt;/code&gt;, which is set to &lt;code&gt;makeChart()&lt;/code&gt;. The idea here is that when a user clicks the button, the function &lt;code&gt;makeChart()&lt;/code&gt; will be invoked.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;submit&amp;#39;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;Submit&amp;#39;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;btn btn-success&amp;#39;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;ng-click=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;makeChart()&amp;#39;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We now define the &lt;code&gt;makeChart()&lt;/code&gt; function, which will send the code in the ace-editor to the OpenCPU server, which in turn will return an HTML file with the chart, that gets injected into the output &lt;code&gt;iframe&lt;/code&gt;. There are a few things to point out with the code:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;We use &lt;code&gt;ocpu.seturl&lt;/code&gt; to allow cross-domain requests to the opencpu server, since the function generating the chart is not on a public OpenCPU server. Note that OpenCPU is tightly integrated with &lt;code&gt;github&lt;/code&gt; allowing users to serve functions from any R package hosted on &lt;code&gt;github&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The &lt;code&gt;makeChart&lt;/code&gt; function is basically a call to the function &lt;a href=&quot;https://github.com/ramnathv/rCharts/blob/master/R/utils.R#L5-L12&quot;&gt;make_chart&lt;/a&gt; in &lt;a href=&quot;http://rcharts.io&quot;&gt;rCharts&lt;/a&gt;, that accepts code as input, and generates an HTML file with the chart. We use &lt;code&gt;ocpu.call&lt;/code&gt; to invoke this function, passing to it the code in &lt;code&gt;$scope.example&lt;/code&gt;. Following a successful call, we inject the file &lt;code&gt;output.html&lt;/code&gt; into the &lt;code&gt;src&lt;/code&gt; attribute of the &lt;code&gt;output&lt;/code&gt; iframe we created earlier.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;var myApp = angular.module(&amp;#39;myApp&amp;#39;, [&amp;#39;ui.ace&amp;#39;])
+ocpu.seturl(&amp;quot;//ramnathv.ocpu.io/rCharts/R&amp;quot;)
+
+myApp.controller(&amp;#39;MainCtrl&amp;#39;, function($scope){
+   $scope.aceOptions = ...
+   $scope.example = ...
+   $scope.makeChart = function(){
+     var req = ocpu.call(&amp;quot;make_chart&amp;quot;, {
+       text: $scope.example   
+     }, function(session){
+       $(&amp;quot;#output&amp;quot;).attr(&amp;#39;src&amp;#39;, session.getLoc() + &amp;quot;files/output.html&amp;quot;);  
+     }).fail(function(text){
+      alert(&amp;quot;Error: &amp;quot; + req.responseText);
+     });  
+   }
+})
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Voila, we are done! You can see the final output below. Hit the submit button to see a nice interactive chart as output. Modify the code in the editor and experiment away.&lt;/p&gt;
+
+&lt;iframe width=&quot;100%&quot; height=&quot;700&quot; src=&quot;http://jsfiddle.net/ramnathv/9Z9ja/10/embedded/result,js,html,css&quot; allowfullscreen=&quot;allowfullscreen&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;I hardcoded the code snippet in this playground. For this app to be more useful, it should allow example snippets to be loaded dynamically, from an online service like &lt;a href=&quot;http://gist.github.com&quot;&gt;gist&lt;/a&gt;. You can see this in action on the &lt;a href=&quot;http://rcharts.io/viewer&quot;&gt;rCharts viewer&lt;/a&gt;, where clicking on the &lt;code&gt;Edit Me&lt;/code&gt; button on top will take you to an editable version of the code in the playground. I will cover this in Part 2 of this series.&lt;/p&gt;
+
+&lt;p&gt;--- .RAW&lt;/p&gt;
+
+&lt;script&gt;
+  $(&#39;body&#39;).highlight(&#39;&lt;body ng-app=&quot;myApp&quot; ng-controller=&quot;MainCtrl&quot;&gt;&#39;)
+  $(&#39;body&#39;).highlight(&quot;&lt;div ng-model=&#39;example&#39; ui-ace=&#39;aceOptions&#39;&gt;&lt;/div&gt;&quot;)
+  $(&#39;body&#39;).highlight(&#39;&lt;iframe id=&quot;output&quot; seamless&gt;&lt;/iframe&gt;&#39;)
+&lt;/script&gt;
+
+&lt;style&gt;
+  # li {line-height: 1.7em;}
+  span.highlight {background-color: #002b36;}
+  span.container {padding: 0px;}
+  p {text-align: justify;}
+&lt;/style&gt;
 </content>
  </entry>
  

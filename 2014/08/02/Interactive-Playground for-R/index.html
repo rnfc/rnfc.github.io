@@ -10,7 +10,7 @@
 
   <title>
     
-      Blog &middot; rnfc
+      Interactive Playground for R Packages: Part 1 &middot; rnfc
     
   </title>
 
@@ -61,7 +61,7 @@
     
       
         
-          <a class="sidebar-nav-item active" href="/blog/">
+          <a class="sidebar-nav-item" href="/blog/">
           <i class='fa fa-pencil-square fa-fw'> </i> 
           Blog
           </a>
@@ -126,17 +126,10 @@
       </div>
 
       <div class="container content">
-        <div class="page">
-  <div class="posts">
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2014/08/02/Interactive-Playground%20for-R/">
-        Interactive Playground for R Packages: Part 1
-      </a>
-    </h1>
-    <span class="post-date">02 Aug 2014</span>
-    <p>An <a href="http://rcharts.io/playground">interactive playground</a> is an online web app that allows a user to check out the functionality of a tool without having to install it on their computers. It can also be used to share examples and interactive tutorials, that allow users to experiment and learn. From the time I wrote <a href="http://slidify.github.io">Slidify</a> and <a href="http://rcharts.io">rCharts</a>, I have always wanted to create such a playground. My main motivation to do this was to allow non-R users to experiment with these packages and experience the range of cool things that one could do with R!</p>
+        <div class="post">
+  <h1 class="post-title">Interactive Playground for R Packages: Part 1</h1>
+  <span class="post-date">02 Aug 2014</span>
+  <p>An <a href="http://rcharts.io/playground">interactive playground</a> is an online web app that allows a user to check out the functionality of a tool without having to install it on their computers. It can also be used to share examples and interactive tutorials, that allow users to experiment and learn. From the time I wrote <a href="http://slidify.github.io">Slidify</a> and <a href="http://rcharts.io">rCharts</a>, I have always wanted to create such a playground. My main motivation to do this was to allow non-R users to experiment with these packages and experience the range of cool things that one could do with R!</p>
 
 <p>My first attempt at doing this was to use <a href="http://rstudio.com/shiny">Shiny</a> by <a href="http://rstudio.com">RStudio</a>. However, I was soon told that allowing users to execute arbitrary code on a Shiny server was a really bad idea. This was when I started experimenting with <a href="http://opencpu.org">OpenCPU</a>, an elegant and powerful framework created by <a href="http://jeroenooms.github.io/">Jeroen Ooms</a>, that provides a simple RESTful interface to call R from the web. OpenCPU uses the R package <a href="http://cran.r-project.org/web/packages/RAppArmor/index.html">RAppArmor</a> (also written by Jeroen), to secure/sandbox execution of R code. This was exactly what I was looking for!</p>
 
@@ -243,10 +236,13 @@ myApp.controller(&#39;MainCtrl&#39;, function($scope){
   p {text-align: justify;}
 </style>
 
-  </div>
-  
 </div>
 
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+  </ul>
 </div>
 
       </div>
