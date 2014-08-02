@@ -39,7 +39,7 @@
 <!-- Toggleable sidebar -->
 <div class="sidebar" id="sidebar">
   <div class="sidebar-item">
-    <p>I am a professor of end user modeling, addicted to R and statistical analyses.</p>
+    <p>I am a professor of financial anlytics, addicted to R and statistical analyses.</p>
   </div>
 
   <nav class="sidebar-nav">
@@ -61,8 +61,17 @@
     
       
         
+          <a class="sidebar-nav-item" href="/events/">
+          <i class='fa fa-calendar-o fa-fw'></i> 
+          Events
+          </a>
+        
+      
+    
+      
+        
           <a class="sidebar-nav-item" href="/blog/">
-          <i class='fa fa-pencil-square fa-fw'> </i> 
+          <i class='fa fa-pencil-square fa-fw'></i> 
           Blog
           </a>
         
@@ -70,8 +79,26 @@
     
       
         
+          <a class="sidebar-nav-item" href="/courses/">
+          <i class='fa fa-university fa-fw'></i> 
+          Courses
+          </a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/career/">
+          <i class='fa fa-group fa-fw'></i> 
+          Career
+          </a>
+        
+      
+    
+      
+        
           <a class="sidebar-nav-item" href="/projects/">
-          <i class='fa fa-book fa-fw'> </i> 
+          <i class='fa fa-book fa-fw'></i> 
           Projects
           </a>
         
@@ -80,7 +107,7 @@
       
         
           <a class="sidebar-nav-item" href="/publications/">
-          <i class='fa fa-bullhorn fa-fw'> </i> 
+          <i class='fa fa-bullhorn fa-fw'></i> 
           Publications
           </a>
         
@@ -89,18 +116,21 @@
       
         
           <a class="sidebar-nav-item" href="/research/">
-          <i class='fa fa-cog fa-spin fa-fw'> </i> 
+          <i class='fa fa-cog fa-spin fa-fw'></i> 
           Research
           </a>
         
       
     
-
-    <a class="sidebar-nav-item" href="https://github.com/rnfc" target="_blank">
-    <i class='fa fa-github fa-fw'> </i>
-    GitHub
-    </a>
-
+      
+        
+          <a class="sidebar-nav-item" href="/software/">
+          <i class='fa fa-desktop fa-fw'></i> 
+          Software
+          </a>
+        
+      
+    
   </nav>
 
   <div class="sidebar-item">
@@ -139,9 +169,10 @@
 
 <h3>Add Dependencies</h3>
 
-<p>Our first step is to  add the basic js/css dependencies for the app we are building. We add <code>bootstrap</code> for styling, <code>angularjs</code> for data-binding/reactivity (it is like <a href="http://rstudio.com/shiny">Shiny</a>), the <code>ace</code> widget for generating a code editor and the <code>ui-ace</code> widget that allows the <code>ace</code> widget to integrate seamlessly with <code>angularjs</code>. Finally we add <code>opencpu-0.4.js</code> and its dependency <code>jquery.min.js</code>. </p>
+<p>Our first step is to  add the basic js/css dependencies for the app we are building. We add <code>bootstrap</code> for styling, <code>angularjs</code> for data-binding/reactivity (it is like <a href="http://rstudio.com/shiny">Shiny</a>), the <code>ace</code> widget for generating a code editor and the <code>ui-ace</code> widget that allows the <code>ace</code> widget to integrate seamlessly with <code>angularjs</code>. Finally we add <code>opencpu-0.4.js</code> and its dependency <code>jquery.min.js</code>.</p>
 
 <iframe width="100%" height="300" src="http://jsfiddle.net/ramnathv/9Z9ja/10/embedded/resources" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
 
 <h3>Setup UI</h3>
 
@@ -149,75 +180,87 @@
 
 <iframe width="100%" height="300" src="http://jsfiddle.net/ramnathv/9Z9ja/5/embedded/html,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
+
 <h3>Add Ace Editor</h3>
 
 <p>We are now ready to add the <code>ace</code> editor to the page. We do this in two steps. First, we modify the HTML as indicated by the highlighted lines.</p>
 
 <p>--- .RAW</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;body</span> <span class="na">ng-app=</span><span class="s">&quot;myApp&quot;</span> <span class="na">ng-controller=</span><span class="s">&quot;MainCtrl&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;row&quot;</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;col-sm-4&quot;</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;div</span> <span class="na">ng-model=</span><span class="s">&#39;example&#39;</span> <span class="na">ui-ace=</span><span class="s">&#39;aceOptions&#39;</span><span class="nt">&gt;&lt;/div&gt;</span>
-      <span class="nt">&lt;/div&gt;</span>
-      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;col-sm-8&quot;</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;iframe</span> <span class="na">id=</span><span class="s">&quot;output&quot;</span> <span class="na">seamless</span><span class="nt">&gt;&lt;/iframe&gt;</span>
-      <span class="nt">&lt;/div&gt;</span>
-    <span class="nt">&lt;/div&gt;</span>
-  <span class="nt">&lt;/div&gt;</span>
-<span class="nt">&lt;/body&gt;</span>
-</code></pre></div>
-<p>We are doing several things here. <code>ng-app=&quot;myApp&quot;</code> tells AngularJS to be active inside the body of this app. <code>ng-controller=&quot;MainCtrl&quot;</code> states that the behavior of elements inside the body will be controlled by the controller function <code>MainCtrl</code>. <code>ng-model=&#39;example&#39;</code> binds this div to the variable named <code>example</code>, specified in <code>MainCtrl</code>. <code>ui-ace=&#39;aceOptions&#39;</code> is an angularjs <a href="http://docs.angularjs.org/guide/directive">directive</a> that transforms this <code>div</code> into an ace editor instance, where <code>aceOptions</code> are specified inside <code>MainCtrl</code>. `<code>displays the variable</code>example` on the page.</p>
 
-<hr>
+<pre><code class="html">&lt;body ng-app="myApp" ng-controller="MainCtrl"&gt;
+  &lt;div class="container"&gt;
+    &lt;div class="row"&gt;
+      &lt;div class="col-sm-4"&gt;
+          &lt;div ng-model='example' ui-ace='aceOptions'&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="col-sm-8"&gt;
+          &lt;iframe id="output" seamless&gt;&lt;/iframe&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
 
-<p>Next, we need to add the necessary javascript that will define these variables and control them. </p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">myApp</span> <span class="o">=</span> <span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">&#39;myApp&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;ui.ace&#39;</span><span class="p">])</span>
+<p>We are doing several things here. <code>ng-app="myApp"</code> tells AngularJS to be active inside the body of this app. <code>ng-controller="MainCtrl"</code> states that the behavior of elements inside the body will be controlled by the controller function <code>MainCtrl</code>. <code>ng-model='example'</code> binds this div to the variable named <code>example</code>, specified in <code>MainCtrl</code>. <code>ui-ace='aceOptions'</code> is an angularjs <a href="http://docs.angularjs.org/guide/directive">directive</a> that transforms this <code>div</code> into an ace editor instance, where <code>aceOptions</code> are specified inside <code>MainCtrl</code>. <code>` displays the variable</code>example` on the page.</p>
 
-<span class="nx">myApp</span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">&#39;MainCtrl&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">){</span>
-   <span class="nx">$scope</span><span class="p">.</span><span class="nx">aceOptions</span> <span class="o">=</span> <span class="p">{</span>
-     <span class="nx">theme</span><span class="o">:</span> <span class="s1">&#39;solarized_dark&#39;</span><span class="p">,</span>
-     <span class="nx">mode</span><span class="o">:</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span>
-     <span class="nx">useWrapMode</span> <span class="o">:</span> <span class="kc">true</span>
-   <span class="p">}</span>
-   <span class="nx">$scope</span><span class="p">.</span><span class="nx">example</span> <span class="o">=</span> <span class="s1">&#39;require(rCharts)\nrPlot(mpg ~ wt, data = mtcars,type = &quot;point&quot;)&#39;</span>
-<span class="p">})</span>
-</code></pre></div>
-<p>Once agin, we are doing a number of things here. We define <code>myApp</code> as an angular module named <code>myApp</code> and inject <code>ui.ace</code> as a dependency. We then define a <a href="http://docs.angularjs.org/guide/controller">controller</a> function named <code>MainCtrl</code>. The argument <code>$scope</code> contains all the data variables in the model and is the glue between the HTML view and the controller function, allowing them to communicate with each other. We initialize the model data variables <code>aceOptions</code> and <code>example</code>. You can see the result in the embedded fiddle below. You can fork the fiddle and play around with the options, especially changing the default <code>theme</code> to something like <code>solarized_light</code>. </p>
+<hr />
+
+<p>Next, we need to add the necessary javascript that will define these variables and control them.</p>
+
+<pre><code class="js">var myApp = angular.module('myApp', ['ui.ace'])
+
+myApp.controller('MainCtrl', function($scope){
+   $scope.aceOptions = {
+     theme: 'solarized_dark',
+     mode: 'r',
+     useWrapMode : true
+   }
+   $scope.example = 'require(rCharts)\nrPlot(mpg ~ wt, data = mtcars,type = "point")'
+})
+</code></pre>
+
+<p>Once agin, we are doing a number of things here. We define <code>myApp</code> as an angular module named <code>myApp</code> and inject <code>ui.ace</code> as a dependency. We then define a <a href="http://docs.angularjs.org/guide/controller">controller</a> function named <code>MainCtrl</code>. The argument <code>$scope</code> contains all the data variables in the model and is the glue between the HTML view and the controller function, allowing them to communicate with each other. We initialize the model data variables <code>aceOptions</code> and <code>example</code>. You can see the result in the embedded fiddle below. You can fork the fiddle and play around with the options, especially changing the default <code>theme</code> to something like <code>solarized_light</code>.</p>
 
 <iframe width="100%" height="300" src="http://jsfiddle.net/ramnathv/9Z9ja/12/embedded/result,js,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
 
 <h3>Add Submit Button</h3>
 
 <p>Now, we want to be able to add a submit button that will allow the code to be submitted to the OpenCPU server, which in turn will generate the chart. As usual, we take care of the UI first, and add an <code>input</code> element styled as a <code>btn</code>, right below the <code>div</code> with the ace-editor. We also add an attribute <code>ng-click</code>, which is set to <code>makeChart()</code>. The idea here is that when a user clicks the button, the function <code>makeChart()</code> will be invoked.</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&#39;submit&#39;</span> <span class="na">value=</span><span class="s">&#39;Submit&#39;</span> <span class="na">class=</span><span class="s">&#39;btn btn-success&#39;</span> <span class="na">ng-click=</span><span class="s">&#39;makeChart()&#39;</span> <span class="nt">/&gt;</span>
-</code></pre></div>
+
+<pre><code class="html">&lt;input type='submit' value='Submit' class='btn btn-success' ng-click='makeChart()' /&gt;
+</code></pre>
+
 <p>We now define the <code>makeChart()</code> function, which will send the code in the ace-editor to the OpenCPU server, which in turn will return an HTML file with the chart, that gets injected into the output <code>iframe</code>. There are a few things to point out with the code:</p>
 
 <ol>
 <li><p>We use <code>ocpu.seturl</code> to allow cross-domain requests to the opencpu server, since the function generating the chart is not on a public OpenCPU server. Note that OpenCPU is tightly integrated with <code>github</code> allowing users to serve functions from any R package hosted on <code>github</code>.</p></li>
 <li><p>The <code>makeChart</code> function is basically a call to the function <a href="https://github.com/ramnathv/rCharts/blob/master/R/utils.R#L5-L12">make_chart</a> in <a href="http://rcharts.io">rCharts</a>, that accepts code as input, and generates an HTML file with the chart. We use <code>ocpu.call</code> to invoke this function, passing to it the code in <code>$scope.example</code>. Following a successful call, we inject the file <code>output.html</code> into the <code>src</code> attribute of the <code>output</code> iframe we created earlier.</p></li>
 </ol>
-<div class="highlight"><pre><code class="language-html" data-lang="html">var myApp = angular.module(&#39;myApp&#39;, [&#39;ui.ace&#39;])
-ocpu.seturl(&quot;//ramnathv.ocpu.io/rCharts/R&quot;)
 
-myApp.controller(&#39;MainCtrl&#39;, function($scope){
+
+<pre><code class="html">var myApp = angular.module('myApp', ['ui.ace'])
+ocpu.seturl("//ramnathv.ocpu.io/rCharts/R")
+
+myApp.controller('MainCtrl', function($scope){
    $scope.aceOptions = ...
    $scope.example = ...
    $scope.makeChart = function(){
-     var req = ocpu.call(&quot;make_chart&quot;, {
+     var req = ocpu.call("make_chart", {
        text: $scope.example   
      }, function(session){
-       $(&quot;#output&quot;).attr(&#39;src&#39;, session.getLoc() + &quot;files/output.html&quot;);  
+       $("#output").attr('src', session.getLoc() + "files/output.html");  
      }).fail(function(text){
-      alert(&quot;Error: &quot; + req.responseText);
+      alert("Error: " + req.responseText);
      });  
    }
 })
-</code></pre></div>
+</code></pre>
+
 <p>Voila, we are done! You can see the final output below. Hit the submit button to see a nice interactive chart as output. Modify the code in the editor and experiment away.</p>
 
 <iframe width="100%" height="700" src="http://jsfiddle.net/ramnathv/9Z9ja/10/embedded/result,js,html,css" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
 
 <p>I hardcoded the code snippet in this playground. For this app to be more useful, it should allow example snippets to be loaded dynamically, from an online service like <a href="http://gist.github.com">gist</a>. You can see this in action on the <a href="http://rcharts.io/viewer">rCharts viewer</a>, where clicking on the <code>Edit Me</code> button on top will take you to an editable version of the code in the playground. I will cover this in Part 2 of this series.</p>
 
@@ -229,12 +272,10 @@ myApp.controller(&#39;MainCtrl&#39;, function($scope){
   $('body').highlight('<iframe id="output" seamless></iframe>')
 </script>
 
-<style>
-  # li {line-height: 1.7em;}
-  span.highlight {background-color: #002b36;}
-  span.container {padding: 0px;}
-  p {text-align: justify;}
-</style>
+
+
+
+
 
 </div>
 
