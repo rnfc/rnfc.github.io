@@ -10,7 +10,7 @@
 
   <title>
     
-      Projects &middot; rnfc
+      Projects &middot; RN Financial Research Centre
     
   </title>
 
@@ -20,6 +20,9 @@
   <link rel="stylesheet" href="/public/css/lanyon.css">
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700|PT+Sans:400">
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/public/css/bs-theme.css">
+  <link rel="stylesheet" href="/public/css/bs.css">
 
   <!-- Icons -->
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
@@ -38,9 +41,6 @@
 
 <!-- Toggleable sidebar -->
 <div class="sidebar" id="sidebar">
-  <div class="sidebar-item">
-    <p>I am a professor of financial anlytics, addicted to R and statistical analyses.</p>
-  </div>
 
   <nav class="sidebar-nav">
     <a class="sidebar-nav-item" href="/">
@@ -48,8 +48,6 @@
     </a>
 
     
-
-    
     
       
         
@@ -57,15 +55,6 @@
     
       
     
-      
-    
-      
-        
-          <a class="sidebar-nav-item" href="/events/">
-          <i class='fa fa-calendar-o fa-fw'></i> 
-          Events
-          </a>
-        
       
     
       
@@ -82,6 +71,15 @@
           <a class="sidebar-nav-item" href="/courses/">
           <i class='fa fa-university fa-fw'></i> 
           Courses
+          </a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/events/">
+          <i class='fa fa-calendar-o fa-fw'></i> 
+          Events
           </a>
         
       
@@ -122,15 +120,6 @@
         
       
     
-      
-        
-          <a class="sidebar-nav-item" href="/software/">
-          <i class='fa fa-desktop fa-fw'></i> 
-          Software
-          </a>
-        
-      
-    
   </nav>
 
   <div class="sidebar-item">
@@ -149,7 +138,7 @@
           <label for="sidebar-checkbox" class="sidebar-toggle"></label>
 
           <h3 class="masthead-title">
-            <a href="/" title="Home">rnfc</a>
+            <a href="/" title="Home">RN Financial Research Centre</a>
             <small>by Rafael Nicolas Fermin Cota</small>
           </h3>
         </div>
@@ -157,15 +146,32 @@
 
       <div class="container content">
         <div class="page">
-  <h2>Projects</h2>
+  <h2>Rcpp for Seamless R and C++ Integration</h2>
 
-<p><a href="http://rnfc.github.io/project_demo/" target="_blank">
-  <p>JavaScript visualizations using R markdown and knitr</p>
-  <!-- image directory check -->
-  <!-- image directory check --></p>
+<p>The Rcpp package has become the most widely used language extension for R, the powerful environment and language for computing with data. As of early 2013, over 100 packages on CRAN and a further 10 on BioConductor deploy Rcpp to extend R, to accelerate computations and to connect to other C++ projects. This page provides a few pointers to other popular packages using Rcpp, as well as to a few related external sites. A good introduction to Rcpp is provided by our JSS paper on Rcpp (also included in the package) and the numerous vignettes included in the package.</p>
 
-<p>  <img src="thumbnails/googleVis.png" alt="JavaScript visualizations using R markdown and knitr" style="width: 100%; height: 150px; overflow: hidden; border: 1px solid gray">
-</a></p>
+<h2>Rcpp Core Packages</h2>
+
+<p>  <h3>Rcpp</h3>
+  <p class="message">Rcpp provides a powerful API on top of R, permitting direct interchange of rich R objects (including S3, S4 or Reference Class objects) between R and C++. Rcpp sugar gives syntactic sugar such as vectorised C++ expression; Rcpp modules provide easy extensibility using declarations and Rcpp attributes greatly facilitates code integration.</p></p>
+
+<p>  <a class="btn btn-default" href="http://dirk.eddelbuettel.com/code/rcpp.html" role="button">Learn more</a></p>
+
+<p>  <h3>RcppArmadillo</h3>
+  <p class="message">Rcpp connects R with the powerful Armadillo templated C++ library for linear algebra. Armadillo aims towards a good balance between speed and ease of use, and its syntax is deliberately similar to Matlab which makes it easy to port existing code (as shown by an included Kalman Filter example).</p></p>
+
+<p>  <a class="btn btn-default" href="http://dirk.eddelbuettel.com/code/rcpp.armadillo.html" role="button">Learn more</a></p>
+
+<h2>Software</h2>
+
+<p>I develop tools that help create and share interactive visualizations and web-friendly documents, straight from R.</p>
+
+<ul>
+<li><a href="http://rcharts.io">rCharts</a></li>
+<li><a href="http://rmaps.github.io">rMaps</a></li>
+<li><a href="http://slidify.github.io">Slidify</a></li>
+</ul>
+
 
 </div>
 
