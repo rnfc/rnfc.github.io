@@ -4,7 +4,7 @@
  <title>RN Financial Research Centre</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2014-08-03T21:57:04-04:00</updated>
+ <updated>2014-09-07T16:06:16-07:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Rafael Nicolas Fermin Cota</name>
@@ -15,7 +15,7 @@
  <entry>
    <title>Interactive Playground for R Packages: Part 1</title>
    <link href="http://localhost:4000/2014/08/02/Interactive-Playground%20for-R/"/>
-   <updated>2014-08-02T00:00:00-04:00</updated>
+   <updated>2014-08-02T00:00:00-07:00</updated>
    <id>http://localhost:4000/2014/08/02/Interactive-Playground for-R</id>
    <content type="html">&lt;p&gt;An &lt;a href=&quot;http://rcharts.io/playground&quot;&gt;interactive playground&lt;/a&gt; is an online web app that allows a user to check out the functionality of a tool without having to install it on their computers. It can also be used to share examples and interactive tutorials, that allow users to experiment and learn. From the time I wrote &lt;a href=&quot;http://slidify.github.io&quot;&gt;Slidify&lt;/a&gt; and &lt;a href=&quot;http://rcharts.io&quot;&gt;rCharts&lt;/a&gt;, I have always wanted to create such a playground. My main motivation to do this was to allow non-R users to experiment with these packages and experience the range of cool things that one could do with R!&lt;/p&gt;
 
