@@ -1,6 +1,7 @@
 ---
 layout: page
 title: About
+exclude_page: true
 ---
 
 <p class="message">

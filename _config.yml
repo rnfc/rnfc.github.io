@@ -2,26 +2,36 @@
 #
 # Use of `relative_permalinks` ensures post links from the index work properly.
 permalink:           pretty
+markdown:            kramdown
 #relative_permalinks: true
 
 # Setup
-title:               Lanyon
-tagline:             'A Jekyll theme'
-description:         'A reserved <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that places the utmost gravity on content with a hidden drawer. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.'
-url:                 http://lanyon.getpoole.com
+title:               Next Level Analytics' Blog
+#tagline:             'A Jekyll theme'
+description:         "Next Level Analytics' Blog"
+url:                 http://nextlevelanalytics.github.io/
 baseurl:             ''
 paginate:            5
+github:
+  repo:              http://github.com/nextlevelanalytics/nextlevelanalytics.github.io/
 
 # About/contact
 author:
-  name:              Mark Otto
-  url:               https://twitter.com/mdo
-  email:             markdotto@gmail.com
+  name:              Next Level Analytics
+  url:               http://www.nextlevelanalytics.com
+  email:             nico@nextlevelanalytics.com
 
 # Custom vars
 version:             1.0.0
+website:			 http://www.nextlevelanalytics.com
 
 # Gems
 gems:
   - jekyll-paginate
   - jekyll-gist
+
+# This is the list of pages to incldue in the header of the website.
+pages_list:       ['About', 'Contact']
+
+# Highlighter  
+highlighter: rouge
