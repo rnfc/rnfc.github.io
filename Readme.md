@@ -1,5 +1,7 @@
 ## Next Level Analytics&rsquo;s GitHub
 
-See [Next Level Analytics](http://www.nextlevelanalytics.com).
+Website: [Next Level Analytics](http://www.nextlevelanalytics.com).
+
+Blog: [Next Level Analytics' Blog](http://nextlevelanalytics.github.io).
 
 ---
