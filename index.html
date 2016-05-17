@@ -11,7 +11,7 @@ title: Home
 {% capture next_year %}{{ post.previous.date | date: "%Y" }}{% endcapture %}
 {% capture next_month %}{{ post.previous.date | date: "%B" }}{% endcapture %}
 {% if forloop.first %}
-<h2>{{this_year}}</h2>
+<h2 class="year-heading">{{this_year}}</h2>
 <h3>{{this_month}}</h3>
 <ul>
 {% endif %}
@@ -22,7 +22,7 @@ title: Home
 {% if this_year != next_year %}
 </ul>
 <hr>
-<h2>{{next_year}}</h2>
+<h2 class="year-heading">{{next_year}}</h2>
 <h3>{{next_month}}</h3>
 <ul>
 {% else %}
