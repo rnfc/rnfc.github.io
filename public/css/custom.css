@@ -28,7 +28,7 @@ code, code span {
 }
 
 div.container.content {
-	max-width:60rem;
+	max-width:55rem;
 }
 
 .masthead .container {
@@ -53,7 +53,25 @@ div.container.content {
     width: 100%;
 }*/
 
-h1, h2, h3, h4, h5, h6, span, code, code span, a, li, p, table, tr, th, td{
+h1, h2, h3, h4, h5, h6, code, code span, a, li, p, table, tr, th, td{
 	    font-family: 'Roboto Condensed', sans-serif !important;
     /*font-weight: 600;*/
+}
+
+/*.masthead {
+    padding-bottom: 0px;
+    margin-bottom: 8rem;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    border-bottom: 1px solid #eeeeee;
+    background-color: #ffffff;
+}
+
+div.container.content {
+	margin-top: 100px;
+}*/
+
+.year-heading {
+	text-align:center;
 }
