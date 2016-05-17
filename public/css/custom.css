@@ -53,8 +53,8 @@ div.container.content {
     width: 100%;
 }*/
 
-h1, h2, h3, h4, h5, h6, code, code span, a, li, p, table, tr, th, td{
-	    font-family: 'Roboto Condensed', sans-serif !important;
+h1, h2, h3, h4, h5, h6, code, code span, span, a, li, p, table, tr, th, td{
+	    font-family: 'Roboto Condensed', sans-serif;
     /*font-weight: 600;*/
 }
 
@@ -74,4 +74,8 @@ div.container.content {
 
 .year-heading {
 	text-align:center;
+}
+
+.mjx-chtml.MathJax_CHTML {
+	font-family: "PT Serif", Georgia, "Times New Roman", serif !important;
 }
