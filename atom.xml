@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ---
 layout: null
 ---
@@ -24,5 +25,146 @@ layout: null
    <content type="html">{{ post.content | xml_escape }}</content>
  </entry>
  {% endfor %}
+=======
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>RN Financial Research Centre</title>
+ <link href="http://localhost:4000/atom.xml" rel="self"/>
+ <link href="http://localhost:4000/"/>
+ <updated>2014-09-07T19:55:05-07:00</updated>
+ <id>http://localhost:4000</id>
+ <author>
+   <name>Rafael Nicolas Fermin Cota</name>
+   <email></email>
+ </author>
+
+ 
+ <entry>
+   <title>Interactive Playground for R Packages: Part 1</title>
+   <link href="http://localhost:4000/2014/08/02/Interactive-Playground%20for-R/"/>
+   <updated>2014-08-02T00:00:00-07:00</updated>
+   <id>http://localhost:4000/2014/08/02/Interactive-Playground for-R</id>
+   <content type="html">&lt;p&gt;An &lt;a href=&quot;http://rcharts.io/playground&quot;&gt;interactive playground&lt;/a&gt; is an online web app that allows a user to check out the functionality of a tool without having to install it on their computers. It can also be used to share examples and interactive tutorials, that allow users to experiment and learn. From the time I wrote &lt;a href=&quot;http://slidify.github.io&quot;&gt;Slidify&lt;/a&gt; and &lt;a href=&quot;http://rcharts.io&quot;&gt;rCharts&lt;/a&gt;, I have always wanted to create such a playground. My main motivation to do this was to allow non-R users to experiment with these packages and experience the range of cool things that one could do with R!&lt;/p&gt;
+
+&lt;p&gt;My first attempt at doing this was to use &lt;a href=&quot;http://rstudio.com/shiny&quot;&gt;Shiny&lt;/a&gt; by &lt;a href=&quot;http://rstudio.com&quot;&gt;RStudio&lt;/a&gt;. However, I was soon told that allowing users to execute arbitrary code on a Shiny server was a really bad idea. This was when I started experimenting with &lt;a href=&quot;http://opencpu.org&quot;&gt;OpenCPU&lt;/a&gt;, an elegant and powerful framework created by &lt;a href=&quot;http://jeroenooms.github.io/&quot;&gt;Jeroen Ooms&lt;/a&gt;, that provides a simple RESTful interface to call R from the web. OpenCPU uses the R package &lt;a href=&quot;http://cran.r-project.org/web/packages/RAppArmor/index.html&quot;&gt;RAppArmor&lt;/a&gt; (also written by Jeroen), to secure/sandbox execution of R code. This was exactly what I was looking for!&lt;/p&gt;
+
+&lt;p&gt;One of the cool things about &lt;a href=&quot;http://rstudio.com/shiny&quot;&gt;Shiny&lt;/a&gt; is that it is a reactive framework, that makes building web based applications using R, really easy! &lt;a href=&quot;http://opencpu.org&quot;&gt;OpenCPU&lt;/a&gt; on the other hand does not come pre-baked with reactive capabilities. So, I had to look for a javascript framework that would do this. After a lot of exploration, I settled on &lt;a href=&quot;http://angularjs.org&quot;&gt;AngularJS&lt;/a&gt;, an MVC framework that allows one to build very powerful web applications, and comes packaged with a lot of reactive goodness. It has a little bit of a steep learning curve, but I promise it is worth learning AngularJS, if you are looking to build really powerful, sophisticated apps.&lt;/p&gt;
+
+&lt;p&gt;With that background, let me dive straight into the main content of this post, where I will show you step-by-step, how to create an interactive playground for an R package, using OpenCPU and AngularJS.&lt;/p&gt;
+
+&lt;h3&gt;Add Dependencies&lt;/h3&gt;
+
+&lt;p&gt;Our first step is to  add the basic js/css dependencies for the app we are building. We add &lt;code&gt;bootstrap&lt;/code&gt; for styling, &lt;code&gt;angularjs&lt;/code&gt; for data-binding/reactivity (it is like &lt;a href=&quot;http://rstudio.com/shiny&quot;&gt;Shiny&lt;/a&gt;), the &lt;code&gt;ace&lt;/code&gt; widget for generating a code editor and the &lt;code&gt;ui-ace&lt;/code&gt; widget that allows the &lt;code&gt;ace&lt;/code&gt; widget to integrate seamlessly with &lt;code&gt;angularjs&lt;/code&gt;. Finally we add &lt;code&gt;opencpu-0.4.js&lt;/code&gt; and its dependency &lt;code&gt;jquery.min.js&lt;/code&gt;.&lt;/p&gt;
+
+&lt;iframe width=&quot;100%&quot; height=&quot;300&quot; src=&quot;http://jsfiddle.net/ramnathv/9Z9ja/10/embedded/resources&quot; allowfullscreen=&quot;allowfullscreen&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
+
+
+&lt;h3&gt;Setup UI&lt;/h3&gt;
+
+&lt;p&gt;Now that we have our dependencies laid out, let us work on settin up the basic UI for the page. Bootstrap makes it easy to create nice layouts. I like to use a two column layout, with the code editor on the left and the generated output on the right. The HTML is fairly self-explanatory and basic &lt;a href=&quot;http://getbootstrap.com/css/#grid&quot;&gt;bootstrap stuff&lt;/a&gt;. Here is what we have so far.&lt;/p&gt;
+
+&lt;iframe width=&quot;100%&quot; height=&quot;300&quot; src=&quot;http://jsfiddle.net/ramnathv/9Z9ja/5/embedded/html,result&quot; allowfullscreen=&quot;allowfullscreen&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
+
+
+&lt;h3&gt;Add Ace Editor&lt;/h3&gt;
+
+&lt;p&gt;We are now ready to add the &lt;code&gt;ace&lt;/code&gt; editor to the page. We do this in two steps. First, we modify the HTML as indicated by the highlighted lines.&lt;/p&gt;
+
+&lt;p&gt;--- .RAW&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;html&quot;&gt;&amp;lt;body ng-app=&quot;myApp&quot; ng-controller=&quot;MainCtrl&quot;&amp;gt;
+  &amp;lt;div class=&quot;container&quot;&amp;gt;
+    &amp;lt;div class=&quot;row&quot;&amp;gt;
+      &amp;lt;div class=&quot;col-sm-4&quot;&amp;gt;
+          &amp;lt;div ng-model=&#39;example&#39; ui-ace=&#39;aceOptions&#39;&amp;gt;&amp;lt;/div&amp;gt;
+      &amp;lt;/div&amp;gt;
+      &amp;lt;div class=&quot;col-sm-8&quot;&amp;gt;
+          &amp;lt;iframe id=&quot;output&quot; seamless&amp;gt;&amp;lt;/iframe&amp;gt;
+      &amp;lt;/div&amp;gt;
+    &amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+&amp;lt;/body&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We are doing several things here. &lt;code&gt;ng-app=&quot;myApp&quot;&lt;/code&gt; tells AngularJS to be active inside the body of this app. &lt;code&gt;ng-controller=&quot;MainCtrl&quot;&lt;/code&gt; states that the behavior of elements inside the body will be controlled by the controller function &lt;code&gt;MainCtrl&lt;/code&gt;. &lt;code&gt;ng-model=&#39;example&#39;&lt;/code&gt; binds this div to the variable named &lt;code&gt;example&lt;/code&gt;, specified in &lt;code&gt;MainCtrl&lt;/code&gt;. &lt;code&gt;ui-ace=&#39;aceOptions&#39;&lt;/code&gt; is an angularjs &lt;a href=&quot;http://docs.angularjs.org/guide/directive&quot;&gt;directive&lt;/a&gt; that transforms this &lt;code&gt;div&lt;/code&gt; into an ace editor instance, where &lt;code&gt;aceOptions&lt;/code&gt; are specified inside &lt;code&gt;MainCtrl&lt;/code&gt;. &lt;code&gt;` displays the variable&lt;/code&gt;example` on the page.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Next, we need to add the necessary javascript that will define these variables and control them.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;js&quot;&gt;var myApp = angular.module(&#39;myApp&#39;, [&#39;ui.ace&#39;])
+
+myApp.controller(&#39;MainCtrl&#39;, function($scope){
+   $scope.aceOptions = {
+     theme: &#39;solarized_dark&#39;,
+     mode: &#39;r&#39;,
+     useWrapMode : true
+   }
+   $scope.example = &#39;require(rCharts)\nrPlot(mpg ~ wt, data = mtcars,type = &quot;point&quot;)&#39;
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Once agin, we are doing a number of things here. We define &lt;code&gt;myApp&lt;/code&gt; as an angular module named &lt;code&gt;myApp&lt;/code&gt; and inject &lt;code&gt;ui.ace&lt;/code&gt; as a dependency. We then define a &lt;a href=&quot;http://docs.angularjs.org/guide/controller&quot;&gt;controller&lt;/a&gt; function named &lt;code&gt;MainCtrl&lt;/code&gt;. The argument &lt;code&gt;$scope&lt;/code&gt; contains all the data variables in the model and is the glue between the HTML view and the controller function, allowing them to communicate with each other. We initialize the model data variables &lt;code&gt;aceOptions&lt;/code&gt; and &lt;code&gt;example&lt;/code&gt;. You can see the result in the embedded fiddle below. You can fork the fiddle and play around with the options, especially changing the default &lt;code&gt;theme&lt;/code&gt; to something like &lt;code&gt;solarized_light&lt;/code&gt;.&lt;/p&gt;
+
+&lt;iframe width=&quot;100%&quot; height=&quot;300&quot; src=&quot;http://jsfiddle.net/ramnathv/9Z9ja/12/embedded/result,js,html&quot; allowfullscreen=&quot;allowfullscreen&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
+
+
+&lt;h3&gt;Add Submit Button&lt;/h3&gt;
+
+&lt;p&gt;Now, we want to be able to add a submit button that will allow the code to be submitted to the OpenCPU server, which in turn will generate the chart. As usual, we take care of the UI first, and add an &lt;code&gt;input&lt;/code&gt; element styled as a &lt;code&gt;btn&lt;/code&gt;, right below the &lt;code&gt;div&lt;/code&gt; with the ace-editor. We also add an attribute &lt;code&gt;ng-click&lt;/code&gt;, which is set to &lt;code&gt;makeChart()&lt;/code&gt;. The idea here is that when a user clicks the button, the function &lt;code&gt;makeChart()&lt;/code&gt; will be invoked.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;html&quot;&gt;&amp;lt;input type=&#39;submit&#39; value=&#39;Submit&#39; class=&#39;btn btn-success&#39; ng-click=&#39;makeChart()&#39; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We now define the &lt;code&gt;makeChart()&lt;/code&gt; function, which will send the code in the ace-editor to the OpenCPU server, which in turn will return an HTML file with the chart, that gets injected into the output &lt;code&gt;iframe&lt;/code&gt;. There are a few things to point out with the code:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;We use &lt;code&gt;ocpu.seturl&lt;/code&gt; to allow cross-domain requests to the opencpu server, since the function generating the chart is not on a public OpenCPU server. Note that OpenCPU is tightly integrated with &lt;code&gt;github&lt;/code&gt; allowing users to serve functions from any R package hosted on &lt;code&gt;github&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The &lt;code&gt;makeChart&lt;/code&gt; function is basically a call to the function &lt;a href=&quot;https://github.com/ramnathv/rCharts/blob/master/R/utils.R#L5-L12&quot;&gt;make_chart&lt;/a&gt; in &lt;a href=&quot;http://rcharts.io&quot;&gt;rCharts&lt;/a&gt;, that accepts code as input, and generates an HTML file with the chart. We use &lt;code&gt;ocpu.call&lt;/code&gt; to invoke this function, passing to it the code in &lt;code&gt;$scope.example&lt;/code&gt;. Following a successful call, we inject the file &lt;code&gt;output.html&lt;/code&gt; into the &lt;code&gt;src&lt;/code&gt; attribute of the &lt;code&gt;output&lt;/code&gt; iframe we created earlier.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;pre&gt;&lt;code class=&quot;html&quot;&gt;var myApp = angular.module(&#39;myApp&#39;, [&#39;ui.ace&#39;])
+ocpu.seturl(&quot;//ramnathv.ocpu.io/rCharts/R&quot;)
+
+myApp.controller(&#39;MainCtrl&#39;, function($scope){
+   $scope.aceOptions = ...
+   $scope.example = ...
+   $scope.makeChart = function(){
+     var req = ocpu.call(&quot;make_chart&quot;, {
+       text: $scope.example   
+     }, function(session){
+       $(&quot;#output&quot;).attr(&#39;src&#39;, session.getLoc() + &quot;files/output.html&quot;);  
+     }).fail(function(text){
+      alert(&quot;Error: &quot; + req.responseText);
+     });  
+   }
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Voila, we are done! You can see the final output below. Hit the submit button to see a nice interactive chart as output. Modify the code in the editor and experiment away.&lt;/p&gt;
+
+&lt;iframe width=&quot;100%&quot; height=&quot;700&quot; src=&quot;http://jsfiddle.net/ramnathv/9Z9ja/10/embedded/result,js,html,css&quot; allowfullscreen=&quot;allowfullscreen&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
+
+
+&lt;p&gt;I hardcoded the code snippet in this playground. For this app to be more useful, it should allow example snippets to be loaded dynamically, from an online service like &lt;a href=&quot;http://gist.github.com&quot;&gt;gist&lt;/a&gt;. You can see this in action on the &lt;a href=&quot;http://rcharts.io/viewer&quot;&gt;rCharts viewer&lt;/a&gt;, where clicking on the &lt;code&gt;Edit Me&lt;/code&gt; button on top will take you to an editable version of the code in the playground. I will cover this in Part 2 of this series.&lt;/p&gt;
+
+&lt;p&gt;--- .RAW&lt;/p&gt;
+
+&lt;script&gt;
+  $(&#39;body&#39;).highlight(&#39;&lt;body ng-app=&quot;myApp&quot; ng-controller=&quot;MainCtrl&quot;&gt;&#39;)
+  $(&#39;body&#39;).highlight(&quot;&lt;div ng-model=&#39;example&#39; ui-ace=&#39;aceOptions&#39;&gt;&lt;/div&gt;&quot;)
+  $(&#39;body&#39;).highlight(&#39;&lt;iframe id=&quot;output&quot; seamless&gt;&lt;/iframe&gt;&#39;)
+&lt;/script&gt;
+
+
+
+
+
+</content>
+ </entry>
+ 
+>>>>>>> 32da2e9b22c9b58e3e5d771e1da3d2dbd166b897
 
 </feed>

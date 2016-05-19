@@ -52,7 +52,11 @@ html {
   font-size: 16px;
   line-height: 1.5;
 }
+<<<<<<< HEAD
 @media (min-width: 38em) {
+=======
+@media (min-width: 38rem) {
+>>>>>>> 32da2e9b22c9b58e3e5d771e1da3d2dbd166b897
   html {
     font-size: 20px;
   }
@@ -70,9 +74,12 @@ a {
   color: #268bd2;
   text-decoration: none;
 }
+<<<<<<< HEAD
 a strong {
   color: inherit;
 }
+=======
+>>>>>>> 32da2e9b22c9b58e3e5d771e1da3d2dbd166b897
 /* `:focus` is linked to `:hover` for basic accessibility */
 a:hover,
 a:focus {
@@ -178,8 +185,11 @@ pre code {
   color: inherit;
   background-color: transparent;
 }
+<<<<<<< HEAD
 
 /* Pygments via Jekyll */
+=======
+>>>>>>> 32da2e9b22c9b58e3e5d771e1da3d2dbd166b897
 .highlight {
   margin-bottom: 1rem;
   border-radius: 4px;
@@ -188,6 +198,7 @@ pre code {
   margin-bottom: 0;
 }
 
+<<<<<<< HEAD
 /* Gist via GitHub Pages */
 .gist .gist-file {
   font-family: Menlo, Monaco, "Courier New", monospace !important;
@@ -210,6 +221,8 @@ pre code {
   border-radius: 0;
 }
 
+=======
+>>>>>>> 32da2e9b22c9b58e3e5d771e1da3d2dbd166b897
 /* Quotes */
 blockquote {
   padding: .5rem 1rem;
@@ -220,7 +233,11 @@ blockquote {
 blockquote p:last-child {
   margin-bottom: 0;
 }
+<<<<<<< HEAD
 @media (min-width: 30em) {
+=======
+@media (min-width: 30rem) {
+>>>>>>> 32da2e9b22c9b58e3e5d771e1da3d2dbd166b897
   blockquote {
     padding-right: 5rem;
     padding-left: 1.25rem;
@@ -229,7 +246,10 @@ blockquote p:last-child {
 
 img {
   display: block;
+<<<<<<< HEAD
   max-width: 100%;
+=======
+>>>>>>> 32da2e9b22c9b58e3e5d771e1da3d2dbd166b897
   margin: 0 0 1rem;
   border-radius: 5px;
 }
@@ -409,7 +429,11 @@ a.pagination-item:hover {
   background-color: #f5f5f5;
 }
 
+<<<<<<< HEAD
 @media (min-width: 30em) {
+=======
+@media (min-width: 30rem) {
+>>>>>>> 32da2e9b22c9b58e3e5d771e1da3d2dbd166b897
   .pagination {
     margin: 3rem 0;
   }
