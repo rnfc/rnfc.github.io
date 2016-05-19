@@ -2,6 +2,18 @@
 	margin-left: 50px;
 }
 
+@media screen and (min-width: 0px) {
+	.masthead-title .logo {
+		margin-left: 50px;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.masthead-title .logo {
+		margin-left: 35px;
+	}
+}
+
 h1 {
 	margin-top: 1.6rem;
 	font-size: 1.6rem;
@@ -20,7 +32,7 @@ h4, h5, h6 {
 }
 
 span, a , p, li, table, tr, th, td{
-	font-size: 0.9rem;
+	font-size: 0.8rem;
 }
 
 code, code span {
@@ -37,7 +49,7 @@ div.container.content {
 
 .masthead {
 	padding-bottom: 0;
-	margin-bottom: 2rem;
+	margin-bottom: 0.5rem;
 	-webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.12);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.12);
 }
@@ -55,7 +67,7 @@ div.container.content {
     width: 100%;
 }*/
 
-h1, h2, h3, h4, h5, h6, code, code span, span, a, li, p, table, tr, th, td{
+h1, h2, h3, h4, h5, h6, code, code span, span, a, li, p, table, tr, th, td, footer{
 	    font-family: 'Roboto Condensed', sans-serif;
     /*font-weight: 600;*/
 }
@@ -80,4 +92,105 @@ div.container.content {
 
 .mjx-chtml.MathJax_CHTML {
 	font-family: "PT Serif", Georgia, "Times New Roman", serif !important;
+}
+
+.masthead .container {
+    max-width: 100%;
+    padding-bottom: 20px;
+}
+
+@media screen and (max-width: 768px) {
+	.masthead-title .logo {
+		font-size: 1.1rem;
+	}
+}
+
+html, body {height: 100%;}
+#wrap {min-height: 100%;}
+
+#main {
+  overflow:hidden;
+  padding-bottom: 75px; /* must be same height as the footer */
+}
+
+#footer {
+  position: relative;
+  margin-top: -30px; /* negative value of footer height */
+  height: 30px;
+  clear:both;
+  border-top: 1px solid #DCDCDC;
+  font-size:0.7rem;
+  vertical-align: middle;
+} 
+
+footer {
+	margin-left:75px;
+	margin-top:0.2rem;
+}
+
+.sidebar-toggle {
+    padding: 0.55rem .55rem 0.25rem 0.55rem;
+}
+
+.center {
+	text-align: center;
+}
+
+hr.short {
+    margin: 1.5rem auto;
+    width: 40%;
+}
+
+.btn.btn-main.featured {
+    background-color: #555555;
+    border: 1px solid #555555;
+}
+
+.btn.btn-main.featured a{
+    background-color: #555555;
+    border: 1px solid #555555;
+    color: #ffffff;
+    font-weight:100;
+    text-decoration: none;
+    font-size:0.7rem;
+}
+
+.container {
+	max-width: 100%;
+}
+
+hr.darker {
+	border-top: 1px solid #A2A2A2;
+}
+
+hr.short-left {
+    margin: 1.5rem 0rem;
+    width: 40%;
+}
+
+link {
+	color: blue;
+}
+
+a {
+	cursor: pointer;
+	text-decoration: none;
+}
+
+a:hover, a:focus {
+    text-decoration: none;
+}
+
+.left {
+	float:left;
+}
+
+.right {
+	float:right;
+}
+
+@media screen and (max-width: 768px) {
+    .menu-links {
+        display: none;
+    }
 }

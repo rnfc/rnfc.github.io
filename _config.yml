@@ -6,24 +6,26 @@ markdown:            kramdown
 #relative_permalinks: true
 
 # Setup
-title:               Next Level Analytics' Blog
+title:               RN Financial Research Centre
 #tagline:             'A Jekyll theme'
-description:         "Next Level Analytics' Blog"
-url:                 http://nextlevelanalytics.github.io/
+description:         RN Financial Research Centre
+url:                 https://github.com/rnfc/rnfc.github.io
 baseurl:             ''
 paginate:            5
 github:
-  repo:              http://github.com/nextlevelanalytics/nextlevelanalytics.github.io/
+  repo:              https://github.com/rnfc/rnfc.github.io
 
 # About/contact
 author:
-  name:              Next Level Analytics
-  url:               http://www.nextlevelanalytics.com
-  email:             nico@nextlevelanalytics.com
+  name:              RN Financial Research Centre
+  url:               http://www.rnfc.org
+  email:             rafael_nicolas@rnfc.org
 
 # Custom vars
 version:             1.0.0
-website:			 http://www.nextlevelanalytics.com
+website:			 http://www.rnfc.org
+courses:			 /courses
+blog:				 /blog
 
 # Gems
 gems:

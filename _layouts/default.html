@@ -5,6 +5,8 @@
 
   <body>
 
+<div id="wrap">
+<div id="main">
     {% include sidebar.html %}
 
     <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
@@ -13,9 +15,14 @@
       <div class="masthead">
         <div class="container">
           <h3 class="masthead-title">
-<!--             <a href="{{ site.baseurl }}/" title="Home">{{ site.title }}</a>
-            <small>{{ site.tagline }}</small> -->
-            <a href="{{ site.baseurl }}/"><img class="logo" src="{{ site.baseurl }}/public/logo-full.png" width="250px"></a>
+            <a class="logo left" href="{{ site.baseurl }}/" title="Home">{{ site.title }}</a>
+            <div class="menu-links">
+            <a class="logo right" href="{{ site.blog }}" title="Home">Blog</a>
+            <a class="logo right" href="{{ site.courses }}" title="Courses">Courses</a>
+            <a class="logo right" href="{{ site.baseurl }}/" title="Blog">Home</a>
+            </div>
+            <!-- <small>{{ site.tagline }}</small> -->
+            <!-- <a href="{{ site.baseurl }}/"><img class="logo" src="{{ site.baseurl }}/public/logo-full.png" width="250px"></a> -->
           </h3>
         </div>
       </div>
@@ -47,6 +54,17 @@
 
 <!-- Used for LATEX equations -->
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{ site.baseurl }}/public/js/bootstrap.min.js"></script>
+
+</div></div>
+
+<div id="footer">
+  <footer>© RN Financial Research Centre</footer>
+</div>
 
   </body>
+
 </html>

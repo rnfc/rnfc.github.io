@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Interactive Playground for R Packages: Part 1 &middot; RN Financial Research Centre
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700|PT+Sans:400">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/public/css/bs-theme.css">
+  <link rel="stylesheet" href="/public/css/bs.css">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body class="theme-base-0f">
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">
+    <i class='fa fa-home fa-fw'></i> Home
+    </a>
+
+    
+    
+      
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/admission/">
+          <i class='fa fa-group fa-fw'></i> 
+          Admission
+          </a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/events/">
+          <i class='fa fa-calendar-o fa-fw'></i> 
+          Events
+          </a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/courses/">
+          <i class='fa fa-university fa-fw'></i> 
+          Courses
+          </a>
+        
+      
+    
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2014. All rights reserved.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+          <h3 class="masthead-title">
+            <a href="/" title="Home">RN Financial Research Centre</a>
+            <small>rnfc</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">Interactive Playground for R Packages: Part 1</h1>
+  <span class="post-date">02 Aug 2014</span>
+  <p>An <a href="http://rcharts.io/playground">interactive playground</a> is an online web app that allows a user to check out the functionality of a tool without having to install it on their computers. It can also be used to share examples and interactive tutorials, that allow users to experiment and learn. From the time I wrote <a href="http://slidify.github.io">Slidify</a> and <a href="http://rcharts.io">rCharts</a>, I have always wanted to create such a playground. My main motivation to do this was to allow non-R users to experiment with these packages and experience the range of cool things that one could do with R!</p>
+
+<p>My first attempt at doing this was to use <a href="http://rstudio.com/shiny">Shiny</a> by <a href="http://rstudio.com">RStudio</a>. However, I was soon told that allowing users to execute arbitrary code on a Shiny server was a really bad idea. This was when I started experimenting with <a href="http://opencpu.org">OpenCPU</a>, an elegant and powerful framework created by <a href="http://jeroenooms.github.io/">Jeroen Ooms</a>, that provides a simple RESTful interface to call R from the web. OpenCPU uses the R package <a href="http://cran.r-project.org/web/packages/RAppArmor/index.html">RAppArmor</a> (also written by Jeroen), to secure/sandbox execution of R code. This was exactly what I was looking for!</p>
+
+<p>One of the cool things about <a href="http://rstudio.com/shiny">Shiny</a> is that it is a reactive framework, that makes building web based applications using R, really easy! <a href="http://opencpu.org">OpenCPU</a> on the other hand does not come pre-baked with reactive capabilities. So, I had to look for a javascript framework that would do this. After a lot of exploration, I settled on <a href="http://angularjs.org">AngularJS</a>, an MVC framework that allows one to build very powerful web applications, and comes packaged with a lot of reactive goodness. It has a little bit of a steep learning curve, but I promise it is worth learning AngularJS, if you are looking to build really powerful, sophisticated apps.</p>
+
+<p>With that background, let me dive straight into the main content of this post, where I will show you step-by-step, how to create an interactive playground for an R package, using OpenCPU and AngularJS.</p>
+
+<h3>Add Dependencies</h3>
+
+<p>Our first step is to  add the basic js/css dependencies for the app we are building. We add <code>bootstrap</code> for styling, <code>angularjs</code> for data-binding/reactivity (it is like <a href="http://rstudio.com/shiny">Shiny</a>), the <code>ace</code> widget for generating a code editor and the <code>ui-ace</code> widget that allows the <code>ace</code> widget to integrate seamlessly with <code>angularjs</code>. Finally we add <code>opencpu-0.4.js</code> and its dependency <code>jquery.min.js</code>.</p>
+
+<iframe width="100%" height="300" src="http://jsfiddle.net/ramnathv/9Z9ja/10/embedded/resources" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+
+<h3>Setup UI</h3>
+
+<p>Now that we have our dependencies laid out, let us work on settin up the basic UI for the page. Bootstrap makes it easy to create nice layouts. I like to use a two column layout, with the code editor on the left and the generated output on the right. The HTML is fairly self-explanatory and basic <a href="http://getbootstrap.com/css/#grid">bootstrap stuff</a>. Here is what we have so far.</p>
+
+<iframe width="100%" height="300" src="http://jsfiddle.net/ramnathv/9Z9ja/5/embedded/html,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+
+<h3>Add Ace Editor</h3>
+
+<p>We are now ready to add the <code>ace</code> editor to the page. We do this in two steps. First, we modify the HTML as indicated by the highlighted lines.</p>
+
+<p>--- .RAW</p>
+
+<pre><code class="html">&lt;body ng-app="myApp" ng-controller="MainCtrl"&gt;
+  &lt;div class="container"&gt;
+    &lt;div class="row"&gt;
+      &lt;div class="col-sm-4"&gt;
+          &lt;div ng-model='example' ui-ace='aceOptions'&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="col-sm-8"&gt;
+          &lt;iframe id="output" seamless&gt;&lt;/iframe&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+
+<p>We are doing several things here. <code>ng-app="myApp"</code> tells AngularJS to be active inside the body of this app. <code>ng-controller="MainCtrl"</code> states that the behavior of elements inside the body will be controlled by the controller function <code>MainCtrl</code>. <code>ng-model='example'</code> binds this div to the variable named <code>example</code>, specified in <code>MainCtrl</code>. <code>ui-ace='aceOptions'</code> is an angularjs <a href="http://docs.angularjs.org/guide/directive">directive</a> that transforms this <code>div</code> into an ace editor instance, where <code>aceOptions</code> are specified inside <code>MainCtrl</code>. <code>` displays the variable</code>example` on the page.</p>
+
+<hr />
+
+<p>Next, we need to add the necessary javascript that will define these variables and control them.</p>
+
+<pre><code class="js">var myApp = angular.module('myApp', ['ui.ace'])
+
+myApp.controller('MainCtrl', function($scope){
+   $scope.aceOptions = {
+     theme: 'solarized_dark',
+     mode: 'r',
+     useWrapMode : true
+   }
+   $scope.example = 'require(rCharts)\nrPlot(mpg ~ wt, data = mtcars,type = "point")'
+})
+</code></pre>
+
+<p>Once agin, we are doing a number of things here. We define <code>myApp</code> as an angular module named <code>myApp</code> and inject <code>ui.ace</code> as a dependency. We then define a <a href="http://docs.angularjs.org/guide/controller">controller</a> function named <code>MainCtrl</code>. The argument <code>$scope</code> contains all the data variables in the model and is the glue between the HTML view and the controller function, allowing them to communicate with each other. We initialize the model data variables <code>aceOptions</code> and <code>example</code>. You can see the result in the embedded fiddle below. You can fork the fiddle and play around with the options, especially changing the default <code>theme</code> to something like <code>solarized_light</code>.</p>
+
+<iframe width="100%" height="300" src="http://jsfiddle.net/ramnathv/9Z9ja/12/embedded/result,js,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+
+<h3>Add Submit Button</h3>
+
+<p>Now, we want to be able to add a submit button that will allow the code to be submitted to the OpenCPU server, which in turn will generate the chart. As usual, we take care of the UI first, and add an <code>input</code> element styled as a <code>btn</code>, right below the <code>div</code> with the ace-editor. We also add an attribute <code>ng-click</code>, which is set to <code>makeChart()</code>. The idea here is that when a user clicks the button, the function <code>makeChart()</code> will be invoked.</p>
+
+<pre><code class="html">&lt;input type='submit' value='Submit' class='btn btn-success' ng-click='makeChart()' /&gt;
+</code></pre>
+
+<p>We now define the <code>makeChart()</code> function, which will send the code in the ace-editor to the OpenCPU server, which in turn will return an HTML file with the chart, that gets injected into the output <code>iframe</code>. There are a few things to point out with the code:</p>
+
+<ol>
+<li><p>We use <code>ocpu.seturl</code> to allow cross-domain requests to the opencpu server, since the function generating the chart is not on a public OpenCPU server. Note that OpenCPU is tightly integrated with <code>github</code> allowing users to serve functions from any R package hosted on <code>github</code>.</p></li>
+<li><p>The <code>makeChart</code> function is basically a call to the function <a href="https://github.com/ramnathv/rCharts/blob/master/R/utils.R#L5-L12">make_chart</a> in <a href="http://rcharts.io">rCharts</a>, that accepts code as input, and generates an HTML file with the chart. We use <code>ocpu.call</code> to invoke this function, passing to it the code in <code>$scope.example</code>. Following a successful call, we inject the file <code>output.html</code> into the <code>src</code> attribute of the <code>output</code> iframe we created earlier.</p></li>
+</ol>
+
+
+<pre><code class="html">var myApp = angular.module('myApp', ['ui.ace'])
+ocpu.seturl("//ramnathv.ocpu.io/rCharts/R")
+
+myApp.controller('MainCtrl', function($scope){
+   $scope.aceOptions = ...
+   $scope.example = ...
+   $scope.makeChart = function(){
+     var req = ocpu.call("make_chart", {
+       text: $scope.example   
+     }, function(session){
+       $("#output").attr('src', session.getLoc() + "files/output.html");  
+     }).fail(function(text){
+      alert("Error: " + req.responseText);
+     });  
+   }
+})
+</code></pre>
+
+<p>Voila, we are done! You can see the final output below. Hit the submit button to see a nice interactive chart as output. Modify the code in the editor and experiment away.</p>
+
+<iframe width="100%" height="700" src="http://jsfiddle.net/ramnathv/9Z9ja/10/embedded/result,js,html,css" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+
+<p>I hardcoded the code snippet in this playground. For this app to be more useful, it should allow example snippets to be loaded dynamically, from an online service like <a href="http://gist.github.com">gist</a>. You can see this in action on the <a href="http://rcharts.io/viewer">rCharts viewer</a>, where clicking on the <code>Edit Me</code> button on top will take you to an editable version of the code in the playground. I will cover this in Part 2 of this series.</p>
+
+<p>--- .RAW</p>
+
+<script>
+  $('body').highlight('<body ng-app="myApp" ng-controller="MainCtrl">')
+  $('body').highlight("<div ng-model='example' ui-ace='aceOptions'></div>")
+  $('body').highlight('<iframe id="output" seamless></iframe>')
+</script>
+
+
+
+
+
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+  </ul>
+</div>
+
+      </div>
+    </div>
+
+  </body>
+</html>
