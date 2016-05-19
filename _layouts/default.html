@@ -1,63 +1,63 @@
 <!DOCTYPE html>
 <html lang="en-us">
 
-  {% include head.html %}
+{% include head.html %}
 
-  <body>
+<body>
 
-<div id="wrap">
-<div id="main">
-    {% include sidebar.html %}
+  <div id="wrap">
+    <div id="main">
+      {% include sidebar.html %}
 
-    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
-         content to avoid any CSS collisions with our real content. -->
-    <div class="wrap">
-      <div class="masthead">
-        <div class="container">
-          <h3 class="masthead-title">
-            <a class="logo left" href="{{ site.baseurl }}/" title="Home">{{ site.title }}</a>
-            <div class="menu-links">
+<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+  content to avoid any CSS collisions with our real content. -->
+  <div class="wrap">
+    <div class="masthead">
+      <div class="container">
+        <h3 class="masthead-title">
+          <a class="logo left" href="{{ site.baseurl }}/" title="Home">{{ site.title }}</a>
+          <div class="menu-links">
             <a class="logo right" href="{{ site.blog }}" title="Home">Blog</a>
             <a class="logo right" href="{{ site.courses }}" title="Courses">Courses</a>
             <a class="logo right" href="{{ site.baseurl }}/" title="Blog">Home</a>
-            </div>
-            <!-- <small>{{ site.tagline }}</small> -->
-            <!-- <a href="{{ site.baseurl }}/"><img class="logo" src="{{ site.baseurl }}/public/logo-full.png" width="250px"></a> -->
-          </h3>
-        </div>
-      </div>
-
-      <div class="container content">
-        {{ content }}
+          </div>
+          <!-- <small>{{ site.tagline }}</small> -->
+          <!-- <a href="{{ site.baseurl }}/"><img class="logo" src="{{ site.baseurl }}/public/logo-full.png" width="250px"></a> -->
+        </h3>
       </div>
     </div>
 
-    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+    <div class="container content">
+      {{ content }}
+    </div>
+  </div>
 
-    <script>
-      (function(document) {
-        var toggle = document.querySelector('.sidebar-toggle');
-        var sidebar = document.querySelector('#sidebar');
-        var checkbox = document.querySelector('#sidebar-checkbox');
+  <label for="sidebar-checkbox" class="sidebar-toggle"></label>
 
-        document.addEventListener('click', function(e) {
-          var target = e.target;
+  <script>
+    (function(document) {
+      var toggle = document.querySelector('.sidebar-toggle');
+      var sidebar = document.querySelector('#sidebar');
+      var checkbox = document.querySelector('#sidebar-checkbox');
 
-          if(!checkbox.checked ||
-             sidebar.contains(target) ||
-             (target === checkbox || target === toggle)) return;
+      document.addEventListener('click', function(e) {
+        var target = e.target;
+
+        if(!checkbox.checked ||
+          sidebar.contains(target) ||
+          (target === checkbox || target === toggle)) return;
 
           checkbox.checked = false;
-        }, false);
-      })(document);
-    </script>
+      }, false);
+    })(document);
+  </script>
 
-<!-- Used for LATEX equations -->
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="{{ site.baseurl }}/public/js/bootstrap.min.js"></script>
+  <!-- Used for LATEX equations -->
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="{{ site.baseurl }}/public/js/bootstrap.min.js"></script>
 
 </div></div>
 
@@ -65,6 +65,6 @@
   <footer>© RN Financial Research Centre</footer>
 </div>
 
-  </body>
+</body>
 
 </html>

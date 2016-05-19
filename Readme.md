@@ -1,7 +1,5 @@
-## Next Level Analytics&rsquo;s GitHub
+## RNFC&rsquo;s GitHub
 
-Website: [Next Level Analytics](http://www.nextlevelanalytics.com)
-
-Blog: [Next Level Analytics' Blog](http://nextlevelanalytics.github.io)
+Website: [Next Level Analytics](http://www.rnfc.org)
 
 ---

@@ -3,20 +3,20 @@
 }
 
 @media screen and (min-width: 0px) {
-	.masthead-title .logo {
-		margin-left: 50px;
-	}
+  .masthead-title .logo {
+    margin-left: 50px;
+  }
 }
 
 @media screen and (min-width: 768px) {
-	.masthead-title .logo {
-		margin-left: 35px;
-	}
+  .masthead-title .logo {
+    margin-left: 35px;
+  }
 }
 
 h1 {
-	margin-top: 1.6rem;
-	font-size: 1.6rem;
+	margin-top: 1.4rem;
+	font-size: 1.4rem;
 }
 h2 {
 	margin-top: 1.2rem;
@@ -32,11 +32,11 @@ h4, h5, h6 {
 }
 
 span, a , p, li, table, tr, th, td{
-	font-size: 0.8rem;
+	font-size: 0.9rem;
 }
 
 code, code span {
-	font-size:0.7rem !important;
+	font-size:0.9rem !important;
 }
 
 div.container.content {
@@ -100,9 +100,9 @@ div.container.content {
 }
 
 @media screen and (max-width: 768px) {
-	.masthead-title .logo {
-		font-size: 1.1rem;
-	}
+  .masthead-title .logo {
+    font-size: 1.1rem;
+  }
 }
 
 html, body {height: 100%;}
@@ -124,8 +124,8 @@ html, body {height: 100%;}
 } 
 
 footer {
-	margin-left:75px;
-	margin-top:0.2rem;
+  margin-left:75px;
+  margin-top:0.2rem;
 }
 
 .sidebar-toggle {
@@ -133,7 +133,7 @@ footer {
 }
 
 .center {
-	text-align: center;
+  text-align: center;
 }
 
 hr.short {
@@ -156,11 +156,11 @@ hr.short {
 }
 
 .container {
-	max-width: 100%;
+  max-width: 100%;
 }
 
 hr.darker {
-	border-top: 1px solid #A2A2A2;
+  border-top: 1px solid #A2A2A2;
 }
 
 hr.short-left {
@@ -169,12 +169,12 @@ hr.short-left {
 }
 
 link {
-	color: blue;
+  color: blue;
 }
 
 a {
-	cursor: pointer;
-	text-decoration: none;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 a:hover, a:focus {
@@ -182,15 +182,24 @@ a:hover, a:focus {
 }
 
 .left {
-	float:left;
+  float:left;
 }
 
 .right {
-	float:right;
+  float:right;
 }
 
 @media screen and (max-width: 768px) {
     .menu-links {
         display: none;
     }
+}
+
+.page, .post {
+    margin-bottom: 4em;
+    margin-top: 2em;
+}
+
+.sidebar-toggle {
+    margin-top:-4px;
 }
