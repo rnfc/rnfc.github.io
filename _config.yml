@@ -24,7 +24,7 @@ author:
 # Custom vars
 version:             1.0.0
 website:			 http://www.rnfc.org
-courses:			 /courses
+ivey:			     /ivey
 blog:				 /blog
 
 # Gems
