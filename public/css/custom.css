@@ -224,3 +224,7 @@ div.container.max {
 .small-left-margin{
     margin-left:20px
 }
+
+.module-row {
+    padding:20px 0px 50px 25px;
+}
