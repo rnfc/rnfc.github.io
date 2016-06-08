@@ -229,10 +229,23 @@ div.container.max {
     padding:20px 0px 50px 25px;
 }
 
+/*
+div.iframe-div {
+      -webkit-overflow-scrolling: touch;
+  overflow-y: scroll;
+     position: fixed; 
+  right: 0; 
+  bottom: 0; 
+  left: 0;
+  top: 0;
+    margin-top:98px
+}
+
 html {
     overflow: scroll;
     overflow-x: hidden;
 }
+*/
 ::-webkit-scrollbar {
     width: 0px;  /* remove scrollbar space */
     background: transparent;  /* optional: just make scrollbar invisible */
