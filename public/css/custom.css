@@ -14,6 +14,12 @@
   }
 }
 
+.masthead {
+    width: 100%;
+    position: fixed;
+    background-color: white;
+}
+
 h1 {
 	margin-top: 1.4rem;
 	font-size: 1.4rem;
@@ -40,6 +46,7 @@ code, code span {
 }
 
 div.container.content {
+    padding-top:75px;
 	max-width:55rem;
 }
 
@@ -213,7 +220,8 @@ div.container.max {
     width:100%;
     max-width:100%;
     margin:0;
-    padding:0
+    padding:0;
+    padding-top:75px;
 }
 
 #main-module {
