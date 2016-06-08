@@ -141,6 +141,11 @@ hr.short {
     width: 40%;
 }
 
+hr.shorter {
+    margin: 1.5rem auto;
+    width: 25%;
+}
+
 .btn.btn-main.featured {
     background-color: #555555;
     border: 1px solid #555555;
