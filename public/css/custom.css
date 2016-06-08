@@ -203,3 +203,19 @@ a:hover, a:focus {
 .sidebar-toggle {
     margin-top:-4px;
 }
+
+div.container.max {
+    width:100%;
+    max-width:100%;
+    margin:0;
+    padding:0
+}
+
+#main-module {
+    overflow: hidden;
+    padding-bottom: 0px;
+}
+
+.small-left-margin{
+    margin-left:20px
+}
