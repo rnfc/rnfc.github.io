@@ -228,3 +228,7 @@ div.container.max {
 .module-row {
     padding:20px 0px 50px 25px;
 }
+
+iframe{
+    overflow:hidden;
+}
