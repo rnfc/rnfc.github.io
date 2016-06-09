@@ -274,3 +274,8 @@ html {
 .mid-small-font {
     font-size:0.8rem;
 }
+
+i.fa{
+    font-size:3em;
+    color: #dddddd;
+}
