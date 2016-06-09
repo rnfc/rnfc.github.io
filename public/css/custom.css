@@ -279,3 +279,19 @@ i.fa{
     font-size:3em;
     color: #dddddd;
 }
+
+.sm-margin-bottom {
+    margin-bottom:10px;   
+}
+
+button.sm-width{
+    min-width: 125px
+}
+
+button.med-width{
+    min-width: 160px
+}
+
+.allcap {
+    text-transform: uppercase;
+}
