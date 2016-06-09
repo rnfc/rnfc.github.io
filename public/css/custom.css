@@ -266,3 +266,11 @@ html {
 .red {
     color: red;
 }
+
+.small-font {
+    font-size:0.7rem;
+}
+
+.mid-small-font {
+    font-size:0.8rem;
+}
