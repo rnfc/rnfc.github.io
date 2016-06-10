@@ -312,3 +312,13 @@ h1.title {
 .masthead {
     z-index: 1;
 }
+
+button.white-text {
+    color: white;
+    font-weight:100;
+}
+
+.btn.white-text.focus, .btn.white-text:focus, .btn.white-text:hover {
+    color: #bdbdbd;
+    text-decoration: none;
+}
