@@ -1,8 +1,9 @@
----------------------------------------------
+---
+layout: resource
 title: "1. Introduction - pg 11"
 author: "Jamie Ross (edited by Fred Jackson)"
 date: "Saturday, October 04, 2014"
----------------------------------------------
+---
 
 
 ### An Overview of Statistical Learning
