@@ -1,6 +1,6 @@
 ---
 layout: resource
-title: "1. Introduction - pg 11"
+title: "Lesson 1 - Summary"
 author: "Jamie Ross (edited by Fred Jackson)"
 date: "Saturday, October 04, 2014"
 ---

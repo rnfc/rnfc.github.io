@@ -300,3 +300,15 @@ button.lg-width{
 .allcap {
     text-transform: uppercase;
 }
+
+h1.title {
+    color:#7d7d7d;
+}
+
+.sidebar-toggle {
+    z-index: 2;
+}
+
+.masthead {
+    z-index: 1;
+}
