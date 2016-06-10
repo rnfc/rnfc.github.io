@@ -285,12 +285,17 @@ i.fa{
 }
 
 button.sm-width{
-    min-width: 125px
+    min-width: 125px;
 }
 
 button.med-width{
-    min-width: 160px
+    min-width: 160px;
 }
+
+button.lg-width{
+    min-width: 300px;
+}
+
 
 .allcap {
     text-transform: uppercase;
