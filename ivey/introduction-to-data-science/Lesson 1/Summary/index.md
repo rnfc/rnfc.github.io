@@ -26,7 +26,7 @@ In this application, we examine factors that relate wages for a group of males i
 
 ```r
 library(stats)
-data       <- Wage #Data from package 
+data <- Wage #Data from package 
 head(data)
 ```
 
@@ -38,6 +38,7 @@ head(data)
 ## 155159 2003  43 1. Male       2. Married 3. Asian 4. College Grad
 ## 11443  2005  50 1. Male      4. Divorced 1. White      2. HS Grad
 ## 376662 2008  54 1. Male       2. Married 1. White 4. College Grad
+##
 ##                    region       jobclass         health health_ins
 ## 231655 2. Middle Atlantic  1. Industrial      1. <=Good      2. No
 ## 86582  2. Middle Atlantic 2. Information 2. >=Very Good      2. No
@@ -45,6 +46,7 @@ head(data)
 ## 155159 2. Middle Atlantic 2. Information 2. >=Very Good     1. Yes
 ## 11443  2. Middle Atlantic 2. Information      1. <=Good     1. Yes
 ## 376662 2. Middle Atlantic 2. Information 2. >=Very Good     1. Yes
+##
 ##         logwage      wage
 ## 231655 4.318063  75.04315
 ## 86582  4.255273  70.47602
