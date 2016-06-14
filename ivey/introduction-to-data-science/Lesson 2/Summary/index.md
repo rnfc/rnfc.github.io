@@ -1,17 +1,10 @@
 ---
 layout: resource
 title: "Lesson 2 - Statistical Learning"
-output: 
-    html_document:
-        theme: cerulean
-        toc: true
-        toc_depth: 3
-        toc_float: 
-            collapsed: false
-        number_sections: true
-        pandoc_args: ["--number-offset", "2"]
-        css: style.css
+author: "Jamie Ross (edited by Fred Jackson)"
+date: "Saturday, October 04, 2014"
 ---
+
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
     TeX: { 

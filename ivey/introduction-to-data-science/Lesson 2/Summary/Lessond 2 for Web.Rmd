@@ -3,14 +3,14 @@ layout: resource
 title: "Lesson 2 - Statistical Learning"
 output: 
     html_document:
-        theme: cerulean
-        toc: true
-        toc_depth: 3
-        toc_float: 
-            collapsed: false
-        number_sections: true
-        pandoc_args: ["--number-offset", "2"]
-        css: style.css
+      css: style.css
+      keep_md: yes
+      number_sections: yes
+      pandoc_args: ["--number-offset", "2"]
+      theme: cerulean
+      toc: yes
+      toc_float:
+        collapsed: no
 ---
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
