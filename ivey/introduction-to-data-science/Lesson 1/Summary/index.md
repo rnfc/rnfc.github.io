@@ -5,6 +5,15 @@ author: "Jamie Ross (edited by Fred Jackson)"
 date: "Saturday, October 04, 2014"
 ---
 
+### About this Course
+
+This is an introductory-level course in supervised learning, with a focus on regression and classification methods. The [syllabus](LINK HERE) includes: linear and polynomial regression, logistic regression and linear discriminant analysis; cross-validation and the bootstrap, model selection and regularization methods (ridge and lasso); nonlinear models, splines and generalized additive models; tree-based methods, random forests and boosting; support-vector machines. Some unsupervised learning methods are discussed: principal components and clustering (k-means and hierarchical).
+
+This is not a math-heavy class, so I try and describe the methods without heavy reliance on formulas and complex mathematics. I focus on what I consider to be the important elements of modern data analysis. Computing is done in [R](http://www.burns-stat.com/documents/tutorials/impatient-r/). There are lectures devoted to R, giving tutorials from the ground up, and progressing with more detailed sessions that implement the techniques in each lesson.
+
+The lectures cover all the material in An Introduction to Statistical Learning, with Applications in R by James, Witten, Hastie and Tibshirani (Springer, 2013). The pdf for this book is available for free on the book website.
+
+**Prerequisites**: 3316K - Decision Making with Analytics
 
 ### An Overview of Statistical Learning
 
@@ -134,9 +143,24 @@ plot(pr.out$x[, 1:2], col=Cols(cols$cluster), pch =19,
 ### A Brief History of Statistical Learning
 Statistical Learning is fairly new, but many of the concepts are not. Most models before 1970 were linear in nature. By the 1980s, computer technology had imporved to the point that non-linear model fitting was possible. This book focuses more on non-linear methods.
 
-### This Book
-In recent years, new and improved software has eased the implementation for many statistical learning methods. This book is meant to be more mainstream than academic. *Elements of Statistical Learning* is far more comprehensive, but *An Introduction to Statistical Learning* is more accessible. This book skips over many of the lower-level optimization techniques. 
+### ISL Book
 
-### Data
-All of the data used in this book is availiable in the **ISLR** package available on CRAN. 
+The publication of [An Introduction to Statistical Learning with Applications in R](http://www-bcf.usc.edu/~gareth/ISL/index.html) (download the book pdf) provides a gentle introduction to statistical learning (also known as "machine learning”). The book achieves a nice balance and well worth looking at both for the beginner and the more experienced HBA student needing to explain to others with less training on methods for regression and classification. As a bonus, I added Stanford's [OpenEdX] (https://lagunita.stanford.edu/courses/HumanitiesScience/StatLearning/Winter2014/about)  lecture videos and transcripts by Hastie and Tibshirani.There is also an GitHub [repository](LINK HERE) with the R code to demonstrate most of the techniques described in the book and solutions to the exercises at the end of each chapter,
 
+**Data**
+
+All of the data used in this class is availiable in the [ISLR](https://cran.r-project.org/web/packages/ISLR/index.html) package available on CRAN.
+
+### Frequently Asked Questions
+
+**Do I need to buy a textbook?**
+
+No, a free online version of [An Introduction to Statistical Learning, with Applications in R](http://www-bcf.usc.edu/~gareth/ISL/) by James, Witten, Hastie and Tibshirani (Springer, 2013) is available from that website. Springer has agreed to this, so no need to worry about copyright. Of course you may not distribiute printed versions of this pdf file.
+
+**Is R and RStudio available for free?**
+
+Yes. You get R for free from http://cran.us.r-project.org/. Typically it installs with a click. You get RStudio from http://www.rstudio.com/, also for free, and a similarly easy install.
+
+**How many hours of effort are expected per week?**
+
+I anticipate it will take approximately 5-10 hours per week to go through the materials and exercises in each lesson.
