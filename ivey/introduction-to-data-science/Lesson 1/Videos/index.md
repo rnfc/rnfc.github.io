@@ -96,7 +96,7 @@ about.
 
 *Slide 6:*
 
-![Prostate Cancer Data](Images/1.1.png)
+![Prostate Cancer Data](Images/1.1.PNG)
 *Prostate cancer matrix*
 
 *Hastie:* The first data set we are going to look at is on prostate
@@ -118,7 +118,7 @@ measurements.
 
 *Slide 7:*
 
-![Log Prostate Cancer Data](Images/1.2.png)
+![Log Prostate Cancer Data](Images/1.2.PNG)
 *The same data plotted on a log scale*
 
 *Hastie:* Here is another view of this data which looks rather similar
@@ -146,7 +146,7 @@ analysis.
 
 *Slide 9:*
 
-![Phonemes](Images/1.3.png)
+![Phonemes](Images/1.3.PNG)
 *Phoneme logistic regression model*
 
 *Tibshirani:* for two vowel sounds. This is log periodigrams for two
@@ -183,7 +183,7 @@ of demographic, diet and clinical measurements.
 
 *Slide 11:*
 
-![Heart Disease Data](Images/1.4.png)
+![Heart Disease Data](Images/1.4.PNG)
 *Heart disease risk factor matrix*
 
 *Hastie:* These are some data on men from South Africa. The red ones are
@@ -207,7 +207,7 @@ In this case that is coloured in red.
 
 *Slide 13:*
 
-![Spam Email Word Frequencies](Images/1.5.png)
+![Spam Email Word Frequencies](Images/1.5.PNG)
 *Spam and ham word frequencies*
 
 *Tibshirani:* Everyone uses email and spam is definitely a problem. Spam
@@ -243,7 +243,7 @@ whether the email is spam or ham.
 
 *Slide 15:*
 
-![Handwritten Digits](Images/1.6.png)
+![Handwritten Digits](Images/1.6.PNG)
 *Handwritten digits classification*
 
 *Hastie:* This is what we alluded to earlier. Here are some handwritten
@@ -284,7 +284,7 @@ time here at Stanford
 
 *Slide 17:*
 
-![Breast Cancer Gene Expression](Images/1.7.png)
+![Breast Cancer Gene Expression](Images/1.7.PNG)
 *Gene expression data from breast cancer patients*
 
 *Tibshirani:* and a lot of what we do is to use machine learning,
@@ -326,7 +326,7 @@ variables in population survey data
 
 *Slide 19:*
 
-![Wages Survey Data](Images/1.8.png)
+![Wages Survey Data](Images/1.8.PNG)
 *Income survey data*
 
 *Hastie:* Here is some survey data. We see income from the central
@@ -345,7 +345,7 @@ in Australia.
 
 *Slide 21:*
 
-![Land Use Spectrographs](Images/1.9.png)
+![Land Use Spectrographs](Images/1.9.PNG)
 *Spectral classification*
 
 *Tibshirani:* This is a rural area of Australia where the land use has
