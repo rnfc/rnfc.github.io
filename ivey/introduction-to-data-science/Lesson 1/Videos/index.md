@@ -7,6 +7,7 @@ title: "Lesson 1 - Videos"
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/2wLfFB_6SKI?list=PL5-da3qGB5ICcUhueCyu25slvsGp8IDTa" allowfullscreen style="border:none; padding-top:25px">
 </iframe>
+<br>
 *Tibshirani:* Hi I'm Rob Tibshirani
 
 *Hastie:* and I'm Trevor Hastie. Welcome to our Course on Statistical
