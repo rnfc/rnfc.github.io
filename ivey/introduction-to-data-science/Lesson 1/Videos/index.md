@@ -1,5 +1,5 @@
 ---
-layout: video
+layout: resource
 title: "Lesson 1 - Videos"
 ---
 
