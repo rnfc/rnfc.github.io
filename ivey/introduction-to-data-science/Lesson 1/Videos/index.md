@@ -1,10 +1,9 @@
 ---
-layout: resource
+layout: video
 title: "Lesson 1 - Videos"
 ---
 
-Opening Remarks and Examples
-============================
+## Opening Remarks and Examples
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/2wLfFB_6SKI?list=PL5-da3qGB5ICcUhueCyu25slvsGp8IDTa" allowfullscreen style="border:none; padding-top:25px">
 </iframe>
