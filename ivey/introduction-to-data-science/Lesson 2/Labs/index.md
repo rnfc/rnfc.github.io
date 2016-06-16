@@ -1,6 +1,6 @@
 ---
 layout: resource
-title: "Lesson 1 - Videos"
+title: "Lesson 2 - Lab"
 ---
 
 <center>
