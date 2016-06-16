@@ -365,7 +365,8 @@ Here, there is a correlation of 0.7 between the variables in the orange class, w
 The Bayes decision boundary is non-linear in this case and QDA does a better job.
 
 <center><img src="Figures/Figure4-9.png" alt="Figure 4.9"></center>
-{:refdef: style="max-width:750px; margin:auto; text-align: center;"}__Figure 4.9__ -- Left: *The Bayes (purple), LDA (black) and QDA (green) decision boundaries for a two-class problem with $$\boldsymbol{\Sigma}_1 = \boldsymbol{\Sigma}_2$$.* Right: *Same as left panel except $$\boldsymbol{\Sigma}_1 \ne \boldsymbol{\Sigma}_2$$.*
+{:refdef: style="max-width:750px; margin:auto; text-align: center;"}
+__Figure 4.9__ -- Left: *The Bayes (purple), LDA (black) and QDA (green) decision boundaries for a two-class problem with $$\boldsymbol{\Sigma}_1 = \boldsymbol{\Sigma}_2$$.* Right: *Same as left panel except $$\boldsymbol{\Sigma}_1 \ne \boldsymbol{\Sigma}_2$$.*
 {: refdef}
 
 

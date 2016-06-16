@@ -318,10 +318,10 @@ __Figure 8.10__ -- *Results from random forests for the fifteen-class gene expre
 ###### Algorithm 8.2
 1. Set $$\hat{f}(x) = 0$$ and $$r_i = y_i$$ for all $$i$$ in the training set.
 2. For $$b = 1, 2, \ldots, B$$, repeat:
-    (a) Fit a tree $$\hat{f}^b$$ with $$d$$ splits ($$d+1$$ terminal nodes) to the training data $$(X,r)$$.
-    (b) Update $$\hat{f}$$ by adding in a shrunken version of the new tree:
+    * Fit a tree $$\hat{f}^b$$ with $$d$$ splits ($$d+1$$ terminal nodes) to the training data $$(X,r)$$.
+    * Update $$\hat{f}$$ by adding in a shrunken version of the new tree:
         $$\hat{f}(x) \leftarrow \hat{f}(x) + \lambda \hat{f}^b(x) \>. \tag{8.10}$$
-    (c) Update the residuals,
+    * Update the residuals,
         $$r_i \leftarrow r_i - \lambda \hat{f}^b(x) \>. \tag{8.11}$$
 3. Output the boosted model,
     $$\hat{f}(x) = \sum_{b=1}^B \lambda \hat{f}^b(x) \>. \tag{8.12}$$
