@@ -15,7 +15,7 @@ title: "Lesson 2 - Videos"
 *Hastie:* OK, we're going to talk about statistical learning and models now. I'm going to tell you what models of good for, how we use them, and what are some of the issues involved. OK so we see three plots in front of us. These are sales figures from a marketing campaign as a function of amount spent on TV ads, radio ads, and newspaper ads.
 
 <center>
-<img src="Images/2.1.png" alt="Sales Figures" style="max-height:400px">
+<img src="Images/2.1.PNG" alt="Sales Figures" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 2.1**-- *Linear regressions of Sales vs. TV, Radio, Newspaper*
@@ -44,7 +44,7 @@ OK and this error, it's just a catch all. It captures the measurement errors may
 *Hastie:* OK, well, what is this function $$f$$? And is there an ideal $$f$$? So in the plot, we've got a large sample of points from a population. There is just a single $$X$$ in this case and a response $$Y$$. 
 
 <center>
-<img src="Images/2.3.png" alt="Ideal Function" style="max-height:400px">
+<img src="Images/2.3.PNG" alt="Ideal Function" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 2.2**
@@ -77,7 +77,7 @@ So this expected prediction error breaks up into these two pieces. So that's imp
 *Hastie:* OK, so that's all nice. This is a kind of, up to now, has been somewhat of a theoretical exercise. Well, how do we estimate the function $$f$$? So the problem is we can't carry out this recipe of conditional expectation or conditional averaging exactly because at any given $$X$$ in our data set, we might not have many points to average. We might not have any points to average. 
 
 <center>
-<img src="Images/2.2.png" alt="Computing Ideal Function" style="max-height:400px">
+<img src="Images/2.2.PNG" alt="Computing Ideal Function" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 2.3**-- *With fewer points, we use a neighborhood*
@@ -102,7 +102,7 @@ And it keeps the spirit of conditional expectation. It's close to the target poi
 *Hastie:* So let's look at a little example of that. 
 
 <center>
-<img src="Images/2.4.png" alt="Dimensionality" style="max-height:400px">
+<img src="Images/2.4.PNG" alt="Dimensionality" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 2.4**-- *The curse of dimensionality*
@@ -121,7 +121,7 @@ We've got $$p$$ features. It's just got $$p + 1$$ parameters. And it says the fu
 ##### Slide 10:
 
 <center>
-<img src="Images/2.5.png" alt="Linear vs. Quadratic" style="max-height:400px">
+<img src="Images/2.5.PNG" alt="Linear vs. Quadratic" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 2.5**-- *Top plot:* $$\hat{f}_L(X) = \hat{\beta}_0 + \hat{\beta}_1X$$
@@ -135,7 +135,7 @@ We've got $$p$$ features. It's just got $$p + 1$$ parameters. And it says the fu
 *Hastie:* Here's a two dimensional example. Again, seniority, years of education, and income. And this is simulated data. 
 
 <center>
-<img src="Images/2.7.png" alt="2D Dataset" style="max-height:400px">
+<img src="Images/2.7.PNG" alt="2D Dataset" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 2.6**-- $$\text{income} = f(\text{education, seniority})+ \epsilon$$
@@ -148,7 +148,7 @@ And so the blue surface is actually showing you the true function from which the
 *Hastie:* And here is a linear regression model fit to those simulation data. 
 
 <center>
-<img src="Images/2.8.png" alt="2D Linear Regression" style="max-height:400px">
+<img src="Images/2.8.PNG" alt="2D Linear Regression" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 2.7**
@@ -161,7 +161,7 @@ So it's an approximation. It captures the important elements of the relationship
 *Hastie:* Here's a more flexible regression model. We've actually fit this using a technique called *thin plate splines*. And that's a nice smooth version of a two dimensional smoother. 
 
 <center>
-<img src="Images/2.9.png" alt="Thin Plate Spline" style="max-height:400px">
+<img src="Images/2.9.PNG" alt="Thin Plate Spline" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 2.8**-- *Thin plate spline*
@@ -174,7 +174,7 @@ It's different from nearest neighbor averaging. It's got some nicer properties. 
 *Hastie:* Here's another example of a thin plate spline. 
 
 <center>
-<img src="Images/2.10.png" alt="Flexible Thin Plate Spline" style="max-height:400px">
+<img src="Images/2.10.PNG" alt="Flexible Thin Plate Spline" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 2.9**-- *Thin plate spline with no errors on the training data*
@@ -191,7 +191,7 @@ We basically tuned the parameter all the way down to 0. And this surface actuall
 *Hastie:* Here's a little schematic which shows a variety of the methods that we are going to be discussing in this course. And they are ordered by interpretability and flexibility. 
 
 <center>
-<img src="Images/2.11.png" alt="Interperability vs. Flexibility" style="max-height:400px">
+<img src="Images/2.11.PNG" alt="Interperability vs. Flexibility" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 2.10**
@@ -224,7 +224,7 @@ And that may be a better reflection of the performance of our model.
 *Hastie:* OK, so now I'm going to show you some examples. We go back to one dimensional function fitting. 
 
 <center>
-<img src="Images/2.12.png" alt="Function Fitting" style="max-height:400px">
+<img src="Images/2.12.PNG" alt="Function Fitting" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 2.11**-- *Left: Black curve is truth* 
@@ -238,7 +238,7 @@ In the left hand panel, we see the black curve, which is actually simulated. So 
 *Hastie:* Here's another example of the same kind. But here, the two functions are actually very smooth. 
 
 <center>
-<img src="Images/2.13.png" alt="Smooth Function Fitting" style="max-height:400px">
+<img src="Images/2.13.PNG" alt="Smooth Function Fitting" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 2.12**-- *The truth is smoother, so the smoother fit and linear model do well*
@@ -251,7 +251,7 @@ Same setup. Well, now we see that the mean squared error, the linear model does 
 *Hastie:* And finally, here's quite a wiggly true function on the left.
 
 <center>
-<img src="Images/2.13.png" alt="Wiggly Function Fitting" style="max-height:400px">
+<img src="Images/2.13.PNG" alt="Wiggly Function Fitting" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 2.12**-- *The truth is wiggly, so the more flexible fits do well*
@@ -272,7 +272,7 @@ So that's the predicted model. The fitted model on the training data evaluated a
 *Hastie:* For those three examples, we see the bias-variance trade-off.
 
 <center>
-<img src="Images/2.15.png" alt="Bias-Variance Trade-off" style="max-height:400px">
+<img src="Images/2.15.PNG" alt="Bias-Variance Trade-off" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 2.14**-- *Trade-offs between biase and variance. Red is MSE, Blue is Bias, Orange is Variance*
@@ -293,7 +293,7 @@ Again, in this part the red curve is the mean squared error on the test data. An
 *Hastie:* OK. To try and parallel our development for the quantitative response, I've made up a little simulation example. And we've got one $$x$$, one $$Y$$. The $$Y$$ takes on two values in this example. The values are just coded as 0 and 1. And we've got a big sample of these $$Y$$'s from a population.
 
 <center>
-<img src="Images/2.16.png" alt="Quantitative Model Fitting" style="max-height:400px">
+<img src="Images/2.16.PNG" alt="Quantitative Model Fitting" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 2.15**
@@ -312,7 +312,7 @@ $$C(x) = j \text{ if } p_j(x) = \text{max}\{p_1(x),p_2(x),\dotsc,p_K(x)\}$$
 *Hastie:* Here's the same example, except now we've only got a handful of points. We've got 100 points having one of the two class labels.
 
 <center>
-<img src="Images/2.17.png" alt="Nearest-neighbor Averaging" style="max-height:400px">
+<img src="Images/2.17.PNG" alt="Nearest-neighbor Averaging" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 2.16**
@@ -333,7 +333,7 @@ It's just the number of mistakes. So that's when we count a mistake, mistaking a
 *Hastie:* OK, we'll end up with a two dimensional example of nearest neighbors. 
 
 <center>
-<img src="Images/2.18.png" alt="Nearest-neighbor in 2D" style="max-height:400px">
+<img src="Images/2.18.PNG" alt="Nearest-neighbor in 2D" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 2.17**
@@ -346,7 +346,7 @@ So this represents the truth. We got an $$X_1$$ and an $$X_2$$. And we've got po
 *Hastie:* OK, so we can do nearest neighbor, averaging in two dimensions. 
 
 <center>
-<img src="Images/2.19.png" alt="Nearest-neighbor for k=10" style="max-height:400px">
+<img src="Images/2.19.PNG" alt="Nearest-neighbor for k=10" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 2.18**-- *KNN: K = 10*
@@ -360,7 +360,7 @@ So of course what we do here is, at any given point when we want to classify-- l
 *Hastie:* OK, in the last slide, we used $$K = 10$$. We can use other values of $$K$$. $$K = 1$$ is a popular choice. 
 
 <center>
-<img src="Images/2.20.png" alt="Nearest-neighbor With Varied K" style="max-height:400px">
+<img src="Images/2.20.PNG" alt="Nearest-neighbor With Varied K" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 2.19**
@@ -373,7 +373,7 @@ This is called the nearest neighbor classifier. And we take literally at each ta
 *Hastie:* And that needs to be selected. And here we showed what happens as you vary $$K$$, first on the training data and then on the test data.
 
 <center>
-<img src="Images/2.21.png" alt="K Variation" style="max-height:400px">
+<img src="Images/2.21.PNG" alt="K Variation" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 2.20**
