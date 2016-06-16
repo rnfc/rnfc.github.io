@@ -136,14 +136,14 @@ And let's look at a plot of these variables. And so we plot x and y. And there w
 plot(x,y)
 ```
 
-![](Lab_1_1_files/figure-html/unnamed-chunk-17-1.png)\
+![](Lab_2_1_files/figure-html/unnamed-chunk-17-1.png)\
 Now I must say, R graphics is really well designed. One doesn't think too much about the design of graphics, but a lot goes into it, such as aspect ratios, how much space to put around the points on a plot, between the edge of the points and the axes. Just things like spacing of the axes, how many ticks, and so on. That all seems like trivial details, but it's not. And this has been carefully thought of and designed. And therefore, R graphics, I think, are particularly attractive. Of course, I may be a little impervious since I've been an R, and its predecessor S, user for many, many years. So you could put, or you can annotate your plots. And add all kinds of features to your plots. So there's the same plot, but we changed the plotting character, and we put axis labels.
 
 ```r
 plot(x,y,xlab="Random Uniform",ylab="Random Normal",pch="*",col="blue")
 ```
 
-![](Lab_1_1_files/figure-html/unnamed-chunk-18-1.png)\
+![](Lab_2_1_files/figure-html/unnamed-chunk-18-1.png)\
 And there are many, many options for making plots. Here's an option. And the `par()` command allows you to set some of these options. Some you can do directly in the plot command, and some, like layout commands, you can set with `par()`. So this is one that's often used, `mfrow`. It says we want to have a panel of plots with two rows and one column. And so that we do with the `mfrow` command. And so now, if we do the same plot, in our plot region, you'll see it's a little squashed up now, because we want two plots in this region. And so in the second part of the region, we're going to do a histogram of y.
 
 ```r
@@ -152,7 +152,7 @@ plot(x,y)
 hist(y)
 ```
 
-![](Lab_1_1_files/figure-html/unnamed-chunk-19-1.png)\
+![](Lab_2_1_files/figure-html/unnamed-chunk-19-1.png)\
 And so that `mfrow`, that division will stay in place until you reset it with another `mfrow` command. And so there, we've reset it. 
 
 So we've created data manually. We've generated data using random number generators. And we saw uniform and normal. And there are many other distributions you can generate from. OK. So now we will read in some data that we've got in the system. For example, Excel is often the place where you store your data. And so we're going to read that. There's ways of doing this in R. So we use the `read.csv()` function. And this requires that you've saved your data in comma separated value from Excel. And then you can just read it in, in R, and it respects the rows, and columns, and the headings, and everything else. And of course, you need to know where the data is. In this case, I know where the data is. If not, you'll get an error. 
@@ -213,7 +213,7 @@ Now you can plot the elements of a data frame. So a data frame is also a list. A
 plot(Auto$cylinders,Auto$mpg)
 ```
 
-![](Lab_1_1_files/figure-html/unnamed-chunk-23-1.PNG)\
+![](Lab_2_1_files/figure-html/unnamed-chunk-23-1.PNG)\
 And so you can see that cylinders also take on discrete values. And yeah, we do cylinders against miles per gallon. So that's a little cumbersome, having to do that dollar indexing of the elements of the data frame. So what you can actually do is you can `attach()` the data frame. 
 
 ```r
