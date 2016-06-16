@@ -56,7 +56,7 @@ title: "Lesson 1 - Videos"
 *Hastie:* The first data set we are going to look at is on prostate cancer. This is a relatively small data set of 97 men who had prostate cancer. It was sampled by a Stanford physician Dr. Stamy in the late 1980s.
 
 <center>
-<img src="Images/1.1.png" alt="Prostate Cancer Data" style="max-height:400px">
+<img src="Images/1.1.PNG" alt="Prostate Cancer Data" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 1.1**
@@ -69,7 +69,7 @@ What we have is the PSA measurement for each subject along with a number of clin
 *Hastie:* Here is another view of this data which looks rather similar except in the one instance these variables are on the log scale.
 
 <center>
-<img src="Images/1.2.png" alt="Log Prostate Cancer Data" style="max-height:400px">
+<img src="Images/1.2.PNG" alt="Log Prostate Cancer Data" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 1.2**
@@ -88,7 +88,7 @@ Notice there is a point over in weight that looks like somewhat of an outlier. I
 *Tibshirani:* for two vowel sounds. This is log periodigrams for two different phonemes. The power and frequencies of two different phonemes: aa and ao. How do you pronounce those Trevor?
 
 <center>
-<img src="Images/1.3.png" alt="Phoneme Data" style="max-height:400px">
+<img src="Images/1.3.PNG" alt="Phoneme Data" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 1.3**
@@ -111,7 +111,7 @@ Notice there is a point over in weight that looks like somewhat of an outlier. I
 *Hastie:* These are some data on men from South Africa. The red ones are those that had heart disease, and the blue points are those that didn't. It is a case control sample so heart attack cases were taken as cases and a sample of the controls were made.
 
 <center>
-<img src="Images/1.4.png" alt="Heart Disease Data" style="max-height:400px">
+<img src="Images/1.4.PNG" alt="Heart Disease Data" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 1.4**
@@ -128,7 +128,7 @@ The idea was to understand the risk factors in heart disease. When you have a bi
 *Tibshirani:* Everyone uses email and spam is definitely a problem. Spam filters are a very important application of statistical and machine learning. The data in this table actually is from the late '90s, from HP and a person names George.
 
 <center>
-<img src="Images/1.5.png" alt="Spam Email Word Frequencies" style="max-height:75px">
+<img src="Images/1.5.PNG" alt="Spam Email Word Frequencies" style="max-height:75px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 1.5**
@@ -149,7 +149,7 @@ This was early in the days of email where spam was not very sophisticated. What 
 *Hastie:* This is what we alluded to earlier. Here are some handwritten digits taken from envelopes and the goal is to, based on the image, to say what the digit is.
 
 <center>
-<img src="Images/1.6.png" alt="Handwritten Digits" style="max-height:150px">
+<img src="Images/1.6.PNG" alt="Handwritten Digits" style="max-height:150px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 1.6**
@@ -170,7 +170,7 @@ Classifying to the 10 digit classes.  To humans this looks like a pretty easy ta
 *Tibshirani:* and a lot of what we do is to use machine learning, statistical learning, and big data analysis to learn about data in Cancer and other diseases. This is an example of that. This is data from breast cancer.
 
 <center>
-<img src="Images/1.7.png" alt="Breast Cancer Gene Expression" style="max-height:400px">
+<img src="Images/1.7.PNG" alt="Breast Cancer Gene Expression" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 1.7**
@@ -189,7 +189,7 @@ It is called gene expression data. This has been collected from gene chips. What
 ##### Slide 19
 
 <center>
-<img src="Images/1.8.png" alt="Wages Survey Data" style="max-height:300px">
+<img src="Images/1.8.PNG" alt="Wages Survey Data" style="max-height:300px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 1.8**
@@ -206,7 +206,7 @@ It is called gene expression data. This has been collected from gene chips. What
 *Tibshirani:* This is a rural area of Australia where the land use has been labeled by graduate students into one of 6 categories. The goal is to try and predict the true labels by the spectral bands of 4 frequencies taken from a satellite image. 
 
 <center>
-<img src="Images/1.9.png" alt="Land Use Spectrographs" style="max-height:400px">
+<img src="Images/1.9.PNG" alt="Land Use Spectrographs" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 1.9**
