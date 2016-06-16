@@ -1,13 +1,12 @@
 ---
 layout: resource
-title: "Lesson 2 - Lab"
+title: "Lesson 1 - Videos"
 ---
 
 <center>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/jwBgGS_4RQA?list=PL5-da3qGB5IDvuFPNoSqheihPOQNJpzyy" style="border:none;" allowfullscreen></iframe>
 </center>
 <br>
-
 *Hastie:* Hi again. What we're going to do now, is we're going to have a look at R. Doing data analysis, these days, definitely requires a very good computing environment. And there's lots around. But from my point of view R is probably be the best environment these days. R is free, as we've mentioned before. And it's got a vast range of capabilities. And there it's got quite a steep learning curve, but the more you learn, the more capable you become. So R allows you to do all kinds of basic operations and data. And it's also got lots of built-in packages. And once you learn or R, you'll discover its also good very beautiful graphics. And after a while, you'll find that to start writing functions yourself, and expanding your abilities. So really, R, and/or tools like R are fundamental to doing good data analysis and statistical modeling. And so we're making this an essential part of this course. So what I'm doing here is I'm actually running R in another free program called R-Studio. So that's just an environment for running R and for developing presentations in R. And it's convenient for giving a presentation of this kind. So we'll now go to an introductory session in R-Studio, and I'll just show you some of the features of R. So here we are. You'll see I've got a script in the R-Studio session, in the top left panel. And in the bottom left panel, there's the R work in session. And what's going to happen is I'm going to click on commands that I've pre-entered, and that will get sent to the R session window and executed. Now of course, I could have tried to do you do this live and just type in the commands, but I don't touch type, and that would have been painful for you and me. So here we go. 
 
 So the first thing we'll do is just see, working with basic vectors and matrices. So here we assign three numbers to a vector x. And you see the commands going down below. And if we just type in `x`, it will print the vector. And there we see the three numbers.
@@ -136,14 +135,14 @@ And let's look at a plot of these variables. And so we plot x and y. And there w
 plot(x,y)
 ```
 
-![](Lab_2_1_files/figure-html/unnamed-chunk-17-1.png)\
+![](Lab_2_1_files/figure-html/unnamed-chunk-17-1.png)
 Now I must say, R graphics is really well designed. One doesn't think too much about the design of graphics, but a lot goes into it, such as aspect ratios, how much space to put around the points on a plot, between the edge of the points and the axes. Just things like spacing of the axes, how many ticks, and so on. That all seems like trivial details, but it's not. And this has been carefully thought of and designed. And therefore, R graphics, I think, are particularly attractive. Of course, I may be a little impervious since I've been an R, and its predecessor S, user for many, many years. So you could put, or you can annotate your plots. And add all kinds of features to your plots. So there's the same plot, but we changed the plotting character, and we put axis labels.
 
 ```r
 plot(x,y,xlab="Random Uniform",ylab="Random Normal",pch="*",col="blue")
 ```
 
-![](Lab_2_1_files/figure-html/unnamed-chunk-18-1.png)\
+![](Lab_2_1_files/figure-html/unnamed-chunk-18-1.png)
 And there are many, many options for making plots. Here's an option. And the `par()` command allows you to set some of these options. Some you can do directly in the plot command, and some, like layout commands, you can set with `par()`. So this is one that's often used, `mfrow`. It says we want to have a panel of plots with two rows and one column. And so that we do with the `mfrow` command. And so now, if we do the same plot, in our plot region, you'll see it's a little squashed up now, because we want two plots in this region. And so in the second part of the region, we're going to do a histogram of y.
 
 ```r
@@ -152,7 +151,7 @@ plot(x,y)
 hist(y)
 ```
 
-![](Lab_2_1_files/figure-html/unnamed-chunk-19-1.png)\
+![](Lab_2_1_files/figure-html/unnamed-chunk-19-1.png)
 And so that `mfrow`, that division will stay in place until you reset it with another `mfrow` command. And so there, we've reset it. 
 
 So we've created data manually. We've generated data using random number generators. And we saw uniform and normal. And there are many other distributions you can generate from. OK. So now we will read in some data that we've got in the system. For example, Excel is often the place where you store your data. And so we're going to read that. There's ways of doing this in R. So we use the `read.csv()` function. And this requires that you've saved your data in comma separated value from Excel. And then you can just read it in, in R, and it respects the rows, and columns, and the headings, and everything else. And of course, you need to know where the data is. In this case, I know where the data is. If not, you'll get an error. 
@@ -160,7 +159,7 @@ So we've created data manually. We've generated data using random number generat
 ```r
 Auto=read.csv("~/Desktop/Rsessions/Auto.csv")
 ```
-And so now we can query the data that we have just read in. And you can see it's got a number of columns. And those are the names of the variables. And we can look at the dimension of the data. It's 397 by 9. And we can see, what is this object that we read in? ^[*For the purpose of this tutorial, we will be importing the data from a URL*]
+And so now we can query the data that we have just read in. And you can see it's got a number of columns. And those are the names of the variables. And we can look at the dimension of the data. It's 397 by 9. And we can see, what is this object that we read in?
 
 ```r
 link = getURL("https://raw.githubusercontent.com/asadoughi/stat-learning/master/data/Auto.csv")
@@ -175,6 +174,10 @@ dim(Auto)
 class(Auto)
 ## [1] "data.frame"
 ```
+{:refdef: style="text-align: center;"}
+*For the purpose of this tutorial, we will be importing the data from a URL*
+{: refdef:}
+
 The class of order is a data frame. And you'll learn more about data frames. They're very valuable objects. It's sort of like a matrix, except that the columns can be variables of different kinds. So you can have what we call factors, and continuous variables, and matrices, and so on, which is really the way we think of observations in statistics. `Summary` is a useful function for a data frame. It'll give you a summary of each of the variables in the data frame. And you can see its things like min, max, and so on.
 
 ```r
@@ -213,7 +216,7 @@ Now you can plot the elements of a data frame. So a data frame is also a list. A
 plot(Auto$cylinders,Auto$mpg)
 ```
 
-![](Lab_2_1_files/figure-html/unnamed-chunk-23-1.PNG)\
+![](Lab_2_1_files/figure-html/unnamed-chunk-23-1.png)
 And so you can see that cylinders also take on discrete values. And yeah, we do cylinders against miles per gallon. So that's a little cumbersome, having to do that dollar indexing of the elements of the data frame. So what you can actually do is you can `attach()` the data frame. 
 
 ```r
@@ -235,4 +238,6 @@ And there we see the global environment is where we've put all our vectors, like
 ```r
 plot(cylinders, mpg)
 ```
-And in this case, it's plotted it as a box plot. And we see, for each level of cylinders, we get a box plot of the values for miles per gallon, which is like a little one dimensional summary of the values at that level of cylinder.
+
+![](Lab_2_1_files/figure-html/unnamed-chunk-26-1.png)
+And we see, for each level of cylinders, we get a plot of the values for miles per gallon, which is like a little one dimensional summary of the values at that level of cylinder.
