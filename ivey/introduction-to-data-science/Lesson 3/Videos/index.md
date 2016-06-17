@@ -17,7 +17,7 @@ title: "Lesson 3 - Videos"
 *Tibshirani:* Hello, everyone. We're going to continue now our discussion of supervised learning. Linear regression is the topic, and actually, as we'll see, it's a very simple method. But that's not a bad thing. Simple's actually good. As we'll see, it's very useful, and also the concepts we learned in linear regression are useful for a lot of the different topics in the course. So this is chapter three of our book. Let's look at the first slide. As we say, linear regression is a simpler approach to supervised learning that assumes the dependence of the outcome, $$Y$$, on the predictors, $$X_1$$ through $$X_p$$, is linear. Now, let's look at that assumption.
 
 <center>
-<img src="Images/3.1.png" alt="True Regression Function" style="max-height:400px">
+<img src="Images/3.1.PNG" alt="True Regression Function" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 3.1**
@@ -34,7 +34,7 @@ So in this little cartoon example, the true regression function is red. And it's
 *Tibshirani:* This data looks at sales as a function of three kinds of advertising, TV, radio, and newspaper. And here I've got scatter plots of the sales versus each of the three predictors individually.
 
 <center>
-<img src="Images/3.2.png" alt="Advertising Data" style="max-height:400px">
+<img src="Images/3.2.PNG" alt="Advertising Data" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 3.2**-- *Linear fit of Sales vs. TV, Radio, Newspaper*
@@ -79,7 +79,7 @@ This is the error, the residual for the first observation, square, second, et ce
 *Tibshirani:* This next slide-- I'll come back to the equation in the previous slide, but this next slide shows in pictures. 
 
 <center>
-<img src="Images/3.3.png" alt="Advertising Residuals" style="max-height:400px">
+<img src="Images/3.3.PNG" alt="Advertising Residuals" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 3.3**-- *Residuals of the linear model*
@@ -138,7 +138,7 @@ And this, if errors are normally distributed, which we typically assume, approxi
 *Tibshirani:* So for the advertising data using, again, just TV, here are the results.
 
 <center>
-<img src="Images/3.4.png" alt="Advertising Data Results" style="max-height:400px">
+<img src="Images/3.4.PNG" alt="Advertising Data Results" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 3.4**
@@ -225,7 +225,7 @@ $$\hat{\beta}_0$$ is the intercept. And now we have one slope parameter for each
 *Tibshirani:* Let's go-- remember, I showed this picture. 
 
 <center>
-<img src="Images/3.5.png" alt="Least Squares Plane" style="max-height:400px">
+<img src="Images/3.5.PNG" alt="Least Squares Plane" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 3.5**
@@ -246,7 +246,7 @@ It's kind of messy. And it's not something that anyone ever computes by hand. Al
 *Tibshirani:* So here's what we get for the advertising data.
 
 <center>
-<img src="Images/3.6.png" alt="Advertising Results" style="max-height:400px">
+<img src="Images/3.6.PNG" alt="Advertising Results" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 3.6**
@@ -269,7 +269,7 @@ The top table are the coefficients, standard errors et cetera. So these are the 
 *Tibshirani:* So the answer to the first question-- is at least one predictor useful?-- does a model overall have any predictive value. We look at the drop in training error. So this is the total sum of squares.
 
 <center>
-<img src="Images/3.7.png" alt="F-statistic" style="max-height:400px">
+<img src="Images/3.7.PNG" alt="F-statistic" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 3.7**
@@ -306,7 +306,7 @@ It's the drop in training error divided by p-- p is number of parameters we fit.
 *Hastie:* In fact, I'll just take you there now. 
 
 <center>
-<img src="Images/3.8.png" alt="Credit Card Data" style="max-height:400px">
+<img src="Images/3.8.PNG" alt="Credit Card Data" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 3.8**
@@ -331,7 +331,7 @@ So we've got a name for such a variable. We call it a dummy variable. It's a cre
 *Hastie:* So here we see the results of the regression model using just the single variable gender and the dummy variable 0, 1, the 1 representing female. 
 
 <center>
-<img src="Images/3.9.png" alt="Gender Model Results" style="max-height:400px">
+<img src="Images/3.9.PNG" alt="Gender Model Results" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 3.9**
@@ -356,7 +356,7 @@ And let's look at the different cases. So if the person's Asian, they'll get the
 *Hastie:* So here's the linear model. 
 
 <center>
-<img src="Images/3.10.png" alt="Ethnicity Results" style="max-height:400px">
+<img src="Images/3.10.PNG" alt="Ethnicity Results" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 3.10**
@@ -387,7 +387,7 @@ It says that the average effect on sales of a one unit increase in TV is always 
 *Hastie:* So here's a nice, pretty picture of the regression surface, sales as a function of TV and radio. 
 
 <center>
-<img src="Images/3.11.png" alt="Regression Surface" style="max-height:400px">
+<img src="Images/3.11.PNG" alt="Regression Surface" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 3.11**
@@ -408,7 +408,7 @@ $$\text{sales} = \beta_0 + (\beta_1 + \beta_3 \times \text{radio}) \times \text{
 And we've just collected terms slightly differently. And the way we've written it here is showing that by putting in this interaction, we can interpret it as the coefficient of TV, which had been originally $$\beta_1$$, is now modified as a function of radio. So as the values of radio changes, the coefficient of TV changes by amount $$\beta_3$$ times radio. So that's a nice way of interpreting what this interaction is doing.
 
 <center>
-<img src="Images/3.12.png" alt="Interaction Results" style="max-height:400px">
+<img src="Images/3.12.PNG" alt="Interaction Results" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 3.12**
@@ -467,7 +467,7 @@ but before we study this, let's just look at a picture of these two situations, 
 ##### Slide 44: 
 
 <center>
-<img src="Images/3.13.png" alt="Interaction Data" style="max-height:400px">
+<img src="Images/3.13.PNG" alt="Interaction Data" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 3.13**
@@ -488,7 +488,7 @@ So the interpretation of interactions with categorical variables and the associa
 *Hastie:* The other modification of the linear model is what if we want to include nonlinear effects? So here we've got the plot of two of the variables in the auto data set. 
 
 <center>
-<img src="Images/3.14.png" alt="Polynomial Regression" style="max-height:400px">
+<img src="Images/3.14.PNG" alt="Polynomial Regression" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 3.14**
@@ -505,7 +505,7 @@ $$\text{mpg} = \beta_0 + \beta_1 \times \text{horsepower} + \beta_2 \times \text
 We do the summary, and we see that the coefficient of both horsepower and horsepower squared are strongly significant.
 
 <center>
-<img src="Images/3.15.png" alt="Auto Results" style="max-height:400px">
+<img src="Images/3.15.PNG" alt="Auto Results" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 3.15**
