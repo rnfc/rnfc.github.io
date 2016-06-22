@@ -7,7 +7,6 @@ title: "Lesson 3 - Videos"
 
 ## Simple Linear Regression and Confidence Intervals 
 <br>
-
 <center>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/PsE9UqoWtS4?list=PL5-da3qGB5IBSSCPANhTgrw82ws7w_or9" style="border:none;" allowfullscreen></iframe>
 </center>
@@ -122,7 +121,7 @@ And this, if errors are normally distributed, which we typically assume, approxi
 ## Hypothesis Testing
 
 <center>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/J6AdoiNUyWI?list=PL5-da3qGB5IBSSCPANhTgrw82ws7w_or9" style="border:none; padding-top:25px" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/J6AdoiNUyWI?list=PL5-da3qGB5IBSSCPANhTgrw82ws7w_or9" style="border:none;" allowfullscreen></iframe>
 </center>
 
 ##### Slide 9:
@@ -138,7 +137,7 @@ And this, if errors are normally distributed, which we typically assume, approxi
 *Tibshirani:* So for the advertising data using, again, just TV, here are the results.
 
 <center>
-<img src="Images/3.4.PNG" alt="Advertising Data Results" style="max-height:400px">
+<img src="Images/3.4.PNG" alt="Advertising Data Results" style="max-height:400px; max-width:450px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 3.4**
@@ -181,7 +180,7 @@ This is actually equivalent to the squared correlation between $$X$$ and $$Y$$. 
 ## Multiple Linear Regression and Interpreting Regression Coefficients
 
 <center>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/1hbCJyM9ccs?list=PL5-da3qGB5IBSSCPANhTgrw82ws7w_or9" style="border:none; padding-top:25px" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1hbCJyM9ccs?list=PL5-da3qGB5IBSSCPANhTgrw82ws7w_or9" style="border:none;" allowfullscreen></iframe>
 </center>
 
 ##### Slide 12:
@@ -246,7 +245,7 @@ It's kind of messy. And it's not something that anyone ever computes by hand. Al
 *Tibshirani:* So here's what we get for the advertising data.
 
 <center>
-<img src="Images/3.6.PNG" alt="Advertising Results" style="max-height:400px">
+<img src="Images/3.6.PNG" alt="Advertising Results" style="max-height:400px; max-width:450px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 3.6**
@@ -257,7 +256,7 @@ The top table are the coefficients, standard errors et cetera. So these are the 
 ## Model Selection and Qualitative Predictors
 
 <center>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/3T6RXmIHbJ4?list=PL5-da3qGB5IBSSCPANhTgrw82ws7w_or9" style="border:none; padding-top:25px" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3T6RXmIHbJ4?list=PL5-da3qGB5IBSSCPANhTgrw82ws7w_or9" style="border:none;" allowfullscreen></iframe>
 </center>
 
 ##### Slide 21:
@@ -269,7 +268,7 @@ The top table are the coefficients, standard errors et cetera. So these are the 
 *Tibshirani:* So the answer to the first question-- is at least one predictor useful?-- does a model overall have any predictive value. We look at the drop in training error. So this is the total sum of squares.
 
 <center>
-<img src="Images/3.7.PNG" alt="F-statistic" style="max-height:400px">
+<img src="Images/3.7.PNG" alt="F-statistic" style="max-height:400px; max-width:450px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 3.7**
@@ -331,7 +330,7 @@ So we've got a name for such a variable. We call it a dummy variable. It's a cre
 *Hastie:* So here we see the results of the regression model using just the single variable gender and the dummy variable 0, 1, the 1 representing female. 
 
 <center>
-<img src="Images/3.9.PNG" alt="Gender Model Results" style="max-height:400px">
+<img src="Images/3.9.PNG" alt="Gender Model Results" style="max-height:400px; max-width:450px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 3.9**
@@ -356,7 +355,7 @@ And let's look at the different cases. So if the person's Asian, they'll get the
 *Hastie:* So here's the linear model. 
 
 <center>
-<img src="Images/3.10.PNG" alt="Ethnicity Results" style="max-height:400px">
+<img src="Images/3.10.PNG" alt="Ethnicity Results" style="max-height:400px; max-width:450px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 3.10**
@@ -367,7 +366,7 @@ We've picked African-American as a baseline. And so that actually determines whi
 ## Interactions and Nonlinearity 
 
 <center>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/IFzVxLv0TKQ?list=PL5-da3qGB5IBSSCPANhTgrw82ws7w_or9" style="border:none; padding-top:25px" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/IFzVxLv0TKQ?list=PL5-da3qGB5IBSSCPANhTgrw82ws7w_or9" style="border:none;" allowfullscreen></iframe>
 </center>
 
 ##### Slide 32:
@@ -408,7 +407,7 @@ $$\text{sales} = \beta_0 + (\beta_1 + \beta_3 \times \text{radio}) \times \text{
 And we've just collected terms slightly differently. And the way we've written it here is showing that by putting in this interaction, we can interpret it as the coefficient of TV, which had been originally $$\beta_1$$, is now modified as a function of radio. So as the values of radio changes, the coefficient of TV changes by amount $$\beta_3$$ times radio. So that's a nice way of interpreting what this interaction is doing.
 
 <center>
-<img src="Images/3.12.PNG" alt="Interaction Results" style="max-height:400px">
+<img src="Images/3.12.PNG" alt="Interaction Results" style="max-height:400px; max-width:450px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 3.12**
@@ -505,7 +504,7 @@ $$\text{mpg} = \beta_0 + \beta_1 \times \text{horsepower} + \beta_2 \times \text
 We do the summary, and we see that the coefficient of both horsepower and horsepower squared are strongly significant.
 
 <center>
-<img src="Images/3.15.PNG" alt="Auto Results" style="max-height:400px">
+<img src="Images/3.15.PNG" alt="Auto Results" style="max-height:400px; max-width:450px">
 </center>
 {:refdef: style="text-align: center;"}
 **Figure 3.15**
