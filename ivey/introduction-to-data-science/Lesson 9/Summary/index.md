@@ -50,7 +50,7 @@ A hyperplane can be thought of as dividing a $$p$$-dimensional space into two ha
 A two-dimensional hyperplane (a line) is shown in Figure 9.1.
 
 <center><img src="Figures/Figure9-1.png" alt="Figure 9.1"></center>
-{:refdef: style="max-width:750px; margin:auto; text-align: left;"}
+{:refdef: style="max-width:750px; margin:auto; text-align:left;"}
 __Figure 9.1__ -- *The hyperplane (line)* $$1 + 2X_1 + 3X_2 = 0$$ *is shown. The blue region is the set of points for which* $$1 + 2X_1 + 3X_2 > 0$$ *, and the purple region is the set of points for which* $$1 + 2X_1 + 3X_2 < 0$$.
 {: refdef}
 
@@ -103,7 +103,7 @@ If $$f(x^*)$$ is far from zero, $$x^*$$ lies far from the hyperplane and we can 
 If $$f(x^*)$$ is close to zero, the $$x^*$$ is near the hyperplane and we are less certain about the class assignment.
 
 <center><img src="Figures/Figure9-2.png" alt="Figure 9.2"></center>
-{:refdef: style="max-width:750px; margin:auto; text-align: center;"}
+{:refdef: style="max-width:750px; margin:auto; text-align:left;"}
 __Figure 9.2__ -- Left: *There are two classes of observations, shown in blue and purple, each of which has measurements on two variables. Three separating hyperplanes, out of many possible, are shown in black.* Right: *A separating hyperplane is shown in black. The blue and purple grid indicates the decision rule made by a classifier based on this separating hyperplane.*
 {: refdef}
 
@@ -123,7 +123,7 @@ If any of these three points move slightly, the maximal margin hyperplane will a
 The maximal margin hyperplane depends only on the support vectors and movement in any of the other observations would not affect the separating hyperplane, as long as they do not cross the cross the boundary set by the margin.
 
 <center><img src="Figures/Figure9-3.png" alt="Figure 9.3"></center>
-{:refdef: style="max-width:750px; margin:auto; text-align: center;"}
+{:refdef: style="max-width:750px; margin:auto; text-align:left;"}
 __Figure 9.3__ -- *The maximal margin hyperplane is shown as a solid line. The margin is the distance from the solid line to either of the dashed lines. The two blue points and the purple point that line on the dashed lines are the support vectors.*
 {: refdef}
 
@@ -154,7 +154,7 @@ Figure 9.4 shows an example of this case.
 The next section will extend the concept of a separating hyperplane in order to develop a hyperplane that *almost* separates the classes.
 
 <center><img src="Figures/Figure9-4.png" alt="Figure 9.4"></center>
-{:refdef: style="max-width:750px; margin:auto; text-align: center;"}
+{:refdef: style="max-width:750px; margin:auto; text-align:left;"}
 __Figure 9.4__ -- *The two classes of observations are not separable by a hyperplane, and so the maximal margin classifier cannot be used.*
 {: refdef}
 
@@ -165,7 +165,7 @@ A classifier based on a separating hyperplane can be undesirable as it will perf
 This can lead to sensitivity to individual observations as is illustrated in Figure 9.5 where the addition of a single blue observation dramatically changes the maximal margin hyperplane.
 
 <center><img src="Figures/Figure9-5.png" alt="Figure 9.5"></center>
-{:refdef: style="max-width:750px; margin:auto; text-align: center;"}
+{:refdef: style="max-width:750px; margin:auto; text-align:left;"}
 __Figure 9.5__ -- Left: *Two classes of observations are shown in blue and purple, along with the maximal margin hyperplane.* Right: *An additional blue observation has been added, leading to a dramatic shift in the maximal margin hyperplane.*
 {: refdef}
 <br>
@@ -182,7 +182,7 @@ Instead, they allow some observations to lie on the incorrect side of the hyperp
 An example is shown in Figure 9.6.
 
 <center><img src="Figures/Figure9-6.png" alt="Figure 9.6"></center>
-{:refdef: style="max-width:750px; margin:auto; text-align: center;"}
+{:refdef: style="max-width:750px; margin:auto; text-align:left;"}
 __Figure 9.6__ -- Left: *A support vector classifier fit to a small data set. The hyperplane is shown as a solid line and the margins are shown as dashed lines.* Right: *Same as left panel with two additional points on the wrong side of the hyperplane and the wrong side of the margin.*
 {: refdef}
 
@@ -219,9 +219,10 @@ As $$C$$ decreases, the margin narrows because violations are less accepted.
 Figure 9.7 gives an example of how the value of $$C$$ affects the margin.
 
 <center><img src="Figures/Figure9-7.png" alt="Figure 9.7"></center>
-{:refdef: style="max-width:750px; margin:auto; text-align: center;"}
+{:refdef: style="max-width:750px; margin:auto; text-align:left;"}
 __Figure 9.7__ -- *A support vector classifier was fit using four different values for the tuning parameter $$C$$. The largest value used is in the top left panel and smaller values were used in the top right, bottom left and bottom right panels.*
 {: refdef}
+<br>
 
 The value of $$C$$ influences the bias-variance trade-off and is typically selected with cross-validation. 
 For small $$C$$, the model achieves tight margins with few violations, which generally results in low bias and high variance. 
@@ -239,9 +240,10 @@ In practice, non-linear boundaries often arise as is illustrated by the data in 
 Support vector classifiers are not suitable for this scenario and are essentially useless at predicting the boundary.
 
 <center><img src="Figures/Figure9-8.png" alt="Figure 9.8"></center>
-{:refdef: style="max-width:750px; margin:auto; text-align: center;"}
+{:refdef: style="max-width:750px; margin:auto; text-align:left;"}
 __Figure 9.8__ -- Left: *The observations fall into two classes, with a non-linear boundary between them.* Right: *The support vector classifier seeks a linear boundary, and consequently performs very poorly.*
 {: refdef}
+<br>
 
 By using quadratic, cubic or higher order polynomial functions of the predictions a better fit to the non-linear boundary can be obtained.
 For example, instead of modelling a support vector classifier with $$p$$ features
@@ -321,9 +323,10 @@ $$
 The left panel of Figure 9.9 shows an example of a SVM with a polynomial kernel applied to the non-linear data from Figure 9.8.
 
 <center><img src="Figures/Figure9-9.png" alt="Figure 9.9"></center>
-{:refdef: style="max-width:750px; margin:auto; text-align: center;"}
+{:refdef: style="max-width:750px; margin:auto; text-align:left;"}
 __Figure 9.9__ -- Left: *A SVM with a polynomial kernel of degree 3 is applied to the non-linear data from Figure 9.8, resulting in a far more appropriate decision rule.* Right: *A SVM with a radial kernel is applied. In this example, either kernel is capable of capturing the decision boundary.*
 {: refdef}
+<br>
 
 An alternative kernel is the *radial kernel* of the form
 $$
