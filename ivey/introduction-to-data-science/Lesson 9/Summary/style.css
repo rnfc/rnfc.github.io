@@ -1,0 +1,44 @@
+h1.title {
+  color: #000;
+  padding-bottom: 10px;
+  border-bottom: 2px #ccc solid;
+}
+
+p {
+    text-align: justify;
+}
+
+.list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
+    background-color: inherit;
+    border-color: inherit;
+    /*font-weight: bold;*/
+    color: #375ce8;
+}
+
+.tocify {
+    border: none;
+}
+
+.toc-content {
+    /*border-left: 1px #ccc solid;*/
+    background-color: white;
+}
+
+body {
+    background-color: #ededed;
+}
+
+.list-group-item {
+    background-color: #ededed;
+}
+
+.figCaption {
+    width: 65%;
+    text-align: justify;
+}
+
+code {
+    background-color: rgba(0,0,0,0) !important;
+    color: rgb(131, 59, 27) !important;
+    font-size: 100% !important;
+}
