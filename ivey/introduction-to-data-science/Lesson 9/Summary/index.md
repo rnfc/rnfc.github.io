@@ -1,6 +1,6 @@
 ---
 layout: resource
-title: "Lesson 9 --- Support Vector Machines"
+title: "Lesson 9 - Support Vector Machines"
 ---
 
 <script type="text/x-mathjax-config">
@@ -50,7 +50,7 @@ A hyperplane can be thought of as dividing a $$p$$-dimensional space into two ha
 A two-dimensional hyperplane (a line) is shown in Figure 9.1.
 
 <center><img src="Figures/Figure9-1.png" alt="Figure 9.1"></center>
-{:refdef: style="max-width:750px; margin:auto; text-align: center;"}
+{:refdef: style="max-width:750px; margin:auto; text-align: left;"}
 __Figure 9.1__ -- *The hyperplane (line)* $$1 + 2X_1 + 3X_2 = 0$$ *is shown. The blue region is the set of points for which* $$1 + 2X_1 + 3X_2 > 0$$ *, and the purple region is the set of points for which* $$1 + 2X_1 + 3X_2 < 0$$.
 {: refdef}
 
@@ -168,6 +168,7 @@ This can lead to sensitivity to individual observations as is illustrated in Fig
 {:refdef: style="max-width:750px; margin:auto; text-align: center;"}
 __Figure 9.5__ -- Left: *Two classes of observations are shown in blue and purple, along with the maximal margin hyperplane.* Right: *An additional blue observation has been added, leading to a dramatic shift in the maximal margin hyperplane.*
 {: refdef}
+<br>
 
 A hyperplane classifier that does not perfectly partition the observed data into two classes may be preferred as to
 
