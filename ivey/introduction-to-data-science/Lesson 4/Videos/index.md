@@ -91,7 +91,7 @@ So it's 1 if it's a stroke, 2 if it's a drug overdose, and 3 if it's an epilepti
 
 *Slide 6:* 
 
-*Hastie:* OK, logistic regression. So now we're going to get a little bit more mathy. Let's, for shorthand, write $$p(X)$$ for the probability that $$Y$$ is 1 given $$X$$, $$p(X)=\text{Pr}(Y=1|X)$$. And we're going to consider our simple model for predicting default, yes or no, using balance-- one of the variables. So single variable. So here's the form of logistic regression.
+*Hastie:* OK, logistic regression. So now we're going to get a little bit more mathy. Let's, for shorthand, write $$p(X)$$ for the probability that $$Y$$ is 1 given $$X$$, $$p(X)=\text{Pr}(Y=1 | X)$$. And we're going to consider our simple model for predicting default, yes or no, using balance-- one of the variables. So single variable. So here's the form of logistic regression.
 
 $$p(X)=\frac{e^{\beta_0+\beta_1X}}{1+e^{\beta_0+\beta_1X}}$$
 
@@ -159,7 +159,7 @@ Well, if we go through the same procedure, now the probability has jumped up to 
 
 And so we code that as a 0, 1 variable and we fit a simple logistic regression model. And it gets a coefficient of 0.4049. And that's also significant. OK, let's do it again using the variable student as a predictor. This is a binary variable. Is the credit card holder a student or not? And we find we get a coefficient of 0.4049 in this case, which is also significant. So this is another variable in our database. And just like before, we can evaluate the probability of default is yes.
 
-$$\widehat{\text{Pr}}(\text{default}=\text{Yes}|\text{student}=\text{Yes})=\frac{e^{-3.5041+0.4049\times1}}{1+e^{-3.5041+0.4049\times1}}=0.0431\\ \widehat{\text{Pr}}(\text{default}=\text{Yes}|\text{student}=\text{No})=\frac{e^{-3.5041+0.4049\times0}}{1+e^{-3.5041+0.4049\times0}}=0.0292$$
+$$\widehat{\text{Pr}}(\text{default}=\text{Yes} | \text{student}=\text{Yes})=\frac{e^{-3.5041+0.4049\times1}}{1+e^{-3.5041+0.4049\times1}}=0.0431\\ \widehat{\text{Pr}}(\text{default}=\text{Yes} | \text{student}=\text{No})=\frac{e^{-3.5041+0.4049\times0}}{1+e^{-3.5041+0.4049\times0}}=0.0292$$
 
 Given that the card holder is a student, it comes out to 0.04. And if they're not a student, it comes out to be a bit lower, 0.029, close to 0.03. And we're going to examine the interactions between student and balance and the other variables in a little while.
 
@@ -229,7 +229,7 @@ And now, because it's a classification problem, we can code into the plot the he
 *Hastie:* So here's the result of GLM for the heart disease data. And here I actually show you some of the code used to fit it. 
 
 <center>
-<img src="Images/4.8.PNG" alt="GLM Result" style="max-height=400px;">
+<img src="Images/4.8.PNG" alt="GLM Result" style="max-height=400px; max-width:600px">
 </center>
 {:refdef: style="text-align:center"}
 **Figure 4.8**
@@ -282,7 +282,7 @@ The main point is that ultimately the variance of your parameter estimates has t
 
 *Hastie:* OK. What if we have more than two classes? Can we still do logistic regression? Well, we can. It easily generalizes to more than two classes. There's various ways of doing this. And one version-- which actually is how we do it in the `glmnet` package in R, which you'll be learning more about-- is we have this exponential form that we saw before but modified for multiple classes.
 
-$$\text{Pr}(Y=k|X)=\frac{e^{\beta_{0k}+\beta_{1k}X_1+\dotsb+\beta_{pk}X_p}}{\sum_{\ell=1}^{K}e^{\beta_{0\ell}+\beta_{1\ell}X_1+\dotsb+\beta_{p\ell}X_p}}$$
+$$\text{Pr}(Y=k | X)=\frac{e^{\beta_{0k}+\beta_{1k}X_1+\dotsb+\beta_{pk}X_p}}{\sum_{\ell=1}^{K}e^{\beta_{0\ell}+\beta_{1\ell}X_1+\dotsb+\beta_{p\ell}X_p}}$$
 
 So notice in the numerator we've got an e to the linear model. And this is for the probability that $$Y$$ is $$k$$ given $$X$$, a small $$k$$. And we've got, say, capital $$K$$ classes, where capital $$K$$ is bigger than 2. In the denominator, we've just got the sum of those exponentials for all the classes. In this case, each class gets its own linear model. And then we just weigh them against each other with this exponential function, sometimes called the softmax function. OK? The mathier students would recognize that some cancellation is possible in this ratio. And that's true. What that means is actually you only need $$K - 1$$ linear functions, as you do in a 2-class logistic regression. That's somewhat of a detail. It turns out for our `glmnet` application this is a more symmetric representation, and it's actually more useful. This multiclass logistic regression is also referred to as *multinominal regression*.
 
@@ -294,19 +294,19 @@ So notice in the numerator we've got an e to the linear model. And this is for t
 
 *Slide 19:* 
 
-*Hastie:* We're not going to go into more detail on multinomial regression now. What we're going to do is tell you about a different classification method, which is called *discriminant analysis*, which is also very useful. And it approaches a problem from a really quite different point of view. In discriminant analysis, the idea is to model the distribution of $$X$$ in each of the classes separately. And then use what's known as *Bayes theorem* to flip things around to get the probability of $$Y$$ given $$X$$, $$\text{Pr}(Y|X)$$. In this case, for linear discriminant analysis, we're going to use Gaussian (normal) distributions for each class. And that's going to lead to linear or quadratic discriminant analysis. So those are the two popular forms. But as you'll see, this approach is quite general. And other distributions can be used as well. But we'll focus on normal distributions. 
+*Hastie:* We're not going to go into more detail on multinomial regression now. What we're going to do is tell you about a different classification method, which is called *discriminant analysis*, which is also very useful. And it approaches a problem from a really quite different point of view. In discriminant analysis, the idea is to model the distribution of $$X$$ in each of the classes separately. And then use what's known as *Bayes theorem* to flip things around to get the probability of $$Y$$ given $$X$$, $$\text{Pr}(Y | X)$$. In this case, for linear discriminant analysis, we're going to use Gaussian (normal) distributions for each class. And that's going to lead to linear or quadratic discriminant analysis. So those are the two popular forms. But as you'll see, this approach is quite general. And other distributions can be used as well. But we'll focus on normal distributions. 
 
 *Slide 20:* 
 
 *Hastie:* So what is Bayes' theorem for classification? It sounds pretty scary, but not too bad. So, of course, Thomas Bayes was a famous mathematician. And his name now, today, represents a burgeoning subfield of statistical and probabilistic modeling. But here we're going to focus on a very simple result which is known Bayes theorem. And it says that the probability of $$Y$$ equals $$k$$ given $$X$$ equals $$x$$.
 
-$$\text{pr}(Y=k|X=x)=\frac{\text{Pr}(X=x|Y=k)\cdot\text{Pr}(Y=k)}{\text{Pr}(X=x)}$$
+$$\text{pr}(Y=k | X=x)=\frac{\text{Pr}(X=x | Y=k)\cdot\text{Pr}(Y=k)}{\text{Pr}(X=x)}$$
 
 So the idea is you've got two variables. In this case, we've got $$Y$$ and $$X$$. And we're looking at aspects of their joint distribution. So this is what we're after, the probability of $$Y = k$$ given $$X$$. And Bayes theorem says you can flip things around. You can write that as a probability that $$X$$ is $$x$$ given $$Y$$ equals $$k$$-- that's the first piece on the top there-- multiplied by the marginal probability or prior probability that $$Y$$ is $$k$$ and then divided by the marginal probability that $$X$$ equals $$x$$. So this is just a formula for probability theory. But it turns it's really useful and is a basis for discriminant analysis. And so we write things slightly differently in the case of discriminant analysis.
 
-$$\text{pr}(Y=k|X=x)=\frac{\pi_kf_k(x)}{\sum_{l=1}^{K}\pi_lf_l(x)}$$
+$$\text{pr}(Y=k | X=x)=\frac{\pi_kf_k(x)}{\sum_{l=1}^{K}\pi_lf_l(x)}$$
 
-So this probability $$Y = k$$ is written as $$\pi_k$$. So if there's three classes, there's going to be three values for $$\pi$$, just the probability for each of the classes. But here we've got class little $$k$$, so that's $$\pi_k$$. Probability that $$X$$ is $$x$$ given $$Y = K$$, well, if $$X$$ is a quantitative variable, what we write for that is the density. So that's a probability density function for $$X$$ in class $$k$$. And then the marginal probability $$f(x)$$ is just this expression over here, $$f_k(x)=\text{Pr}(X=x|Y=k)$$. So this is summing over all the classes. And so that's how we use Bayes theorem to get to the probabilities of interest, which is $$Y = k$$ given $$X$$. Now, at this point it's still quite general. We can plug in any probability densities. But now what we're going to do is go ahead and plug in the Gaussian density for $$f_k(x)$$. 
+So this probability $$Y = k$$ is written as $$\pi_k$$. So if there's three classes, there's going to be three values for $$\pi$$, just the probability for each of the classes. But here we've got class little $$k$$, so that's $$\pi_k$$. Probability that $$X$$ is $$x$$ given $$Y = K$$, well, if $$X$$ is a quantitative variable, what we write for that is the density. So that's a probability density function for $$X$$ in class $$k$$. And then the marginal probability $$f(x)$$ is just this expression over here, $$f_k(x)=\text{Pr}(X=x | Y=k)$$. So this is summing over all the classes. And so that's how we use Bayes theorem to get to the probabilities of interest, which is $$Y = k$$ given $$X$$. Now, at this point it's still quite general. We can plug in any probability densities. But now what we're going to do is go ahead and plug in the Gaussian density for $$f_k(x)$$. 
 
 *Slide 21:* 
 
@@ -411,7 +411,7 @@ And then we average them using this formula over here. So this is just like a we
 
 So it's one of these fancy-looking three dimensional plots. (It's beautiful.) Beautiful, isn't it? The height's color coded, could you make a plot like this, Rob? (I could try, and then you'd criticize it. You do criticize it.) The beautiful thing is that R made this plot with very little work from us. So there's two variables, $$x_1$$ and $$x_2$$, and you can see the Gaussian density in two dimensions looks like a bell function. And this is-- left hand case is the case when two variables are uncorrelated, so it's just really like a bell. And the right hand case is when there's correlation, so now it's like a stretched bell. See there's positive correlation between $$x_1$$ and $$x_2$$. So those are pictures of the densities. The formula for the density doesn't look nearly as pretty, and here it is over here.
 
-$$f(x)=\frac{1}{(2\pi)^{\frac{p}{2}}|\Sigma|^{\frac{1}{2}}}e^{-\frac{1}{2}(x-\mu)^T\Sigma^-1(x-\mu)}$$
+$$f(x)=\frac{1}{(2\pi)^{\frac{p}{2}} | \Sigma | ^{\frac{1}{2}}}e^{-\frac{1}{2}(x-\mu)^T\Sigma^-1(x-\mu)}$$
 
 And it's somewhat complex. (We should go over this in great detail. Excruciating detail, please.) I have a feeling that's a hint not to go into it in great detail. Anyway, this is just a generalization of the formula we had for a single variable. This is called a covariance matrix, and if you stare at this formula, and you stare at the previous formula, you will see that they're somewhat similar, especially if you know a bit of vector algebra. If you go through the simplifications, if you know your linear algebra, you can go through and do the cancellation similar to what we did before, you can get the discriminant function which is given over here. 
 
@@ -470,7 +470,7 @@ And I've got discriminant variable one and discriminant variable two as the hori
 
 *Hastie:* We've talked about discriminant functions, which is telling you how you classify. But it turns out that you can turn these into probabilities very easily. And here's the expression over here.
 
-$$\widehat{\text{Pr}}(Y=k|X=x)=\frac{e^{\hat{\delta}_k(x)}}{\sum_{l=1}^{K}e^{\hat{\delta}_l(x)}}$$
+$$\widehat{\text{Pr}}(Y=k | X=x)=\frac{e^{\hat{\delta}_k(x)}}{\sum_{l=1}^{K}e^{\hat{\delta}_l(x)}}$$
 
 And so remember we got the $$\delta_k$$s by doing a lot of simplification. Well, it turns out that those simplifications and cancellations hold exactly for computing the probabilities. So in other words, those expressions we had earlier for computing the probabilities-- let's go back to it-- for example, here's an expression here that's used for computing the probabilities (Slide 27). Where is it? This is the expression for the single variable case, with all these constants in there. All the cancellation happens, and we get to this nice simple expression over here, which just involves the discriminant functions. So see, you can see if you can actually show that as well. It's not that hard to show. And so not only does discriminant analysis give us a classified. It also gives us the probabilities. When $$K$$ is 2, we'll classify to class two if these probabilities are bigger than 0.5, else to class one, just like in logistic regression. 
 
@@ -527,7 +527,7 @@ So what this shows is the two error rates, in this case, false positive rate and
 
 *Hastie:* OK. That's discriminant analysis when we use Gaussian densities. But now the form that we wrote down is quite general. 
 
-$$\text{pr}(Y=k|X=x)=\frac{\pi_kf_k(x)}{\sum_{l=1}^{K}\pi_lf_l(x)}$$
+$$\text{pr}(Y=k | X=x)=\frac{\pi_kf_k(x)}{\sum_{l=1}^{K}\pi_lf_l(x)}$$
 
 And you can use other estimates of densities and plug them into this rule and get classification rules. Up till now we've been using Gaussian densities with the same variance for the $$X$$'s in each class. What if the variances are different in each class? Well, you can plug those forms in. And then remember we had that magic cancellation because of the equal variances? Well, when the variances are different in each class, the quadratic terms don't cancel. And so now your discriminant functions are going to be quadratic functions of $$X$$. OK? That's one form. It's called quadratic discriminant analysis. Another thing you can do-- and especially this is useful when you have a large number of features, like the 4,000 or so that Rob mentioned, when you really wouldn't want to estimate these large covariance matrices-- you can assume that in each class the density factors into a product of densities. That amounts to saying that the variables are conditionally independent in each of the classes. And if you do that and plug it into this formula over here, you get something known as the naive Bayes classifier. 
 
