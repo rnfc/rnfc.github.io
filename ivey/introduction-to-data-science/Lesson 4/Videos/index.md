@@ -91,7 +91,7 @@ So it's 1 if it's a stroke, 2 if it's a drug overdose, and 3 if it's an epilepti
 
 *Slide 6:* 
 
-*Hastie:* OK, logistic regression. So now we're going to get a little bit more mathy. Let's, for shorthand, write $$p(X)$$ for the probability that $$Y$$ is 1 given $$X$$, $$p(X)=\text{Pr}(Y=1 | X)$$. And we're going to consider our simple model for predicting default, yes or no, using balance-- one of the variables. So single variable. So here's the form of logistic regression.
+*Hastie:* OK, logistic regression. So now we're going to get a little bit more mathy. Let's, for shorthand, write $$p(X)$$ for the probability that $$Y$$ is 1 given $$X$$, $$p(X)=\text{Pr}(Y=1 \mid X)$$. And we're going to consider our simple model for predicting default, yes or no, using balance-- one of the variables. So single variable. So here's the form of logistic regression.
 
 $$p(X)=\frac{e^{\beta_0+\beta_1X}}{1+e^{\beta_0+\beta_1X}}$$
 
@@ -294,7 +294,7 @@ So notice in the numerator we've got an e to the linear model. And this is for t
 
 *Slide 19:* 
 
-*Hastie:* We're not going to go into more detail on multinomial regression now. What we're going to do is tell you about a different classification method, which is called *discriminant analysis*, which is also very useful. And it approaches a problem from a really quite different point of view. In discriminant analysis, the idea is to model the distribution of $$X$$ in each of the classes separately. And then use what's known as *Bayes theorem* to flip things around to get the probability of $$Y$$ given $$X$$, $$\text{Pr}(Y | X)$$. In this case, for linear discriminant analysis, we're going to use Gaussian (normal) distributions for each class. And that's going to lead to linear or quadratic discriminant analysis. So those are the two popular forms. But as you'll see, this approach is quite general. And other distributions can be used as well. But we'll focus on normal distributions. 
+*Hastie:* We're not going to go into more detail on multinomial regression now. What we're going to do is tell you about a different classification method, which is called *discriminant analysis*, which is also very useful. And it approaches a problem from a really quite different point of view. In discriminant analysis, the idea is to model the distribution of $$X$$ in each of the classes separately. And then use what's known as *Bayes theorem* to flip things around to get the probability of $$Y$$ given $$X$$, $$\text{Pr}(Y \mid X)$$. In this case, for linear discriminant analysis, we're going to use Gaussian (normal) distributions for each class. And that's going to lead to linear or quadratic discriminant analysis. So those are the two popular forms. But as you'll see, this approach is quite general. And other distributions can be used as well. But we'll focus on normal distributions. 
 
 *Slide 20:* 
 
@@ -306,7 +306,7 @@ So the idea is you've got two variables. In this case, we've got $$Y$$ and $$X$$
 
 $$\text{pr}(Y=k | X=x)=\frac{\pi_kf_k(x)}{\sum_{l=1}^{K}\pi_lf_l(x)}$$
 
-So this probability $$Y = k$$ is written as $$\pi_k$$. So if there's three classes, there's going to be three values for $$\pi$$, just the probability for each of the classes. But here we've got class little $$k$$, so that's $$\pi_k$$. Probability that $$X$$ is $$x$$ given $$Y = K$$, well, if $$X$$ is a quantitative variable, what we write for that is the density. So that's a probability density function for $$X$$ in class $$k$$. And then the marginal probability $$f(x)$$ is just this expression over here, $$f_k(x)=\text{Pr}(X=x | Y=k)$$. So this is summing over all the classes. And so that's how we use Bayes theorem to get to the probabilities of interest, which is $$Y = k$$ given $$X$$. Now, at this point it's still quite general. We can plug in any probability densities. But now what we're going to do is go ahead and plug in the Gaussian density for $$f_k(x)$$. 
+So this probability $$Y = k$$ is written as $$\pi_k$$. So if there's three classes, there's going to be three values for $$\pi$$, just the probability for each of the classes. But here we've got class little $$k$$, so that's $$\pi_k$$. Probability that $$X$$ is $$x$$ given $$Y = K$$, well, if $$X$$ is a quantitative variable, what we write for that is the density. So that's a probability density function for $$X$$ in class $$k$$. And then the marginal probability $$f(x)$$ is just this expression over here, $$f_k(x)=\text{Pr}(X=x \mid Y=k)$$. So this is summing over all the classes. And so that's how we use Bayes theorem to get to the probabilities of interest, which is $$Y = k$$ given $$X$$. Now, at this point it's still quite general. We can plug in any probability densities. But now what we're going to do is go ahead and plug in the Gaussian density for $$f_k(x)$$. 
 
 *Slide 21:* 
 
