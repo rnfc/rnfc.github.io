@@ -1,389 +1,571 @@
 ---
 layout: resource
-title: "Lesson 2 - Videos"
+title: "Lesson 4 - Videos"
 ---
 
 
 
-## Statistical Learning and Regression
+## Introduction to Classification
 
 <center>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/WjyuiK5taS8?list=PL5-da3qGB5IDvuFPNoSqheihPOQNJpzyy" style="border:none" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/sqq21-VIa1c?list=PL5-da3qGB5IC4vaDba5ClatUmFppXLAhE" style="border:none;" allowfullscreen></iframe>
 </center>
 
-##### Slide 1: 
+*Tibshirani:* Welcome back. So in the last section of the course, we talked about the situation where the response was quantitative, a regression. In this section, we're going to talk about classification where the response variable has got two or more values. And this is actually a very commonly occurring problem-- actually, probably more commonly occurring than regression. In machine learning, especially, there's a big concentration on classification where, for example, we're trying to predict whether an email is a good email or spam, or in a medical area, trying to predict whether a patient is going to survivor or die with a given disease. So it's a very commonly occurring problem, and very important. So we're going to spend some time today on this, actually in the next set of lectures, on classification. And Trevor and I are both here. Trevor's going to give most of the talk. And I'm going to pipe in and correct him when he makes mistakes and make fun of his accent and things like that. That means we won't hear much from you, no? We'll see. 
 
-*Hastie:* OK, we're going to talk about statistical learning and models now. I'm going to tell you what models of good for, how we use them, and what are some of the issues involved. OK so we see three plots in front of us. These are sales figures from a marketing campaign as a function of amount spent on TV ads, radio ads, and newspaper ads.
+*Slide 1 :* 
+
+*Hastie:* Anyway, let's go to the slides. The first thing we do is just show you what categorical variables look like. I'm sure you know-- so for example, eye color. That takes on three values-- brown, blue, and green. Those are discrete values. There's no ordering. They're just three different values. Email we've talked about already. There's spam and ham. I like that word, ham. (I like ham myself.) I wish I had thought of it. Anyway, ham is good email. So spam filters need to classify into spam or ham. 
+
+$$\text{eye color} \in {\text{brown,blue,green}} \\ \text{email} \in {\text{spam,ham}}$$
+
+So what is a classifier? Well, you've got a feature vector $$X$$, just like we had in regression. And now, you have one of these qualitative response variables like those above. And here's the mathy description of a classifier. The response takes values in a set $$C$$, which is a set of discrete values. And the classification task is to build a function that takes $$X$$ as input and delivers one of the elements of the set $$C$$. And so this is how we write it in math language-- $$C(X)$$ gives you values in the set $$C$$. So for example, in the spam/ham problem, $$C(C)$$ would either come back as spam or ham. Now, although classification problems are always couched in this form, we're often more interested in estimating the probabilities that $$X$$ belongs to each category $$C$$. So for example, it's more valuable for an insurance company to have an estimate of the probability that an insurance claim is fraudulent than a classification fraudulent or not. You can imagine, in the one situation, you might have a probability of 0.9 the claim is fraudulent. And in another case, it might be 0.98. Now in both cases, those might both be above the threshold of raising the flag that this is a fraudulent insurance claim. But if you're going to look into the claim, and you're going to spend some hours investigating, you'll probably go for the 0.98 first before the 0.9. So estimating the probabilities is also key. 
+
+*Slide 2:* 
+
+*Hastie:* OK, so here's some data. Two variables-- this is the credit card default data set that we're going to use in this section. And the part on the left here is a scatter plot of balance against income.
 
 <center>
-<img src="Images/2.1.PNG" alt="Sales Figures" style="max-height:400px">
+<img src="Images/4.1.PNG" alt="Credit Card Default" style="max-height:400px;">
 </center>
-{:refdef: style="text-align: center;"}
-**Figure 2.1**-- *Linear regressions of Sales vs. TV, Radio, Newspaper*
+{:refdef: style="text-align:center;"}
+**Figure 4.1**
 {: refdef}
 
-And you can see at least in the first two there's somewhat of a trend. And, in fact, we've summarized the trend by a little linear regression line in each. And so we see that there's some relationship. The first two, again, look stronger than the third. Now, in a situation like this, we typically like to know the joint relationship between the response sales and all three of these together. We want to understand how they operate together to influence sales. So you can think of that as wanting to model sales as a function of TV, radio, and newspaper all jointly together. So how do we do that? 
+So those are two of the variables. And as we can with classification problems, we can code the response variable into the plot as a color. And so here, we have the blue points and the brown points. And the brown points are going to be those that defaulted. And the blue points are those that did not. Now, this is a fictitious data set. Typically, you don't expect to see that many defaulters. But we'll talk about balance in classification tasks a little bit later as well. So in this plot, it looks like balance is the important variable. Notice that there's a big separation between the blues and the browns, the defaulters and those that didn't, OK? Whereas with income, there doesn't seem to be much separation at all, OK? In the right, we actually show box plots of these two variables. And so we see, for example, for default, there's-- oh, I beg your pardon. Default is at the bottom-- no or yes, no, yes in both cases. We've got balance, and we've got income. And here, we also clearly see that there's a big difference in the distributions-- balance default or not, whereas for income, there hardly seems to be any difference. 
 
-##### Slide 2: 
+*Tibshirani:* I've never seen a box plot before. What is that? 
 
-*Hastie:* So before we get into the details let's set up some notation. So here, sales are the response, or the target, that we wish to predict or model. And we usually refer to it as $$Y$$. We use the letter $$Y$$ to refer to it. TV is one of the features or inputs or predictors, and we'll call it $$X_{1}$$. Likewise, radio is $$X_{2}$$ and so on. So in this case, we've got three predictors, and we can refer to them collectively by a vector as $$X$$ equal to, with three components:
+*Hastie:* Oh, you tell me, Rob. 
 
-$$X = \begin{pmatrix} X_{1}\\ X_{2}\\ X_{3} \end{pmatrix}$$
+*Tibshirani:* OK, well, a box plot, what's indicated there-- Trevor, you can point-- the black line is the median. So that's the median for the S, the median income for people who have defaulted. And then, the top of the box are the quartiles. That's the 75th quartile, 75th percentile, quartile. And the 25th is the bottom of the box. 
 
-And vectors we generally think of as column vectors. And so that's a little bit of notation. And so now in this small compact notation, we can write our model as $$Y$$ equals function of $$X$$ plus error.
+*Hastie:* So really, it's a good summary of the distribution of income for those in category yes. What about these things at the end, Rob? 
 
-$$Y = f(X) + \epsilon$$
+*Tibshirani:* OK, I think they're called hinges. And those are the ranges, are they, or approximately the ranges of the data? 
 
-OK and this error, it's just a catch all. It captures the measurement errors maybe in $$Y$$ and other discrepancies. Our function of $$X$$ is never going to model $$Y$$ perfectly. So there's going to be a lot of things we can't capture with the function. And that's caught up in the error. And, again, $$f(X)$$ here is now a function of this vector $$X$$ which has these three arguments, three components. 
+*Hastie:* Yeah, I think a hinge is defined to be a fraction of the interquartile range. And so it gives you an idea of the spread of the data. And if data points fall outside the hinges, they're considered to be outliers. 
 
-##### Slide 3:
+*Tibshirani:* By the way, it's a very useful data display. Almost one of the first things you should do when you get some data to analyze is do some scatter plots and create some box plots. 
 
-*Hastie:* So what is the function $$f(X)$$ good for? So with a good $$f$$, we can make predictions of what new points $$X$$ equals to little $$x$$. So this notation $$X = x$$. You know, capital $$X$$, we think as the variable, having these three components. And little $$x$$ is an instance also with three components, particular values for newspaper, radio, and TV. With the model we can understand which components of $$X$$-- in general, it'll have P components, if there's P predictors-- are important in explaining $$Y$$, and which are irrelevant. For example, if we model in income as a function of demographic variables, seniority and years of education might have a big impact on income, but marital status typically does not. And we'd like our model to be able to tell us that. And depending on the complexity of $$f$$, we may be able to understand how each component $$X_{j}$$ affects $$Y$$, in what particular fashion it affects $$Y$$. So models have many uses and those amongst them. 
+*Hastie:* Who invented the box plot, Rob? 
 
-##### Slide 4: 
+*Tibshirani:* John Tukey. 
 
-*Hastie:* OK, well, what is this function $$f$$? And is there an ideal $$f$$? So in the plot, we've got a large sample of points from a population. There is just a single $$X$$ in this case and a response $$Y$$. 
+*Hastie:* John Tukey, one of the most famous statisticians-- he's no longer with us, but he's left a big legacy behind. 
+
+*Slide 3:* 
+
+*Hastie:* OK, well, one question we can ask is, can we use linear regression to solve classification problems? It seems like we may be able to. So supposed for the default classification task that we code the response 0 if no default, 1 if yes default, right?
+
+$$Y=\begin{cases}0 & \quad\text{if No}\\1  & \quad\text{if Yes}\\ \end{cases}$$
+
+It's somewhat arbitrary, but 0 and 1 seem sufficient. And then, we could simply perform a linear regression of $$Y$$ on $$X$$ with $$X$$ being the two predictors in this case, and classify as yes if $$\hat{Y} > 0.5$$, 50%, right? 0.5 is halfway between 0 and 1. It seems like a reasonable idea. It turns out that you actually can do this. For a binary outcome, *linear regression* does a pretty good job and is equivalent to *linear discriminant analysis*. And that's something we're going to discuss later. So for a two class classification problem like this, it doesn't do a bad job at all. And there's even some theoretical justification. In the population, remember, in the population, we think of regression as estimating the conditional mean of $$Y$$ given $$X$$. Well, in our coding here of 0 and 1, the conditional mean of the 0, 1 variable given $$X$$ is simply the probability that $$Y$$ is 1 given $$X$$ just by simple probability theory. So for that reason, you might think that regression is perfect for this task. What we're going to see, however, is that linear regression might actually produce probabilities that could be less than 0, or even bigger than 1. And for this reason, we're going to introduce you to *logistic regression*, which is more appropriate. 
+
+*Slide 4:* 
+
+*Hastie:* And here's a little picture that illustrates it. 
 
 <center>
-<img src="Images/2.3.PNG" alt="Ideal Function" style="max-height:400px">
+<img src="Images/4.2.PNG" alt="Linear vs Logistic Regression" style="max-height:400px;">
 </center>
-{:refdef: style="text-align: center;"}
-**Figure 2.2**
+{:refdef: style="text-align:center;"}
+**Figure 4.2**-- *Logistic regression ensures our estimates fall between 0 and 1*
 {: refdef}
 
-And you can see, it's a scatter plot, so we see there are a lot of points. There are 2,000 points here. Let's think of this as actually the whole population or rather as a representation of a very large population. And so now let's think of what a good function $$f$$ might be. And let's say not just the whole function, but let's think what value would we like $$f$$ to have at say the value of $$X = 4$$. So at this point over here. We want to query $$f$$ at all values of $$X$$. But we are wondering what it should be at the value 4. So you'll notice that at the $$X = 4$$, there are many values of $$Y$$. But a function can only take on one value. The function is going to deliver back one value. So what is a good value? Well, one good value is to deliver back the average values of those $$Y$$'s who have $$X = 4$$. And that we write in this sort of math-y notation over here that says the function at the value 4 is the expected value of $$Y$$ given $$X = 4$$.
+Here, we've got out balance variable. Now, we've plotted against balance. We've plotted the 0's at the bottom as little dashes here, the browns. And the little brown spikes are all clumped together at the bottom. And the 1's are plotted at the top here. And we see the separation. The brown 0's are towards the left of balance. And the 1's are towards the right. And the blue line is a linear regression line. And lo and behold, it goes below 0. So that's not a very good estimate of a probability. It also seems not to go high enough on the right-hand side where it seems clear that there's a preponderance of yeses on the right-hand side. In the right-hand plot, we've got the foot of logistic regression. And it seems to do a pretty good job in this case. It never gets outside of 0 and 1, and it seems to go up high where it's meant to go up high. 
 
-$$f(4) = E(Y|X = 4)$$
+*Slide 5:* 
 
-And that expected value is just a fancy word for average. It's actually a conditional average given $$X = 4$$. Since we can only deliver one value of the function at $$X = 4$$, the average seems like a good value. And if we do that at each value of $$X$$, so at every single value of $$X$$, we deliver back the average of the $$Y$$'s that have that value of $$X$$. Say, for example, at $$X = 5$$, again, we want to have the average value in this little conditional slice here. That will trace out this little red curve that we have. And that's called the regression function. So the regression function gives you the conditional expectation of $$Y$$ given $$X$$ at each value of $$X$$. So that, in a sense, is the ideal function for a population in this case of $$Y$$ and a single $$X$$. 
+*Hastie:* So it seems things aren't looking terrific for linear regression in terms of estimating probabilities. So now, what happens if we have a three category variable? So here's a variable that measures the patient's condition at an emergency room and takes on three levels.
 
-##### Slide 5: 
+$$Y=\begin{cases}1 & \quad\text{if stroke;}\\2 & \quad\text{if drug overdose;}\\3  & \quad\text{if epileptic seizure.}\\ \end{cases}$$
 
-*Hastie:* So let's talk more about this regression function. It's also defined for a vector $$X$$. So if $$X$$ has got three components, for example, it's going to be the conditional expectation of $$Y$$ given the three particular instances of the three components of $$X$$.
+So it's 1 if it's a stroke, 2 if it's a drug overdose, and 3 if it's an epileptic seizure. So if we code those as, say, 1, 2, and 3, which would be an arbitrary but natural choice, this coding might suggest an ordering when in fact there's not necessarily an ordering here at all. And it might in fact imply that the difference between stroke and drug overdose, which is one unit, is the same as the difference between drug overdose and epileptic seizure. So when you have more than two categories, assigning numbers to the categories just arbitrarily seems a little dangerous, especially if you're going to use it in linear regression. And it turns out linear regression is not appropriate here. And for problems like this, we're going to prefer multiclass logistic regression or discriminant analysis. And both of those we will discuss.
 
-$$f(x) = f(x_1,x_2,x_3) = E(Y|X_1 = x_1, X_2 = x_2, X_3 = x_3)$$
-
-So if you think about that, let's think of $$X$$ as being two dimensional because we can think in three dimensions. So let's say $$X$$ lies on the table, two dimensional $$X$$, and $$Y$$ stands up vertically. So the idea is the same. We've got a whole continuous cloud of $$Y$$'s and $$X$$'s. We go to a particular point $$X$$ with two coordinates, $$X_1$$ and $$X_2$$, and we say, what's a good value for the function at that point? Well, we're just going to go up in the slice and average the $$Y$$'s above that point. And we'll do that at all points in the plane. We say that's the ideal or optimal predictor of $$Y$$ with regard for the function. And what that means is actually it's with regard to a loss function. What it means is that particular choice of the function $$f(x)$$ will minimize the sum of squared errors. Which we write in this fashion, again, expected value of $$Y$$ minus $$g$$ of $$X$$ of all functions $$g$$ at each point $$X$$.
-
-$$E[(Y - g(X))^2|X = x]$$
-
-So it minimizes the average prediction errors. Now, at each point $$X$$, we're going to make mistakes because if we use this function to predict $$Y$$. Because there's lots of $$Y$$'s at each point $$X$$. Right? And so the areas that we make, we call, in this case, them epsilons. And those are the irreducible error. You might know the ideal function $$f$$, but, of course, it doesn't make perfect predictions at each point $$X$$. So it has to make some errors. But, on average, it does well. For any estimate $$\hat{f}(x)$$. And that's what we tend to do. We tend to put these little hats on estimators to show that they've been estimated from data. And so $$\hat{f}(x)$$ is an estimate of $$f(x)$$, we can expand the squared prediction error at $$X$$ into two pieces. There's the irreducible piece which is just the variance of the errors. And there's the reducible piece which is the difference between our estimate, $$\hat{f}(x)$$, and the true function, $$f(x)$$. OK. And that's a squared component.
-
-$$E[(Y - \hat{f}(X))^2|X = x] = \underbrace{[f(x) - \hat{f}(x)]^2}_{\textit{Reducible}} + \underbrace{Var(\epsilon)}_{\textit{Irreducible}}$$
-
-So this expected prediction error breaks up into these two pieces. So that's important to bear in mind. So if we want to improve our model, it's this first piece, the reducible piece that we can improve by maybe changing the way we estimate $$f(x)$$. 
-
-##### Slide 6: 
-
-*Hastie:* OK, so that's all nice. This is a kind of, up to now, has been somewhat of a theoretical exercise. Well, how do we estimate the function $$f$$? So the problem is we can't carry out this recipe of conditional expectation or conditional averaging exactly because at any given $$X$$ in our data set, we might not have many points to average. We might not have any points to average. 
+## Logistic Regression and Maximum Likelihood
 
 <center>
-<img src="Images/2.2.PNG" alt="Computing Ideal Function" style="max-height:400px">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/31Q5FGRnxt4?list=PL5-da3qGB5IC4vaDba5ClatUmFppXLAhE" style="border:none" allowfullscreen></iframe>
 </center>
-{:refdef: style="text-align: center;"}
-**Figure 2.3**-- *With fewer points, we use a neighborhood*
+
+*Slide 6:* 
+
+*Hastie:* OK, logistic regression. So now we're going to get a little bit more mathy. Let's, for shorthand, write $$p(X)$$ for the probability that $$Y$$ is 1 given $$X$$, $$p(X)=\text{Pr}(Y=1|X)$$. And we're going to consider our simple model for predicting default, yes or no, using balance-- one of the variables. So single variable. So here's the form of logistic regression.
+
+$$p(X)=\frac{e^{\beta_0+\beta_1X}}{1+e^{\beta_0+\beta_1X}}$$
+
+So that $$e$$ is the scientific constant, the exponential value, and we raise $$e$$ to the power of a linear model. We've got a $$\beta_0$$, which is the intercept, and $$\beta_1$$ is the coefficient of $$X$$. And you see that appears in the numerator and in the denominator, but there's 1 plus in the denominator. So it's a somewhat complicated expression, but you can see straight away that the values have to lie between 0 and 1. Because in the numerator, $$e$$ to anything is positive. And the denominator is bigger than the numerator, so it's always got to be bigger than 0. And you can show that's it's got to be less than 1. When $$\beta_0 + \beta_{1}X$$ gets very large, this approaches 1. So this is a special construct, a transformation of a linear model to guarantee that what we get out is a probability. So that's called the *logistic regression model*. And actually, the name logistic comes from the transformation of this model. So this is a monotone transformation. 
+
+$$log\left(\frac{p(X)}{1-p(X)}\right)=\beta_0+\beta_1X$$
+
+We take log of $$p(X)$$ over 1 minus $$p(X)$$ and out pops our linear model. And that transformation is called the *log odds* or the *logit* transformation of the probability. And this is the model that we're going to talk about right now. To summarize, we got a linear model still. But it's modeling the probabilities on a non-linear scale. 
+
+*Slide 7:* 
+
+*Hastie:* And so back to our picture again, Figure 4.2. The picture on the right was produced by a logistic regression model and that's why the probabilities lie between 0 and 1. 
+
+*Slide 8:* 
+
+*Hastie:* So we've written down the model, how do we estimate the model from data? Well, the popular way is to use maximum likelihood. Maximum likelihood was introduced by who, Rob? 
+
+*Tibshirani:* Me, actually. Just last week.
+
+*Hastie:* Oh, you? Did you reinvent it? 
+
+*Tibshirani:* I didn't realize-- actually, yeah. Because the correct answer is Fisher back in the 1920s, Ronald Fisher. Fisher. 
+
+*Hastie:* Ronald Fisher, a very famous statistician, invented a lot of the tools that we use in modern applied statistics, and maximum likelihood is one of them. 
+
+$$\ell(\beta_0,\beta)=\prod_{i:y_i=1}p(x_i)\prod_{i:y_i=0}(1-p(x_i))$$
+
+Well, the way maximum likelihood works is you've got a data series of observed 0's and 1's and you've got a model for the probabilities. And that model involves parameters. In this case, $$\beta_0$$ and $$\beta$$. So for any values of the parameters, we can write down the probability of the observed data. And since each observation is meant to be independent of each other one, the probability of observed data is the probability of the observed string of 0's and 1's. So wherever we observed a 1, we write down the probability of a 1, which is $$p(x)$$. So if $$x_i$$, if observation $$i$$ was a 1, the probability is $$p(x_i)$$, and we write that down. And since they're all independent, we just multiply these probabilities. And these are the probabilities of a 0, which is 1 minus the probability of a 1. So this is the joint probability of the observed sequence of 0's and 1's. And of course, it involves the parameters. And so the idea of maximum likelihood is pick the parameters to make that probability as large as possible. Because after all, you did observe the sequence of 0's and 1's. And so that's the idea. Simple to say, not always simple to execute. But likely, we have programs that can do this. And for example, in R, we've got the `glm` function, which in a snap of a finger will fit this model for you and estimate the parameters. And in this case, this is what it produced.
+
+<center>
+<img src="Images/4.3.PNG" alt="glm Results" style="max-height:400px; max-width:450px;">
+</center>
+{:refdef: style="text-align:center;"}
+**Figure 4.3**
 {: refdef}
 
-In the figure, we've got a much smaller data set now. And we've still got the point $$X = 4$$. And if you look there, you'll see carefully that the solid point is one point up, I put on the plot, the solid green point. There's actually no data points whose $$X$$ value is exactly 4. So how can we compute the conditional expectation or average? Well, what we can do is relax the idea of at the point $$X$$ to in a neighborhood of the point $$X$$. And so that's what the notation here refers to. $$N(x)$$ is a neighborhood of points defined in some way around the target point which is this $$X = 4$$ here.
+The coefficient estimates were minus 10 for the intercept and 0.0055 for the slope for balance. That's beta and beta 0. So there are the coefficient estimates. It also gives you standard errors for each of the coefficient estimates. It computes a Z-statistic and it also gives you P-values. 
 
-$$\hat{f}(x) = Ave(Y|X \in N(x))$$
+*Tibshirani:* I think I just realized something. So you had a picture a couple slides ago of a curve? And is that how you found-- I was wondering how you found the parameters for that curve. Is that how you found-
 
-And it keeps the spirit of conditional expectation. It's close to the target point $$x$$. And if we make that neighborhood wide enough, we'll have enough points in the neighborhood to average. And we'll use their average to estimate the conditional expectation. So this is called nearest neighbors or local averaging. It's a very clever idea. It's not my idea. It has been invented long time ago. And, of course, you'll move this neighborhood, you'll slide this neighborhood along the x-axis. And as you compute the averages, as you slide in along, it'll trace out a curve. So that's actually a very good estimate of the function $$f$$. It's not going to be perfect because the little window, it has a certain width. And so as we can see, some points of the true $$f$$ may be lower and some points higher. But on average, it does quite well. So we had a pretty powerful tool here for estimating this conditional expectation, just relax the definition, and compute the nearest neighbor average. And that gives us a fairly flexible way of footing a function. We'll see in the next section that this doesn't always work, especially as the dimensions get larger. And we'll have to have ways of dealing with it.
+*Hastie:* That's exactly right, Rob. So this curve over here (Figure 4.2) is the curve corresponding to those estimates that we just produced in the table. And you might be surprised because the slope is very small here. Yet, it seemed to produce such a big change in the probabilities. But let's look a bit closer. Look at the units of balance. They're in dollars. So we got $2,000, $2,500. And so the values of the coefficients, which are going to multiply that balance variable, they sort of take into account the units that are used. So this is 0.005 per dollar, but it would be 5 per thousand dollars. So slopes, you have to take the units into account. And so the Z-statistic, which is a kind of standardized slope, does that. And then if we look at the P-value, we see that the chance that actually this balance slope is 0 is very small. Less than 0.001. So both intercept and slope strongly significant in this case. How do I interpret that P-value for the intercept? Do I care about that? We usually don't care so much about the P-value for the intercept. The intercept's largely to do with the preponderance of 0's and 1's in the data set. And so that's of less importance. That's just inherent in the data set. It's the slope that's really important. 
 
-## Curse of Dimensionality and Parametric Models
+*Slide 9:* 
+
+*Hastie:* What do we do with this model? We can predict probabilities. And so let's suppose we take a person with a balance of $1,000. Well, we can estimate their probability. So we just plug in the $1,000 into this formula over here.
+
+$$\hat{p}(X)=\frac{e^{\hat{\beta}_0+\hat{\beta}_1X}}{1+e^{\hat{\beta}_0+\hat{\beta}_1X}}=\frac{e^{-10.6513+0.0055\times1000}}{1+e^{-10.6513+0.0055\times1000}}=0.006$$
+
+And notice I've put hats on $$\beta_0$$ and $$\beta_1$$ to indicate that they're now being estimated from the data. Put a hat on the probability. And yeah, we've plugged in the numbers and we use our calculator or computer and we get 0.006. So somebody with a balance of $1,000 has a probability of 0.006 of defaulting. In other words, pretty small. What if they've got a credit card balance of $2,000? That means they owe $2,000 rather than $1,000. 
+
+$$\frac{e^{-10.6513+0.0055\times2000}}{1+e^{-10.6513+0.0055\times2000}}=0.586$$
+
+Well, if we go through the same procedure, now the probability has jumped up to 0.586. So it's got much higher. And you can imagine if we put in $3,000, we'd get even higher. 
+
+*Slide 10:* 
+
+*Hastie:* Let's do this again using some of the other variables. We haven't seen student yet, but one of our predictors is student. And it's a binary variable in this case. It's a yes or no variable. Is the credit card owner a student or not?
 
 <center>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/UvxHOkYQl8g?list=PL5-da3qGB5IDvuFPNoSqheihPOQNJpzyy" style="border:none" allowfullscreen></iframe>
+<img src="Images/4.4.PNG" alt="Student Predictor" style="max-height:400px; max-width:450px;">
 </center>
-
-##### Slide 7: 
-
-*Hastie:* OK, here we are going to see situations where our nearest neighbor averaging doesn't work so well. And we're going to have to the find ways to deal with that. Nearest neighbor averaging, which is the one we just saw, can be pretty good for small $$p$$, small numbers or variables. Here we had just one variable. But small, maybe $$p \leq 4$$ and larg-ish $$N$$. Large $$N$$ so that we have enough points in each neighbor to average to give us our estimate. Now this is just one version of a whole class of techniques called smoothers. And we're going to discuss later on in this course much cleverer ways of doing this kind of averaging such as kernel and spline smoothing. Now there's a problem though. Nearest neighbor methods can be really lousy when $$p$$ is large. And the reason has got the name the curse of dimensionality. What it boils down to is that nearest neighbors tend to be far away in high dimensions. So and that creates a problem. We need to get a reasonable fraction of the $$N$$ values of $$y_i$$ to average to bring the variance down. So we need to average the number of points in each neighborhood so that our estimate has got a nice, reasonably small variance. And let's suppose we want 10% of the data points to be in each interval. The problem is that 10% neighborhood in high dimensions need no longer be local. So we lose the spirit of estimating the conditional expectation by local averaging. 
-
-##### Slide 8:
-
-*Hastie:* So let's look at a little example of that. 
-
-<center>
-<img src="Images/2.4.PNG" alt="Dimensionality" style="max-height:400px">
-</center>
-{:refdef: style="text-align: center;"}
-**Figure 2.4**-- *The curse of dimensionality*
+{:refdef: style="align-text:center;"}
+**Figure 4.4**
 {: refdef}
 
-In the left panel, we've got values of two variables, $$x_1$$ and $$x_2$$. And they are actually uniformly distributed in this little cube with edges -1 to +1, -1 to +1. And we form two 10% neighborhoods in this case. The first neighborhood is just involving the variable $$x_1$$ ignoring $$x_2$$. And so that's indicated by the vertical dotted lines. Our target point is at 0. And so we spread out a neighborhood to the left and right until we capture 10% of the data points with respect to the variable $$x_1$$. And the dotted line indicates the width of the neighborhood. Alternatively, if we want to find a neighborhood in two dimensions, we spread out a circle centered at the target point, which is the red dot there, until we've captured 10% of the points. Now notice the radius of the circle in two dimensions is much bigger than the radius of the circle in one dimension which is just the width between these two dotted lines. And so to capture 10% of the points in two dimensions, we have to go out further and so we are less local than we are in one dimension. And so we can take this example further. And on the right hand plot, I've shown you how far you have to go out in one, two, three, five, and 10 dimensions. In 10 dimensions, these are different versions of this problem as the dimensions get higher In order to capture a certain fraction of the volume. OK, and so take, for example, 10% or 0.1 fraction of the volume. So for p equals 1, if the data is uniform, you roughly go out 10% of the distance. In two dimensions, we store you went more. Look what happens in five dimensions. In five dimensions, you have to go out to about 0.9 on each coordinate axes to get 10% of the data. That's just about the whole radius of this sphere. And in 10 dimensions, you actually have to go break out of this sphere in order to get points in the corner to capture the 10%. So the bottom line here is it's really hard to find new neighborhoods in high dimensions and stay local. If this problem didn't exist, we would use the near neighbor averaging as the sole basis for doing estimation. 
+And so we code that as a 0, 1 variable and we fit a simple logistic regression model. And it gets a coefficient of 0.4049. And that's also significant. OK, let's do it again using the variable student as a predictor. This is a binary variable. Is the credit card holder a student or not? And we find we get a coefficient of 0.4049 in this case, which is also significant. So this is another variable in our database. And just like before, we can evaluate the probability of default is yes.
 
-##### Slide 9:
+$$\widehat{\text{Pr}}(\text{default}=\text{Yes}|\text{student}=\text{Yes})=\frac{e^{-3.5041+0.4049\times1}}{1+e^{-3.5041+0.4049\times1}}=0.0431\\ \widehat{\text{Pr}}(\text{default}=\text{Yes}|\text{student}=\text{No})=\frac{e^{-3.5041+0.4049\times0}}{1+e^{-3.5041+0.4049\times0}}=0.0292$$
 
-*Hastie:* So how do we deal with this? Well, we introduce structure to our models. And so the simplest structural model is a *linear model*. And so here we have an example of a linear model.
+Given that the card holder is a student, it comes out to 0.04. And if they're not a student, it comes out to be a bit lower, 0.029, close to 0.03. And we're going to examine the interactions between student and balance and the other variables in a little while.
 
-$$f_L(X) = \beta_0 + \beta_1X_1 + \beta_2X_2 +\dots\beta_pX_p$$
-
-We've got $$p$$ features. It's just got $$p + 1$$ parameters. And it says the function of $$X$$, we can approximate by a linear function. So there's a coefficient on each of the $$X$$'s and at intercept. So that's one of the simplest structural models. We can estimate the parameters of the model by fitting the model to training data. And we'll be talking more about how you do that. And when we use such a structural model, and, of course, this structural model is going to avoid the curse of dimensionality. Because it's not relying on any local properties and nearest neighbor averaging. That's just fitting quite a rigid model to all the data. Now a linear model is almost never correct. But it often serves as a good approximation, an interpretive approximation to the unknown true function $$f(X)$$. 
-
-##### Slide 10:
+## Multivariate Logistic Regression and Confounding
 
 <center>
-<img src="Images/2.5.PNG" alt="Linear vs. Quadratic" style="max-height:400px">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/MpX8rVv_u4E?list=PL5-da3qGB5IC4vaDba5ClatUmFppXLAhE" style="border:none" allowfullscreen></iframe>
 </center>
-{:refdef: style="text-align: center;"}
-**Figure 2.5**-- *Top plot:* $$\hat{f}_L(X) = \hat{\beta}_0 + \hat{\beta}_1X$$ \n
-*Bottom plot:* $$\hat{f}_Q(X) = \hat{\beta}_0 + \hat{\beta}_1X + \hat{\beta}_2X^2$$
+
+*Slide 11:* 
+
+*Hastie:* So that's a good segue into what do we do when we have more than one variable. The two models we've considered so far just perform logistic regression with single variables. But of course, if we've got a collection of variables, we want to take them all into account. And so, in that case, we're going to build a *multi-variant logistic regression model*. So the transformation of the probability is the same as we had before, except now we've got a general linear model with an intercept and a coefficient for each of the variables. And if you invert that transformation, that, again, gives you a form for the probability that's guaranteed to be between zero and one. 
+
+$$\text{log}\left(\frac{p(X)}{1-p(X)}\right)=\beta_0+beta_1X_1 +\dotsb+\beta_pX_p\\ p(x)=\frac{e^{\beta_0+\beta_1X_1+\dotsb+\beta_pX_p}}{1+e^{\beta_0+\beta_1X_1+\dotsb+\beta_pX_p}}$$
+
+Well, we can fit that using `glm` and R just like we did before. And we'll throw in our variable balance, income, and the student variable. And now, we get three coefficients, three standard errors, three z statistics, and three p values. 
+
+<center>
+<img src="Images/4.5.PNG" alt="Multi-Variant Results" style="max-height:400px; max-width:450px;">
+</center>
+{:refdef: style="text-align:center;"}
+**Figure 4.5**
 {: refdef}
 
-*Hastie:* So here's our same little example data set. And we can see in the top plot, a linear model gives a reasonable fit to the data, not perfect. In the bottom plot, we've augmented our linear model. And we've included a quadratic term. So we put in our $$X$$, and we put in an $$X^2$$ as well. And we see that fits the data much better. It's also a linear model. But it's linear in some transformed values of $$X$$. And notice now we've put hats on each of the parameters, suggesting they've been estimated, in this case, from this training data. These little hats indicate that they've been estimated from the training data. So those are two parametric models, structured models that seem to do a good job in this case. 
+And the first thing we see here is that as they were in the single variable case, balance and student are significant. Income is not significant. So it seems like two of the variables are important. But here's something rather striking. We know this at the coefficient for student is negative while it was positive before. So before, when we just measured student on its own, it had a positive coefficient. But when we fit it in a multivariate model, the coefficient is negative. Do you think this is an error, Rob? So how could that happen? 
 
-##### Slide 11: 
+*Tibshirani:* I don't think so. Well, remember the last time we talked about in regression models how difficult it is to interpret coefficients in a multiple regression model, because the correlations between the variables can affect the signs. 
 
-*Hastie:* Here's a two dimensional example. Again, seniority, years of education, and income. And this is simulated data. 
+*Hastie:* So there's going to be-- we're going to see now the role of correlations in the variables. 
+
+*Slide 12:* 
+
+*Hastie:* So here's a picture. 
 
 <center>
-<img src="Images/2.7.PNG" alt="2D Dataset" style="max-height:400px">
+<img src="Images/4.6.PNG" alt="Balance and Student Comparison" style="max-height:400px">
 </center>
-{:refdef: style="text-align: center;"}
-**Figure 2.6**-- $$\text{income} = f(\text{education, seniority})+ \epsilon$$
+{:refdef: style="text-align:center"}
+**Figure 4.6**
 {: refdef}
 
-And so the blue surface is actually showing you the true function from which the data was simulated with errors. We can see the errors aren't big. Each of those data points comes from a particular pair of years of education and seniority with some error. And the little line segments in the data points show you the error. OK. So we can write that as income as a function of education and seniority plus some error. So this is with truth. We actually know this in this case. 
+There we see credit card balance. And we see the default rate the vertical axis. And the student center of, let's see-- so students status, brown is yes and blue is no. So students tend to have higher balances than non-students. So their marginal default rate is higher than for non-students. Because we just saw that. Balance plays a role. But what we see in this plot on the left is that for each level of balance, students default less than non-students. So when you just look at student on its own, it's confounded with balance. And the strong effect of balance makes it looks like students are worse defaulters. But this plot explains it all. For each level of credit card balance, if we look separately for students and non-students, students tend to have a lower default rate. And so, that we can tease out by multiple logistic regression, which takes these correlations into account. 
 
-##### Slide 12:
+*Slide 13:* 
 
-*Hastie:* And here is a linear regression model fit to those simulation data. 
+*Hastie:* Let's move on to another example with more variables. We talked about this example in the introduction. This is a South African heart disease data set. Remember, South Africans eat a lot of meat. Rob, did I ever tell you the story about the South Africans and-(More than once.) More than once. I think Rob doesn't want to hear the story again. Any way, they do eat a lot of meat. So they did a study in South Africa. It was a retrospective study. They went and found 160 cases of white males who'd had myocardial infarction, which is a fancy name for a heart attack. And amongst the many people who hadn't had a heart attack, they took a sample of 302 controls. It's called a case control sample. And for these people, they were all white males in the age range 15 to 64. And they were from this Western Cape region of South Africa. This was done in the early 1980s. So in this region, the overall prevalence was very high for heart disease, 5.1%, which is very high risk. So in the study we have measurements on seven predictors or, in this case, known as risk factors. And they show in the scatter plot matrix, which I'll show you right here. 
+
+*Slide 14:* 
+
+*Hastie:* Remember, the scatter plot matrix is a very nice way of plotting every variable against every other variable. 
 
 <center>
-<img src="Images/2.8.PNG" alt="2D Linear Regression" style="max-height:400px">
+<img src="Images/4.7.PNG" alt="South African Heart Disease" style="max-height:400px;">
 </center>
-{:refdef: style="text-align: center;"}
-**Figure 2.7**
+{:refdef: style="text-align:center"}
+**Figure 4.7**-- *Scatterplot matrix of SA Heart Disease data. Cases are red, controls are blue.*
 {: refdef}
 
-So it's an approximation. It captures the important elements of the relationship but doesn't capture everything. OK. It's got three parameters. 
+And now, because it's a classification problem, we can code into the plot the heart disease status. And so the red points here are those cases that had heart disease. And the blue points are the controls. And look at the top plot, for example, if you were high in tobacco usage and your systolic blood pressure is high, you tend to be a red point. To those are the people who tended to have heart attacks. So each of these plots shows a pairwise plot of two of the risk factors and codes in the heart disease status. (You forgot one risk factor.) What was that? (Talking with a funny accent.) Talking with a funny accent. (You've all got that.) Very good, Rob. I'm doing all the hard work here. And he's just sitting here thinking of jokes. (The coffee's good, too.) There's one funny variable here, family history. Well, it's a categorical variable. It turns out to be an important risk factor, apart from being South African or not. If you have a family history of heart disease, the risk is high. And you can see that it's a zero-one variable in this case. And you probably can see there's more reds in the right-hand category than the left-hand category. 
 
-##### Slide 13:
+*Back to Slide 13:* 
 
-*Hastie:* Here's a more flexible regression model. We've actually fit this using a technique called *thin plate splines*. And that's a nice smooth version of a two dimensional smoother. 
+*Hastie:* So in this case, we're not really trying to predict the probability of getting heart disease. What we're really trying to do is to understand the role of the risk factors in the risk of heart disease. And actually, this study was an intervention study aimed at educating the public on healthier diets. But that's a whole other story. (Did it work?) Um, I think it might have worked a little bit. But this crowd is really hard to get them away from their meat. Do you know that they call a barbecue in South Africa? (No.) Braaivleis. (OK.) Every South African loves their braaivleis and their bull tongue. 
+
+*Slide 15:* 
+
+*Hastie:* So here's the result of GLM for the heart disease data. And here I actually show you some of the code used to fit it. 
 
 <center>
-<img src="Images/2.9.PNG" alt="Thin Plate Spline" style="max-height:400px">
+<img src="Images/4.8.PNG" alt="GLM Result" style="max-height=400px;">
 </center>
-{:refdef: style="text-align: center;"}
-**Figure 2.8**-- *Thin plate spline*
+{:refdef: style="text-align:center"}
+**Figure 4.8**
 {: refdef}
 
-It's different from nearest neighbor averaging. It's got some nicer properties. And you can see this does a pretty good job. If we go back to the generating data and the generating surface, this thin plate spline actually captures more of the essence of what's going on there. And for thin plate splines, we're going to talk about them later in Chapter 7. There's a tuning parameter that controls how smooth the surfaces is. 
+We'll get into the code session later. But it's just interesting to see that it's pretty easy to do. Here's a call to `glm`. We tell it the response is `chd`, which is the name of the response variable. And `~` means to be modeled as. And `.` means all the other variables in the data frame which, in this case, is heart. So that's a data frame that's got all the variables in the study. And the response here is `chd`. And we tell it the family's binomial, which just tells it to fit the logistic regression model. And then we fit that model. Save it in the object called `heartfit`. And then we do a `summary()` of `heartfit`. And we get printed out this summary, which is the same summary that we've seen before. And so now we get coefficients for each of the variables. In this column, we get standard errors, c values, and p values. And here the story is a little bit mixed. We're not too interested in the intercept. Tobacco usage is significant. Low density lipoproteins, that's a cholesterol measure, that's significant. Remember, there's a good and bad cholesterol. This is the bad cholesterol. Family history, very significant. And age is significant. We know the risk of heart disease goes up with age. Now, interest in the obesity and alcohol usage are not significant here, which seems a little surprising, no? Mm hmm. But this is a case, again, of having correlated variables. 
 
-##### Slide 14:
+*Back to Slide 14:* 
 
-*Hastie:* Here's another example of a thin plate spline. 
+*Hastie:* If we look in the previous plot, Figure 4.7, you see that there is a lot of correlation between variables. So age and tobacco usage are correlated. Alcohol usage and LDL seem to be negatively correlated. LDL is the good cholesterol. So there's lots of correlations. And so those are going to play a role. 
+
+*Slide 15:* 
+
+*Hastie:* And so, for example, we've got LDL is significant in the model. And once LDL is in the model, perhaps alcohol usage is not needed anymore. Because it's been taken care of. These variables act as surrogates for each other.
+
+## Case-Control Sampling and Multiclass Logistic Regression
 
 <center>
-<img src="Images/2.10.PNG" alt="Flexible Thin Plate Spline" style="max-height:400px">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/GavRXXEHGqU?list=PL5-da3qGB5IC4vaDba5ClatUmFppXLAhE" style="border:none;" allowfullscreen></iframe>
 </center>
-{:refdef: style="text-align: center;"}
-**Figure 2.9**-- *Thin plate spline with no errors on the training data*
+
+*Slide 16:* 
+
+*Hastie:* OK. Now we slipped one thing by you. We said in South Africa the risk for heart disease is about 5% in this age category. But in our sample, we've got 160 cases and 302 controls, so in the sample we're showing a risk of 0.35. It seems like the model is going to be off. It's going to estimate probabilities too high. Well, case-control sampling is one of the favorite tools in epidemiology. Especially when you have a rare disease, you take all the cases you can find, and then you can just sample from the controls. The reason is that for the logistic regression model it turns out that you can estimate the regression parameters of interest-- these of the coefficients of the $$x$$'s in this case-- accurately. That's if the model's correct. But the constant term will be incorrect. Then you can just go ahead and correct the constant too by a simple transformation. And in fact, for those that are interested, I just give you the transformation.
+
+$$\hat{\beta}_{0}^{*}=\hat{\beta}_0+\text{log}\frac{\pi}{1-\pi}-\text{log}\frac{\tilde{\pi}}{1-\tilde{\pi}}$$
+
+So $$\tilde{\pi}$$ here is the apparent risk of heart disease, in this case in our population, which is 0.35. And after all, this is just the logit transformation of the prior probability or the prior apparent probability. And here's the logit transformation of the true risk, which is $$\pi$$, in this case, 0.05. And so we take the logit transformation of those two, and we correct the intercept. This is the currently estimated intercept. We correct it by adding in the log odds of the true probability, subtract the apparent one. That'd correct the intercept. 
+
+*Tibshirani:* Maybe it's worth saying a little bit about case control sampling, why the sampling's done this way. One thing we could have done instead, or the investors could have done was to take maybe 1,000 people and to follow them for 20 years and to record their risk factors and then see who gets heart disease. We think about 5% will get heart disease. That's a valid thing to do, but the problem is it takes 20 years and maybe more than a few thousand people to get enough-- Actually, with 1,000 people, we'd get, what 50 cases, right? (Right.) So that's not very practical. We need a large sample, and we need many years to do it. (Right.) Case-control sampling says, well, let's not do things prospectively like that. Let's rather find people who we already know have heart disease or don't have heart disease and then sample them. Now in the proportion in this case, we'll take 160 cases and 302 controls and then record their risk factors. We start with cases and controls, and we get lots of cases. And we do this without waiting 20 years. We can do it right now. And then we record the risk factors. 
+
+*Hastie:* That's a good point, Rob. Yeah. And that's very popular in epidemiology. There are other issues involved with case-control sampling, retrospective sampling. Yeah. We won't take that up now. But that's the reason it's so popular. 
+
+*Slide 17:* 
+
+*Hastie:* On the same issue, in many modern data sets, we'll have very imbalanced situations. For example, if you're modelling the click through rate on an ad on a web page, the probability of someone clicking is less than 1%, maybe 0.005 or even smaller, 0.001, which means if you just take a random sample of subjects who've been exposed to ads, you're going to get very, very few 1's and a huge amount of 0's. OK? And these data sets get really large. So the question is, do we need to use all of that 0, 1 data to fit the models? Well, from what we've told you, no. You can take a sample of the controls. And this picture over here just gives an indication of the trade-off. 
+
+<center>
+<img src="Images/4.9.PNG" alt="Returns in Binary Data" style="max-height:400px;">
+</center>
+{:refdef: style="text-align:center"}
+**Figure 4.9**-- *Sampling more controls than cases reduces variance, but after a ration of 5:1, the variance reduction flattens.*
 {: refdef}
 
-We basically tuned the parameter all the way down to 0. And this surface actually goes through every single data point. In this case, that's overfitting. The data, we expect to have some errors. Because with true function generate data points with errors. So this is known as *overfitting*. We are overfitting the training data. So this is an example where we've got a family of functions, and we've got a way of controlling the complexity. 
+The main point is that ultimately the variance of your parameter estimates has to do with the number of cases that you got, which is the smaller class. And so what this plot shows is it's showing the variance of the coefficients as a function of the case-control ratio, in fact the control case ratio. What it says is when you've got about 5 or 6 to 1, the variance kind of levels off here. And so there's diminishing returns in getting even more controls. So if you've got a very sparse situation, sample about 5 or 6 controls for every case, and now you can work with a much more manageable data set. So it's very handy, especially in modern extremely large data sets. 
 
-##### Slide 15:
+*Tibshirani:* Just a comment about what this case-control sampling is. The most obvious way to study the risk factors for heart disease would be to take a large group of people, maybe 1,000 or 100,000 people, follow them for maybe 20 years, record their risk factors, and see who gets heart disease and who doesn't after 20 years. (If you're still around.) If we're still around. Right. Now that actually is a good way to do things, except its very expensive and it takes a long time. You have to get a lot of people, and you have to wait for many years. Case-control sampling is a lot more attractive. Because what you do is rather than taking people and following them forward in time, you sample people who you know have heart disease. You also get a comparison sample of people who do not have heart disease, the controls. And then you record their risk factors. So it's much cheaper, and it's much quicker to do. And that's why case-control sampling is a very commonly used technique in epidemiology. 
 
-*Hastie:* So there are some tradeoffs when building models. One trade off is prediction accuracy versus interpretability. So linear models are easy to interpret. We've just got a few parameters. Thin plate splines are not. They give you a whole surface back. And if given a surface back in 10 dimensions, it's hard to understand what it's actually telling you. We can have a good fit versus over-fit or under-fit. So in this previous example, the middle one was a good fit. The linear was slightly under-fit. And the last one was over-fit. So how do we know when the fit is just right? We need to be able to select amongst those. Parsimony versus black-box. Parsimony means having a model that's simpler and can be transmitted with a small number of parameters and explained in a simple fashion, involved, maybe, in a subset of the predictors. And so those models if they do as well as say a black-box predictor, like the thin plate spline was somewhat of a black-box predictor. We'd prefer the simpler model. 
+*Slide 18:* 
 
-##### Slide 16:
+*Hastie:* OK. What if we have more than two classes? Can we still do logistic regression? Well, we can. It easily generalizes to more than two classes. There's various ways of doing this. And one version-- which actually is how we do it in the `glmnet` package in R, which you'll be learning more about-- is we have this exponential form that we saw before but modified for multiple classes.
 
-*Hastie:* Here's a little schematic which shows a variety of the methods that we are going to be discussing in this course. And they are ordered by interpretability and flexibility. 
+$$\text{Pr}(Y=k|X)=\frac{e^{\beta_{0k}+\beta_{1k}X_1+\dotsb+\beta_{pk}X_p}}{\sum_{\ell=1}^{K}e^{\beta_{0\ell}+\beta_{1\ell}X_1+\dotsb+\beta_{p\ell}X_p}}$$
+
+So notice in the numerator we've got an e to the linear model. And this is for the probability that $$Y$$ is $$k$$ given $$X$$, a small $$k$$. And we've got, say, capital $$K$$ classes, where capital $$K$$ is bigger than 2. In the denominator, we've just got the sum of those exponentials for all the classes. In this case, each class gets its own linear model. And then we just weigh them against each other with this exponential function, sometimes called the softmax function. OK? The mathier students would recognize that some cancellation is possible in this ratio. And that's true. What that means is actually you only need $$K - 1$$ linear functions, as you do in a 2-class logistic regression. That's somewhat of a detail. It turns out for our `glmnet` application this is a more symmetric representation, and it's actually more useful. This multiclass logistic regression is also referred to as *multinominal regression*.
+
+## Linear Discriminant Analysis and Bayes Theorem
 
 <center>
-<img src="Images/2.11.PNG" alt="Interperability vs. Flexibility" style="max-height:400px">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/RfrGiG1Hm3M?list=PL5-da3qGB5IC4vaDba5ClatUmFppXLAhE" style="border:none" allowfullscreen></iframe>
 </center>
-{:refdef: style="text-align: center;"}
-**Figure 2.10**
+
+*Slide 19:* 
+
+*Hastie:* We're not going to go into more detail on multinomial regression now. What we're going to do is tell you about a different classification method, which is called *discriminant analysis*, which is also very useful. And it approaches a problem from a really quite different point of view. In discriminant analysis, the idea is to model the distribution of $$X$$ in each of the classes separately. And then use what's known as *Bayes theorem* to flip things around to get the probability of $$Y$$ given $$X$$, $$\text{Pr}(Y|X)$$. In this case, for linear discriminant analysis, we're going to use Gaussian (normal) distributions for each class. And that's going to lead to linear or quadratic discriminant analysis. So those are the two popular forms. But as you'll see, this approach is quite general. And other distributions can be used as well. But we'll focus on normal distributions. 
+
+*Slide 20:* 
+
+*Hastie:* So what is Bayes' theorem for classification? It sounds pretty scary, but not too bad. So, of course, Thomas Bayes was a famous mathematician. And his name now, today, represents a burgeoning subfield of statistical and probabilistic modeling. But here we're going to focus on a very simple result which is known Bayes theorem. And it says that the probability of $$Y$$ equals $$k$$ given $$X$$ equals $$x$$.
+
+$$\text{pr}(Y=k|X=x)=\frac{\text{Pr}(X=x|Y=k)\cdot\text{Pr}(Y=k)}{\text{Pr}(X=x)}$$
+
+So the idea is you've got two variables. In this case, we've got $$Y$$ and $$X$$. And we're looking at aspects of their joint distribution. So this is what we're after, the probability of $$Y = k$$ given $$X$$. And Bayes theorem says you can flip things around. You can write that as a probability that $$X$$ is $$x$$ given $$Y$$ equals $$k$$-- that's the first piece on the top there-- multiplied by the marginal probability or prior probability that $$Y$$ is $$k$$ and then divided by the marginal probability that $$X$$ equals $$x$$. So this is just a formula for probability theory. But it turns it's really useful and is a basis for discriminant analysis. And so we write things slightly differently in the case of discriminant analysis.
+
+$$\text{pr}(Y=k|X=x)=\frac{\pi_kf_k(x)}{\sum_{l=1}^{K}\pi_lf_l(x)}$$
+
+So this probability $$Y = k$$ is written as $$\pi_k$$. So if there's three classes, there's going to be three values for $$\pi$$, just the probability for each of the classes. But here we've got class little $$k$$, so that's $$\pi_k$$. Probability that $$X$$ is $$x$$ given $$Y = K$$, well, if $$X$$ is a quantitative variable, what we write for that is the density. So that's a probability density function for $$X$$ in class $$k$$. And then the marginal probability $$f(x)$$ is just this expression over here, $$f_k(x)=\text{Pr}(X=x|Y=k)$$. So this is summing over all the classes. And so that's how we use Bayes theorem to get to the probabilities of interest, which is $$Y = k$$ given $$X$$. Now, at this point it's still quite general. We can plug in any probability densities. But now what we're going to do is go ahead and plug in the Gaussian density for $$f_k(x)$$. 
+
+*Slide 21:* 
+
+*Hastie:* Before we do that, let me just show you a little picture to make things clear. 
+
+<center>
+<img src="Images/4.10.PNG" alt="Density Plots" style="max-height:400px;">
+</center>
+{:refdef: style="text-align:center;"}
+**Figure 4.10**-- *Probability of k=1 (green) and k=2(purple)*
 {: refdef}
 
-And at the top, there are two versions of linear regression, subset selection and lasso, which we'll talk about, that actually even think the linear regression models too complex and try and reduce it by throwing out some of the variables. Linear models and least squares. Slightly more flexible, but you lose some interpretability because now all the variables are thrown in. Then we have generalized additive models which allow for transformations in an automatic way of each of the variables. And then at the high flexibility, low interoperability, and bagging, boosting, and support vector machines. We'll discuss all these techniques but later on in the course. OK, so we covered linear regression. And we covered nearest neighbor averaging. And we talked about ways, places where that's not going to work. And so we've briefly introduced a number of other different methods. And they are all listed on the screen, different methods that they can use to solve the problem when the dimensions are high and when linearity doesn't work. But we have to choose amongst these methods. And so we need to develop ways of making those choices. And that's what we're going to cover in the next segment.
+In the left-hand plot, what have we got here? We've got a plot against $$x$$, single variable $$x$$. And in the vertical axis, what we've got is actually $$\pi_k$$ multiplied by $$f_k(x)$$. For both classes, $$k$$ equals 1 and $$k$$ equals 2. Now, in this case, remember in the previous slide, the probability was essentially proportional to $$\pi_kf_k(x)$$. And in this case, the $$pi$$'s are the same for both. So it's really to do with which density is the highest. And you can see that the decision boundary, or the vertical dash line, is at zero. And that's the point at which the green density is higher than the purple density. And so anything to the left of zero we classify as green. And anything to the right we'd classify as purple. And it sort of makes sense that that's what we do there. The right-hand plot has different priors. So here the probability of 2 is 0.7 and of 1 is 0.3. And now, again, we're plotting $$\pi_kf_k(x)$$ against $$x$$. And that big prior has bumped up the purple. And what it has done is move the decision boundary slightly to the left. And that makes sense, too. Again, that's where they intersect. That makes sense as well. Because we've got more purples here. There's more of them. So everything else being equal, we're going to make less mistakes if we classify it to purples and to greens. So that's how these priors and the densities play a role in classification. 
 
-## Assession Model Accuracy and Bias-Variance Trade-off 
+*Slide 22:* 
 
-<center>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/VusKAosxxyk?list=PL5-da3qGB5IDvuFPNoSqheihPOQNJpzyy" style="border:none" allowfullscreen></iframe>
-</center>
+*Hastie:* So why discriminant analysis? It seems like logistic regression was a pretty good tool. Well, it is. But it turns out there's room for discriminant analysis as well. And so it's three points we make here. When the classes are well separated, it turns out that the parameter estimates for logistic regression are surprisingly unstable. In fact, if you've got a feature that separates the classes perfectly, the coefficients go off to infinity. So it really doesn't do well there. Logistic regression was developed in largely the biological and medical fields where you never found such strong predictors. Now, you can do things to make logistic regression better behave. But it turns out linear discriminant analysis doesn't suffer from this problem and is better behaved in those situations. Also, if any small, the sample size is small, and the distribution of the predictor's $$x$$ is approximately normal in each of the classes, it turns out that discriminant model is again more stable than logistic regression. And finally, if we've got more than two classes, we'll see logistic regression gives us nice low dimensions views of the data. 
 
-##### Slide 17: 
+*Tibshirani:* And the other point, remember, in the very first section, we showed that the Bayes rule, if you have the right population model, Bayes rule is the best you can possibly do. So if our normal assumption is right here, then this discriminant analysis in the Bayes rule is the best you can possibly do. Good point, Rob.
 
-*Hastie:* OK, so we've seen a variety of different models, from linear models, which are rather simple and easy to work with and interpret, to more complex models like nearest neighbor average and thin plate splines. And we need to know how to decide amongst these models. And so we need a way of assessing model accuracy, and when is a model adequate? And when may we improve it? OK, so suppose we have a model, $$\hat{f}(x)$$, that's been put through some training data. And we'll denote the training data by **Tr**. And that consists of $$n$$ data pairs, $$x_i, y_i$$.
-
-$$\textbf{Tr} =\{x_i,y_i\}\begin{smallmatrix} N\\ 1 \end{smallmatrix}$$
-
-And remember, the notation of $$x_i$$ means the $$i$$-th observation, and $$x$$ may be a vector. So it may have a bunch of components. $$y_i$$ is typically a single $$y$$, a scalar. And we want to see how well this model performs. Well, we could compute the average squared prediction error over the training data. So that means we take our $$y$$, observe $$y$$. We subtract from it $$\hat{f}(x)$$. We square the difference to get rid of the sign. And we just average those over all the training data.
-
-$$\text{MSE}_{\textbf{Tr}} = \text{Ave}_{i\in\textbf{Tr}}[y_i - \hat{f}(x_i)]^2$$
-
-Well, as you may imagine, this may be biased towards more overfit models. We saw with that thin plate spline, we could fit the training data exactly. We could make this mean squared error sub train, we could make it zero. Instead, we should, if possible, compute it using a fresh test data set, which we'll call **Te**. So that's an additional, say, $$M$$ data pairs $$x_i, y_i$$ different from the training set. And then we compute the similar quantity, which we'll call mean squared error sub **Te**.
-
-$$\text{MSE}_{\textbf{Te}} = \text{Ave}_{i\in\textbf{Te}}[y_i - \hat{f}(x_i)]^2$$
-
-And that may be a better reflection of the performance of our model. 
-
-##### Slide 18:
-
-*Hastie:* OK, so now I'm going to show you some examples. We go back to one dimensional function fitting. 
+## Univariate Linear Discriminant Analysis
 
 <center>
-<img src="Images/2.12.PNG" alt="Function Fitting" style="max-height:400px">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/QG0pVJXT6EU?list=PL5-da3qGB5IC4vaDba5ClatUmFppXLAhE" style="border:none" allowfullscreen></iframe>
 </center>
-{:refdef: style="text-align: center;"}
-**Figure 2.11**-- *Left: Black curve is truth* \n
-*Right: Red curve is* $$\text{MSE}_{\textbf{Te}}$$, *Grey curve is* $$\text{MSE}_{\textbf{Tr}}$$
+
+*Slide 23:* 
+
+*Hastie:* So let's look again in the simple case when we've got one variable, one $$x$$. Again, we're going to get a bit more math-y now. This is the form, the mathematical form, of the Gaussian density function for class $$k$$ when you've got a single $$x$$.
+
+$$f_k(x)=\frac{1}{\sqrt{2\pi}\sigma_k}e^{-\frac{1}{2}\left(\frac{x-\mu_k}{\sigma_k}\right)^2}$$
+
+So there's some constants over here. The important part that depends on $$x$$ is in this exponential form over here. And we see there is a $$\mu_k$$, which is the mean for the observations in class $$k$$, or the population meaning class $$k$$. And $$\sigma_k$$ is the variance for that variable in class $$k$$. Now, in the first instance, we can assume that the variance, $$\sigma_k$$, is actually just $$\sigma$$, the same in each of the classes. Now, that's a convenience. It turns out this is an important convenience. And it's going to determine whether the discriminant function that we get, the discriminant analysis, gives us linear functions or quadratic functions. So, if we could plug into Bayes' formula, the formula we had two slides back, we get a rather complicated expression.
+
+$$p_k(x)=\frac{\pi_k\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{1}{2}\left(\frac{x-\mu_k}{\sigma}\right)^2}}{\sum_{l=1}^{K}\pi_l\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{1}{2}\left(\frac{x-\mu_l}{\sigma}\right)^2}}$$
+
+So we've just plugged in a form of the density in the numerator. And there's the sum of the classes in the denominator. And it looks pretty nasty. Well, luckily there's some simplifications and cancellations. 
+
+*Slide 24:* 
+
+*Hastie:* Now, we get this, because to classify an observation to a class, we don't need to initially evaluate the probabilities. We just need to see which is the largest. So if we take logs-- whenever you see exponentials the first thing you want to do is take the logs. And if you discard terms that do not depend on $$k$$, that amounts to doing a lot of cancellation of terms that don't count. This is equivalent to assigning to the class with the largest *discriminant score.* And so that complicated expression boils down to a much simpler expression here.
+
+$$\delta_k(x)=\underbrace{x\cdot\frac{\mu_k}{\sigma^2}}_{x\textit{ coefficient}}-\underbrace{\frac{\mu_k^2}{2\sigma^2}+\text{log}(\pi_k)}_{\textit{constant term}}$$
+
+And notice it involves $$x$$, a single variable in this case. And then it involves the mean and variance for the distribution. And it involves the prior. And importantly, in this case, this is a linear function of $$x$$. So there's a single coefficient for $$x$$. There's a constant. And then there's a constant term, which consists of these two pieces over here. And so we get one of those functions for each of the classes. If there are two classes, you can simplify even further. And let's suppose now that the probability of class one is equal to the probability of class two, which is 0.05. Then you can see, in this case, that the *decision boundary* is exactly at $$x=\frac{\mu_1+\mu_2}{2}$$. So it's back to this picture (Figure 4.10). In the previous slide, in this case, the priors were equal. These are actually two Gaussian distributions. And the decision boundary here is at zero. In this case, the two means were exactly the equal amount on the opposite side of zero. So the average is at zero. So intuitively, that's the right value for the decision boundary, which is the point at which we classify to one class, the boundary at which we switch from classifying to one class versus the other. It's not that hard to show. So see if you can show that. You basically use this expression for each of the two classes and look to see when the one is bigger than the other. It's not that hard to do. 
+
+*Back to Slide 23:* 
+
+*Tibshirani:* I'm confused. There was a square term in the previous expression. And it's gone. 
+
+*Hastie:* Oh, Rob, are you causing trouble here again? I was hoping to avoid that nasty bit. Rob's right. If you expand out this squared term here, there's going to be an $$x^2$$. But, you know, there's an $$x^2$$ in the numerator. And there's $$x^2$$s in each of the terms in the denominator. And there's no coefficients in front of that $$x^2$$ that's specific to a class. So that's one of the things that cancel out in this ratio. You knew that, didn't you, Rob? Rob knew that. 
+
+*Slide 25:* 
+
+*Hastie:* All right, this is with populations. What happens if we have data? We can't draw nice density functions like we've done over here. But we just estimate them. So here's a picture where we've actually got data.
+
+<center>
+<img src="Images/4.11.PNG" alt="Estimated Decision Boundary" style="max-height:400px">
+</center>
+{:refdef: style="text-align:center"}
+**Figure 4.11**-- $$\mu_1=-1.5, \mu_2=1.5, \pi_1=\pi_2=0.5, \textit{ and } \sigma^2=1$$
 {: refdef}
 
-In the left hand panel, we see the black curve, which is actually simulated. So it's a generating curve. That's the true function that we want to estimate. The points are data points, generated from that curve with error. And then we actually see-- you have to look carefully in the plot-- we see three different models fit to these data. There's the orange model, the blue model, and the green model. And they're ordered in complexity. The orange model is a linear model. The blue model is a more flexible model, maybe some kind of spline, one dimensional version of the thin plate spline. And then the green one is a much more flexible version of that. You can see it gets closer to the data. Now since this is a simulated example, we can compute the mean squared error on a very large population of test data. And so in the right hand plot, we plot the mean squared error for this large population of test data. And that's the red curve. And you'll notice that it starts off high for the very rigid model. It drops down and becomes quite low for the in between model. But then for the more flexible model, it starts increasing again. Of course, the mean squared error on the training data-- that's the grey curve-- just keeps on decreasing. Because the more flexible the model, the closer it gets to the data point. But for the mean squared error on the test data, we can see there's a magic point, which is the point at which it minimizes the mean squared error. And in this case, that's this point over here at flexibility = 5. And it turns out its pretty much spot on for the medium flexible model in this figure. And if you look closely at the plot, you will see that the blue curve actually gets fairly close to the black curve. OK. Again, because this is a simulation model, the horizontal dotted line is the mean squared error that the true function makes for data from this population. And of course, that is the irreducible error, which we call the variance of epsilon. 
+So we've drawn histograms instead of density functions. Now, what we do is we actually need to estimate, for the Gaussian rule, the means, and the two populations, and the common standard deviation. Well, in this case, the true means are -1.5 and 1.5, which means the average mean is 0. And the probabilities were 0.5. But we don't know these. So we're going to estimate them from the observed data and then plug them into the rule. 
 
-##### Slide 19:
+*Slide 26:* 
 
-*Hastie:* Here's another example of the same kind. But here, the two functions are actually very smooth. 
+*Hastie:* So this is how we estimate them. The priors, we need to estimate them. So that's just the number in each class divided by their total number.
+
+$$\hat{\pi}_k=\frac{n_k}{n}$$
+
+That's obvious. The means in each class, we just compute the sample mean in each of the classes. 
+
+$$\hat{\mu}_k=\frac{1}{n_k}\displaystyle\sum_{i:y_i=k}x_i$$
+
+This is a tricky little notation here. This is $$\frac{1}{n_k}$$, that's the number in class $$k$$. And this is the sum over $$i$$ such that $$y_i$$ is equal to $$k$$. So $$y_i$$ is recording the class label. So this will just sum those $$x_i$$'s that are in class $$k$$. And clearly that's the right thing to do to get the sample mean. The $$\sigma^2$$ is a little trickier.
+
+$$\hat{\sigma}^2=\frac{1}{n-K}\displaystyle\sum_{k=1}^{K}\displaystyle\sum_{i:y_i=k}(x_i-\hat{\mu}_k)^2$$
+
+We're assuming that the variance is the same in each of the classes. And so this is a formula, it's called a pooled variance estimate. So we subtract from each $$x_i$$ the mean for its class. So this is what we do if we were computing the variance in class $$k$$. But we sum all those square differences. And we sum them over all the classes and then divide it by $$n - k$$. So if that doesn't make too much sense, another way of writing that is in this form over here, which says we estimate the sample variance separately in each of the classes.
+
+$$=\displaystyle\sum_{k=1}^{K}\frac{n_k-1}{n-K}\cdot\hat{\sigma}_k^2$$
+
+And then we average them using this formula over here. So this is just like a weight on each of those variances. And that weight is to do with how many observations were in that class relative to the total number of observations. And then the minus 1 and the minus $$k$$, that's a detail. And it's to do with how many parameters we've estimated for each of these estimates. It's one parameter. It's a mean. Rob's falling asleep. Sorry. Too much detail, Rob? (Exactly. Way too much detail.) OK. So there we have it. Those are the formulas. You plug those back in, you'll now get estimated decision boundary. And instead of being exactly zero, it's, in this case, slightly to the left of zero, but pretty close.
+
+## Multivariate Linear Discriminant Analysis and ROC Curves
 
 <center>
-<img src="Images/2.13.PNG" alt="Smooth Function Fitting" style="max-height:400px">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/X4VDZDp2vqw?list=PL5-da3qGB5IC4vaDba5ClatUmFppXLAhE" style="border:none" allowfullscreen></iframe>
 </center>
-{:refdef: style="text-align: center;"}
-**Figure 2.12**-- *The truth is smoother, so the smoother fit and linear model do well*
+
+*Slide 27:* 
+
+*Hastie:* OK, so that was with a single variable, and usually when you do classification, we've got more than one variable. So now we're going to go to multi-variant Gaussians. So here's a picture of the Gaussian density when we've got two variables.
+
+<center>
+<img src="Images/4.12.PNG" alt="3D Gaussian Density" style="max-height:400px">
+</center>
+{:refdef: style="text-align:center"}
+**Figure 4.12**-- *Gaussian density with 2 variables*
+{: refdef:}
+
+So it's one of these fancy-looking three dimensional plots. (It's beautiful.) Beautiful, isn't it? The height's color coded, could you make a plot like this, Rob? (I could try, and then you'd criticize it. You do criticize it.) The beautiful thing is that R made this plot with very little work from us. So there's two variables, $$x_1$$ and $$x_2$$, and you can see the Gaussian density in two dimensions looks like a bell function. And this is-- left hand case is the case when two variables are uncorrelated, so it's just really like a bell. And the right hand case is when there's correlation, so now it's like a stretched bell. See there's positive correlation between $$x_1$$ and $$x_2$$. So those are pictures of the densities. The formula for the density doesn't look nearly as pretty, and here it is over here.
+
+$$f(x)=\frac{1}{(2\pi)^{\frac{p}{2}}|\Sigma|^{\frac{1}{2}}}e^{-\frac{1}{2}(x-\mu)^T\Sigma^-1(x-\mu)}$$
+
+And it's somewhat complex. (We should go over this in great detail. Excruciating detail, please.) I have a feeling that's a hint not to go into it in great detail. Anyway, this is just a generalization of the formula we had for a single variable. This is called a covariance matrix, and if you stare at this formula, and you stare at the previous formula, you will see that they're somewhat similar, especially if you know a bit of vector algebra. If you go through the simplifications, if you know your linear algebra, you can go through and do the cancellation similar to what we did before, you can get the discriminant function which is given over here. 
+
+$$\delta_k(x)=\underbrace{x^T\Sigma^{-1}\mu_k}_{x\textit{ coefficient}}-\underbrace{\frac{1}{2}\mu_k^T\Sigma^{-1}\mu_k+\text{log}\pi_k}_{\textit{constant term}}$$
+
+And it looks complex, but important thing to note is that it's, again, linear in $$x$$. Here's $$x$$ alone multiplied by a coefficient vector, and these are all just constants. So this, again, is a linear function. If the math's beyond you, don't let it bother you. This is a linear function, and we'll make that more clear a little bit later on, as well, that this is a linear function. In fact, we make it clear right here. It might look complex, but this can just be written in this form over here.
+
+$$\delta_k(x)=c_{k0}+c_{k1}x_1+c_{k2}x_2+\dotsb+c_{kp}x_{p}$$
+
+It's a linear function. So the $$c_{k0}$$-- so this is a function for class $$k$$-- $$c_{k0}$$ is built up of all these pieces over here. And then each of the coefficients of $$x_1$$, $$x_2$$, up to $$x_p$$ come from this part over here. Remember, $$x$$ is a vector in this case. And so you can expand this expression and get this term over here. And I think I forgot to mention it before. What the idea of the discriminant function is, you compute one of these for each of the classes, and then you classify it to the class for which it's largest. You pick the discriminant function that's largest. 
+
+*Slide 28:* 
+
+*Hastie:* Well, we can draw other nice pictures for discriminant analysis similar to the one-dimensional picture we drew before. So here, we've got two variables and three classes. 
+
+<center>
+<img src="Images/4.13.PNG" alt="Discriminant With 3 Classes" style="max-height:400px">
+</center>
+{:refdef: style="text-align:center"}
+**Figure 4.13**-- $$p=2$$ *and* $$K=3$$ *classes, where* $$\pi_1=\pi_2=\pi_3=\frac{1}{3}$$
 {: refdef}
 
-Same setup. Well, now we see that the mean squared error, the linear model does pretty well. The best model is not much different from the linear model. And the wiggly one, of course, is overfitting again and so it's making big prediction errors. The training arrow, again, keeps on going down. 
+And instead of showing those density plots, what we do is show contours, in this case, of the density. So here's the blue class. And we show the contour of a particular level of probability for the blue class, for the green class, and for the orange class. And lo and behold-- and the decision boundary is the dotted line here. And it's really very pretty. It shows you where you classify to blue versus orange, and it's exactly where it cuts-- the line goes exactly through the points where the contours are cut, both for the orange to blue, for the blue to green, and for the green to orange. And you can see they all meet in the middle over here, right in the center over here. And so if you knew the true densities, it would tell you exactly-- and in this case, the Gaussian-- you get the exact decision boundaries. Again, these are called the *Bayes decision boundaries.* These are the true decision boundaries. Now, of course, we don't. But we go ahead and estimate the parameters for the Gaussians in each of the class using formulas similar to what we had before, but appropriate for this multivariate case. So in this case, we've got to get the mean for $$x_1$$ and $$x_2$$ for the blue class-- it's about there-- for the green class, with data points about there, for the orange class, say there. And then we plug them into the formula. Instead of getting the dotted lines, we get the solid lines. And in this case, it's remarkably close. Now, these data were actually generated from a Gaussian distribution, so it's not too surprising that we got close. But with relatively few points, we get decision boundaries that look pretty close to the real ones. 
 
-##### Slide 20:
+*Slide 29:* 
 
-*Hastie:* And finally, here's quite a wiggly true function on the left.
+*Hastie:* You cannot learn about discriminant analysis without seeing Fisher's iris data. 
 
 <center>
-<img src="Images/2.13.PNG" alt="Wiggly Function Fitting" style="max-height:400px">
+<img src="Images/4.14.PNG" alt="Iris Data" style="max-height:400px">
 </center>
-{:refdef: style="text-align: center;"}
-**Figure 2.12**-- *The truth is wiggly, so the more flexible fits do well*
+{:refdef: style="text-align:center"}
+**Figure 4.14**-- *Blue is Setosa, Orange is Versicolor, Green is Virginica*
 {: refdef}
 
-The linear model does a really lousy job. The most flexible model does about the best. The blue model and the green model are pretty good, pretty close together, in terms of the mean squared error on the test data. So I think this drums home the point. Again, the training mean squared error just keeps on going down. So this drums home the point that if we want to have a model that has good prediction error-- and that's measured here in terms of mean squared prediction error on the test data-- we'd like to be able to estimate this curve. And one way you can do that, the red curve. You can do that is to have a hold our test data set, that you can value the performance of your different models on the test data set. And we're going to talk about ways of doing this later on in the course. 
+It's maybe one of the most famous datasets around. It studies three species of iris. These species are setosa, versicolor, and virginica, and they're color-coded in a scatter plot matrix again, with three colors in this case. And the four variables that are going to be used to try and automatically classify these three classes, sepal length, sepal width, petal length, and petal width. So these are aspects of the flower. And there's 50 samples in each class. Now, if you look at these scatter plots, you can see that there's some really good separation. For example, in this plot of petal length and petal width, the blue class really stands out as being different from the other two classes. They seem to be more confused in some of the plots, and in some, there's slightly more separation. But the idea here is to use all of these variables together to come up with a discriminant rule and classify. And so this was a motivating example that Fisher used in his first description of linear discriminant analysis. And in fact, it's often known as Fisher's linear discriminant analysis. Importantly, what comes with discriminant analysis is a nice plot. In this previous picture, there's four variables, so we showed a scatter plot matrix of each variable against the rest. 
 
-##### Slide 21:
+*Slide 30:* 
 
-*Hastie:* I want to tell you about one aspect of this, which is called a bias-variance trade-off. So again, we've got $$\hat{f}(x)$$, which is fit to the training data, **Tr**. And let's say $$x_0, y_0$$ is a test observation drawn from the population. And we're going to evaluate the model at the single test observation, OK? And let's suppose the true model is given by the function $$f$$ again, where $$f$$ is the regression function or the conditional expectation in the population. So let's look at the expected prediction error between $$\hat{f}(x_0)$$.
-
-$$E(y_0 - \hat{f}(x_0))^2 = \text{Var}(\hat{f}(x_0)) + [\text{Bias}(\hat{f}(x_0))]^2 + \text{Var}(\epsilon)$$
-
-So that's the predicted model. The fitted model on the training data evaluated at the new point $$x_0$$. And see what the expected distance is from the test point, $$y_0$$. So this expectation averages over the variability of the new $$y_0$$, as well as the variability that went into the training set used to build $$\hat{f}$$. So it turns out that we can break this. We can break up this expression into three pieces exactly. The one piece is again the irreducible error that comes from the random variation in the new test point, $$y_0$$, about the true function $$f$$. But these other two pieces break up the reducible part of the error, what we called the reducible part before, into two components. One is called the variance of $$\hat{f}$$, Var$$(\hat{f}(x_0))$$. And that's the variance that comes from having different trainings sets. If I got a new training set and I fit my model again, I'd have a different function $$\hat{f}$$. But if I were to look at many, many different training sets, there would be variability in my prediction at $$x_0$$. And then, a quantity called the bias of $$\hat{f}$$. And what the bias is the difference between the average prediction at $$x_0$$ averaged over all these different training sets, and the truth $$f(x_0)$$, $$[\text{Bias}(\hat{f}(x_0))]^2$$. And what you have is, typically as the flexibility of $$\hat{f}$$ increases, its variance increases. Because it's going after the individual training set that you've provided, which will of course be different from the next training set. But its bias decreases. So choosing the flexibility based on average test error amounts to what we call a bias-variance trade-off. This will come up a lot in future parts of the course. 
-
-##### Slide 22:
-
-*Hastie:* For those three examples, we see the bias-variance trade-off.
+*Hastie:* But it turns out that there's a single plot that captures the classification information for all of them. And here it is.
 
 <center>
-<img src="Images/2.15.PNG" alt="Bias-Variance Trade-off" style="max-height:400px">
+<img src="Images/4.15.PNG" alt="Discriminant Plot" style="max-height:400px">
 </center>
-{:refdef: style="text-align: center;"}
-**Figure 2.14**-- *Trade-offs between biase and variance. Red is MSE, Blue is Bias, Orange is Variance*
+{:refdef: style="text-align:center"}
+**Figure 4.15**
 {: refdef}
 
-Again, in this part the red curve is the mean squared error on the test data. And then below it, we have the two components of that mean squared error, the two important components, which are the bias and the variance. And in the left plot, we've got the bias decreasing and then flattening off as we get more flexible, and the variance increasing. And when you add those two components, you get the u-shaped curve. And in the middle and last plots that correspond to the other two examples, the same decomposition is given. And because the nature of their problem changed, the trade-off is changing. OK, so we've seen now that choosing the amount of flexibility of a model amounts to a bias-variance trade-off. And depending on the problem, we might want to make the trade-off in a different place. And we can use the validation set or left out data to help us make that choice. But that's the choice that needs to be made to select the model. Now, we've been addressing this in terms of regression problems. In the next segment, we're going to see how all this works for classification problems.
+And I've got discriminant variable one and discriminant variable two as the horizontal and vertical axes. And it turns out these are linear combinations of the original variables. But they're special linear combinations. And when you plot the variables against these two, you see really good separation. And these arise from actually performing the linear discriminant analysis. Because you've got three classes, what Fisher's linear discriminant analysis is really doing-- or Gaussian LDA is really doing-- is it's measuring which centroid is the closest. But it's measured in a distance that takes into account the covariance of the variables. But ignoring the covariance for a moment, the three centroids actually line in a plane, a subspace of the four-dimensional space. And it's really distance. So if you have three points, they span a two dimensional subspace. And that's essentially what we plot in here, is the two-dimensional subspace. So seeing which class is closest really amounts to distance in that subspace. And that leads to these nicely dimensional plots. And so we have three classes here. We can make a two-dimensional plot, and it captures exactly what's important in terms of the classification. And when we have more than three classes, we can still find two-dimensional plots. But in that case, it doesn't capture all the information, the two-dimensional plot. But you can find the base two-dimensional plot for visualizing the discriminant rule. And that's another important reason why linear discriminant analysis is very popular for multi-class classification. 
 
-## Classification Problems and K-Nearest Neighbors 
+*Tibshirani:* Keep in mind, this case, we only have four features, four variables, right? Discriminant analysis was a very attractive method. But imagine we had 4,000 features. Then, what we just did was the covariance matrix. We had to plug in an estimate of the covariance matrix. If you have 4,000 features, that covariance matrix would be of size 4,000 by 4,000. 
 
-<center>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/vVj2itVNku4?list=PL5-da3qGB5IDvuFPNoSqheihPOQNJpzyy" style="border:none" allowfullscreen></iframe>
-</center>
+*Hastie:* Yes, that's a great point, Rob. And we just can't carry out discriminant analysis without other modifications if the number of variables are very large. And we can talk about some ways of doing that. And later on in the class, we'll talk about it in more ways. 
 
-##### Slide 23: 
+*Slide 31:* 
 
-*Hastie:* OK, up till now, we've talked about estimating regression functions for quantitative response. And we've seen how to do model selection there. Now we're going to move to classification problems. And here, we've got a different kind of response variable. It's what we call a qualitative variable. For example, email is one of two classes, spam or ham, ham being the good email. And if we classify in digits, it's one of 0, 1, up to 9, and so it's a slightly different problem. Our goals are slightly different as well. Here, our goals are to build a classifier, which we might call $$C(X)$$, that assigns a class label from our set $$C$$ to a future, unlabeled observation $$X$$, where $$X$$ is the feature vector. We'd also like to assess the uncertainty in each classification, and we'd also like to understand the roles of the different predictors amongst the $$X$$'s in producing that classify. And so we are going to see how we do that in the next number of slides. 
+*Hastie:* We've talked about discriminant functions, which is telling you how you classify. But it turns out that you can turn these into probabilities very easily. And here's the expression over here.
 
-##### Slide 24:
+$$\widehat{\text{Pr}}(Y=k|X=x)=\frac{e^{\hat{\delta}_k(x)}}{\sum_{l=1}^{K}e^{\hat{\delta}_l(x)}}$$
 
-*Hastie:* OK. To try and parallel our development for the quantitative response, I've made up a little simulation example. And we've got one $$x$$, one $$Y$$. The $$Y$$ takes on two values in this example. The values are just coded as 0 and 1. And we've got a big sample of these $$Y$$'s from a population.
+And so remember we got the $$\delta_k$$s by doing a lot of simplification. Well, it turns out that those simplifications and cancellations hold exactly for computing the probabilities. So in other words, those expressions we had earlier for computing the probabilities-- let's go back to it-- for example, here's an expression here that's used for computing the probabilities (Slide 27). Where is it? This is the expression for the single variable case, with all these constants in there. All the cancellation happens, and we get to this nice simple expression over here, which just involves the discriminant functions. So see, you can see if you can actually show that as well. It's not that hard to show. And so not only does discriminant analysis give us a classified. It also gives us the probabilities. When $$K$$ is 2, we'll classify to class two if these probabilities are bigger than 0.5, else to class one, just like in logistic regression. 
 
-<center>
-<img src="Images/2.16.PNG" alt="Quantitative Model Fitting" style="max-height:400px">
-</center>
-{:refdef: style="text-align: center;"}
-**Figure 2.15**
-{: refdef}
+*Slide 32:* 
 
-So each little vertical bar here indicates an occurrence of a zero, the orange vertical bars, as a function of the $$X$$'s. And at the top, we've got where the ones occurred, OK? So this scatter plot's much harder to read. You can't really see what's going on. And there's a black curve drawn in the figure. And the back curve was what actually generated the data. The black curve is actually showing us the probability of a one in the model that I used to generate the data. And so up in this region over here, the high values of $$X$$, there's a higher probability of a 1, close to 90% of getting a one. And so of course, we see more blue ones there than we see zeroes down there. And even though it's hard to see, there's a higher density of zeroes in this region over here, where the probability is 0.4 of being a 1, versus a 0 it's 0.6. OK, so we want to talk about what is an ideal classifier $$C(X)$$. OK, so let's define these probabilities that I was talking about. And we'll call $$p_k(x)$$, this quantity over here, that's a conditional probability that $$Y$$ is $$k$$ given $$X$$ is $$x$$.
-
-$$p_k(x) = \text{Pr}(Y = k|X = x), k = 1,2,\dotsc,K$$
-
-In this case, we're just looking at probability of 1 in the plot. We're just showing the probability that $$Y$$ is 1 is only two classes. But in general, they'll be, say, capital $$K$$ classes. And they'll be capital $$K$$ of these conditional probabilities. Now in classification problems, those conditional probabilities completely capture the distribution, the conditional distribution, of $$Y$$ given $$X$$. And it turns out, that those also deliver the ideal classifier. We call the Bayes Optimal Classifier the classifier that classifies to the class for which the conditional probability for that element of the class is largest. It makes sense. You go to any point. So here we've gone to point 5 in the $$X$$ space. And you look above it, and you see that there's about 80% probability of a 1, and 20% probability of a 0. And now we're going to say, well, if you were to classify to one class at that point, which class would you classify to? Well, you're going to classify to the majority class, OK? And that's called the Bayes Optimal Classifier.
-
-$$C(x) = j \text{ if } p_j(x) = \text{max}\{p_1(x),p_2(x),\dotsc,p_K(x)\}$$
-
-##### Slide 25:
-
-*Hastie:* Here's the same example, except now we've only got a handful of points. We've got 100 points having one of the two class labels.
+*Hastie:* Here's the credit data. And we produce, in this case, misclassification table. So this table, along the horizontal, it's got the true status.
 
 <center>
-<img src="Images/2.17.PNG" alt="Nearest-neighbor Averaging" style="max-height:400px">
+<img src="Images/4.16.PNG" alt="LDA Credit Data" style="max-height:400px; max-width:450px">
 </center>
 {:refdef: style="text-align: center;"}
-**Figure 2.16**
+**Figure 4.16**
 {: refdef}
 
-The story is the same as before. We can't compute the conditional probabilities exactly, say, at the point 5. Because in this case, we have got 1 at five and no 0s. So we send out a neighborhood, say, and gather 10% of the data points. And then estimate the conditional probabilities by the proportions, in this case of 1s and 0s in the neighborhood. And those are indicated by these little bars here. These are meant to represent the probabilities or proportions at this point, 5. And again, there's a higher proportion of 1s here than 0s. I forgot to say that in the previous slide, that's the same quantity over here that's indicating the probabilities of the ones and the zeroes. This is the exact in the population. And here it is estimated with the nearest neighbor average. So here we've done the nearest neighbor classifying in one dimension. And we can draw a nice picture. But of course, this works in multiple dimensions as well, just like it did for regression. So suppose we, for example, have two $$x$$'s, and they lie on the floor. And we have a target point, say this point over here, and we want to classify a new observation that falls at this point. Well, we can spread out a little, say, circular neighborhood, and gather a bunch of observations who fall in this neighborhood. And we can count how many in class one, how many in class two, and assign to the majority class. And of course, this can be generalized to multiple dimensions. In all the problems we had with nearest neighbors for regression, the curse of dimensionality when the number of dimensions gets large also happens here. In order to gather enough points when the dimensions really high, we have to send out a bigger and bigger sphere to capture the points and things start to break down, because it's not local anymore. 
+So it's a true default status, which is no or yes. You can see we have 10,000 samples in the credit data. And in the vertical, we've got the predicted status, no or yes. So of course, we'd like everything to lie on the diagonal. It turns out we got a lot of the no's right and not that many of the yes's right. So on the diagonal is what you got correct. On the off diagonals is what you got incorrect. Nevertheless, overall we make 2.75% misclassification errors here. So this is called a confusion matrix. It tells how well you did. Now, there's some caveats. This is training error. We fit the rule to these data, and now we see how well it performs on these data. So we may be over-fitting. Well, we've got 10,000 training samples here, and we've only fit a handful of parameters. So it's very unlikely in this case that we're over-fitting. For small training sets, that would be an issue, and you would need to have a separate test set. Another thing to note is that although 2.75% seems like a really good misclassification, right? If we just use a very naive classification rule and say always classify to the largest class-- in other words, classify according to the prior-- we'd only make 3.33% errors because there's a predominance of no's in this dataset. The total number of no's is 333 out of 10,000. So this we call the null rate. And so you always bear in mind the null rate when getting excited about a misclassification error rate. The other thing to look at, though, is you can break the errors into different kinds. So of the true no's, we make 0.2% errors. So we hardly ever misclassify a no. But of the yes's, we make a whopping 75.7% errors. So the errors are very lopsided in this case. And that's maybe not such a good idea. 
 
-##### Slide 26:
+*Slide 33:* 
 
-*Hastie:* So, some details. Typically, we'll measure the performance of the classifier using what we call them misclassification error rate. And here, it's written on the test data set. The error is just the average number of mistakes we make, OK? So it's the average number of times that the classification, so $$\hat{C}$$ at a point $$x_i$$, is not equal to the class label $$y_i$$ averaged over a test set.
+*Hastie:* So we break down these errors into finer categories. So we call the *false positive rate* the fraction of negative examples that are classified as positive. So they're false positives. In that case, that was the 0.2% in this case. And the *false negative rate*, that's a fraction of positive examples that are classified as negative, 75.7% in this case. Now we produce the classification table by intuitively correct classifying default as yes if the probability of default was bigger than 0.5. But it gave us this very lopsided false positive and false negative rate. In some cases, especially for these kinds of screen-in examples, you may want to change the false positive and false negative rates and skew them to one side or the other. And you can do this by changing this *threshold.* Instead of classifying-- in this case, to default if it's bigger than 0.5, you can change the threshold and maybe make the threshold in this case smaller so that you can catch more of the high risk cases for default. 
 
-$$\text{Err}_{\textbf{Te}} = \text{Ave}_{i\in\textbf{Te}}I[y_i \neq \hat{C}(x_i)]$$
+*Slide 34:* 
 
-It's just the number of mistakes. So that's when we count a mistake, mistaking a 1 for a 0 and a 0 for a 1 as equal. There are other ways of classifying error, where you can have a cost, which gives higher cost to some mistakes than others. But we won't go into that here. So that base classifier, the one that used the true probabilities to decide on the classification rule, is the one that makes the least mistakes in the population. And that makes sense if you look at our population example over here. By classifying to one over here, we are going to make mistakes on about 20% of the conditional population at this value of $$x$$. But we'll get it correct 80% of the time. And so that's why it's obvious we want to classify to the largest class. We will make the fewest mistakes. Later on in the course, we are going to talk about support vector machines. And they build structured models for the classifier $$C(x)$$. And we'll also build structured models for representing the probabilities themselves. And there, we'll discuss methods like logistic regression and generalized additive models. The high dimensional problem is worse for modeling the probabilities than it is for actually building the classifier. For the classifier, the classifier just has to be accurate with regard to which of the probabilities is largest. Whereas if we're really interested in the probabilities themselves, we going to be measuring them on a much finer scale. 
-
-##### Slide 27:
-
-*Hastie:* OK, we'll end up with a two dimensional example of nearest neighbors. 
+*Hastie:* And so here we've done it as a function of the threshold. And we've just looked at negative thresholds, or decreasing thresholds.
 
 <center>
-<img src="Images/2.18.PNG" alt="Nearest-neighbor in 2D" style="max-height:400px">
+<img src="Images/4.17.PNG" alt="Varied Threshold" style="max-height:400px">
 </center>
-{:refdef: style="text-align: center;"}
-**Figure 2.17**
+{:refdef: style="text-align:center"}
+**Figure 4.17**-- *Varying the threshold*
 {: refdef}
 
-So this represents the truth. We got an $$X_1$$ and an $$X_2$$. And we've got points from some population. And the purple dotted line is what's called the Bayes Decision Boundary. Since we know the truth here, we know what the true probabilities are everywhere in this domain. And I indicated that all the points in the domain by the little dots in the figure. And so if you classify according to the true probabilities, all the points, all the region colored orange would be classified as the 1 class. And all the region colored blue would be classified as the 2 class. And the dotted line is called the decision boundary. And so that's a contour of the place where, in this case, there are two classes. It's a contour of where the probabilities are equal for the two classes. So that's an undecided region. It's called the decision boundary. 
+And so in this plot, we've got in black the overall error rate. In orange, we've got the false positive rate, and in blue, we've got the false negative rate. And so as we decrease the threshold, the false positive rate increases because now we're going to classify more and more negatives as positive. But it increases very slowly, you'll see, for a long part of the threshold going down, the decrease in threshold, the false positive rate doesn't increase very fast. Of course, the false negative rate increases as we do that. And so even at 0.1, the false positive rate hasn't increased a huge amount. And the false negative hasn't increased a huge amount. But we've changed the balance of classification. 
 
-##### Slide 28:
+*Slide 35:* 
 
-*Hastie:* OK, so we can do nearest neighbor, averaging in two dimensions. 
+*Hastie:* And so you can change the threshold. Well, you can capture that change in threshold in what's known as an ROC curve.
 
 <center>
-<img src="Images/2.19.PNG" alt="Nearest-neighbor for k=10" style="max-height:400px">
+<img src="Images/4.18.PNG" alt="ROC Curve" style="max-height:400px">
 </center>
-{:refdef: style="text-align: center;"}
-**Figure 2.18**-- *KNN: K = 10*
+{:refdef: style="text-algin:center"}
+**Figure 4.18**
 {: refdef}
 
+So what this shows is the two error rates, in this case, false positive rate and true positive rate, as we change the threshold. And we'd like the false positive rate to be low and the true positive rate to be high. And so this ROC curve traces out as we change the threshold. And the 45 degree line is the kind of no information line. And what you'd like is you'd like this curve to be right up as far as possible into the top left hand corner, so if you had a true positive rate of one and a false positive rate of zero. If you flipped a coin, you'd be on the straight line. You'd be on the straight line. And so this is a single curve that sort of captures the behavior of the classification rule for all possible thresholds. And you can compare different classifiers by comparing the ROC curves. And to summarize it even more, we sometimes use the *area under the curve*, or *AUC,* which captures the extent to which you're up in the northwest corner. And higher AUC is good.
 
-So of course what we do here is, at any given point when we want to classify-- let's say we pick this point over here-- we spread out a little neighborhood, in this case, until we find the 10 closest points to the target point. And we'll estimate the probability at this center point here by the proportion of blues versus oranges. And you do that at every point. And if you use those as the probabilities, you get this somewhat wiggly black curve as the estimated decision boundary. And you can see it's actually, apart from the somewhat ugly wiggliness, it gets reasonably close to the true decision boundary, which is, again, the purple dashed line, or curve. 
-
-##### Slide 29:
-
-*Hastie:* OK, in the last slide, we used $$K = 10$$. We can use other values of $$K$$. $$K = 1$$ is a popular choice. 
+## Quadratic Discriminant Analysis and Naive Bayes
 
 <center>
-<img src="Images/2.20.PNG" alt="Nearest-neighbor With Varied K" style="max-height:400px">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/6FiNGTYAOAA?list=PL5-da3qGB5IC4vaDba5ClatUmFppXLAhE" style="border:none" allowfullscreen></iframe>
 </center>
-{:refdef: style="text-align: center;"}
-**Figure 2.19**
-{: refdef}
 
-This is called the nearest neighbor classifier. And we take literally at each target point, we find the closest point amongst the training data and classify to its class. So for example, if we took a point over here, which is the closest training point? Well, this is it over here. It's a blue. So we'd classify this as blue. Right, when you're in a sea of blues, of course the nearest point is always another blue. And so you'd always classified as blue. What's interesting is as you get close to some of the orange points. And what this gives you-- you can see the boundary here is a piecewise linear boundary. Of course, the probabilities that we estimate is just one and zero, because there's only one point to average. So there's no real probabilities. But if you think about the decision boundary, it's a piecewise linear decision boundary. And it's gotten by looking at the bisector of the line separating each pair of points when they're of different colors. So you get this very ragged decision boundary. You also get little islands. So for example, there's a blue point and a sea of oranges here. So there's a little piecewise linear boundary around that blue point. Those are the points that are closest to that blue point, closer to the blue point than the oranges. Again, we see the true boundary here, or the best base decision boundary is purple. This nearest neighbor average approximates it in a noisy way. Now then, you can make k really large. Here, we've made $$K$$ 100. And the neighborhood's really large. There's 200 points here. So it's taken half the points to be in any given neighborhood. So let's suppose our test point was over here. We'd be sending out quite a big circle, gathering 100 points, getting the proportional of blues, the proportion of oranges, and then making the boundary. So as k gets bigger, this boundary starts smoothing out and getting less interesting in this case. It's almost like a linear boundary over here, and doesn't pick up the nuances of the decision boundary. Whereas with $$K = 10$$, it seemed like a pretty good choice, and of approximates that this is the decision boundary pretty well. OK, so the choice of $$K$$ is a tuning parameter. 
+*Slide 36:* 
 
-##### Slide 30:
+*Hastie:* OK. That's discriminant analysis when we use Gaussian densities. But now the form that we wrote down is quite general. 
 
-*Hastie:* And that needs to be selected. And here we showed what happens as you vary $$K$$, first on the training data and then on the test data.
+$$\text{pr}(Y=k|X=x)=\frac{\pi_kf_k(x)}{\sum_{l=1}^{K}\pi_lf_l(x)}$$
+
+And you can use other estimates of densities and plug them into this rule and get classification rules. Up till now we've been using Gaussian densities with the same variance for the $$X$$'s in each class. What if the variances are different in each class? Well, you can plug those forms in. And then remember we had that magic cancellation because of the equal variances? Well, when the variances are different in each class, the quadratic terms don't cancel. And so now your discriminant functions are going to be quadratic functions of $$X$$. OK? That's one form. It's called quadratic discriminant analysis. Another thing you can do-- and especially this is useful when you have a large number of features, like the 4,000 or so that Rob mentioned, when you really wouldn't want to estimate these large covariance matrices-- you can assume that in each class the density factors into a product of densities. That amounts to saying that the variables are conditionally independent in each of the classes. And if you do that and plug it into this formula over here, you get something known as the naive Bayes classifier. 
+
+$$f_k(x)=\prod_{j=1}^{p}f_{jk}(x_j)$$
+
+For linear discriminant analysis, this means that the covariances, $$\sigma_k$$ are diagonal. And instead of estimating the covariance matrix, if you've got $$p$$ variables it's got $$p^2$$ parameters. But if you assume that it's diagonal, then you need to estimate $$p$$ parameters again. 
+
+*Tibshirani:* And although the assumption seems very crude-- the assumption is wrong-- this naive Bayes classifier is actually very useful in high-dimensional problems. And it's one actually we'll return to later in different forms. 
+
+*Hastie:* Right. In fact, we'd probably think it's always wrong, wouldn't we, Rob? (Right.) Yeah. And so what happens is we end up with quiet flattened and maybe biased estimates for the probabilities. But in terms of classification, you just need to know which probability's the largest to classify it. So you can tolerate quite a lot of bias and still get good classification performance. And what you get in return is much reduced variance from having to estimate far fewer parameters. Then there's much more other general forms where we don't assume Gaussian at all. We can estimate the densities using our favorite density estimation technique and then go and plug them back into this formula, and that'll give you a classification rule. That's a very general approach that can be used. And in fact, many of the classifiers that we know we can understand from this point of view. 
+
+*Slide 37:* 
+
+*Hastie:* So here we have it. Quadratic discriminant analysis uses a different covariance matrix for each class. 
 
 <center>
-<img src="Images/2.21.PNG" alt="K Variation" style="max-height:400px">
+<img src="Images/4.19.PNG" alt="Quadratic Discriminant Analysis" style="max-height:400px">
 </center>
-{:refdef: style="text-align: center;"}
-**Figure 2.20**
+{:refdef: style="text-align:center"}
+**Figure 4.19**-- $$\delta_k(x)=-\frac{1}{2}(x-\mu_k)^T\sigma_k^{-1}(x-\mu_k)+\text{log}\pi_k$$
 {: refdef}
 
-So on the training data; $$K$$ tends to just keep on decreasing. It's not actually monotone. Because we've actually indexed this as 1/$$K$$, because as 1/$$K$$ gets big, let's see. $$K$$ large means we get a higher bias, so 1/$$K$$ small. So this is the low complexity region. This is the high complexity region. Now you notice that the training error for one nearest neighbors, which is right down at the end here, 1/$$K = 1$$ is zero. Well, if you think about it, that's what it's got to be, if you think about what training error is. For the test error, it's actually started increasing again. This horizontal dotted line is the Bayes error, which you can't do better than the Bayes error in theory. Of course, this is a finite test data set. But it actually just touches on the Bayes error. It starts decreasing, and then at some point, it levels off and then starts increasing again. So if we had a validation set available, that's what we use to determine $$K$$. So that's nearest neighbor classification. Very powerful tool. It's said that about one third of classification problems, the best tool will be nearest neighbor classification. On the handwritten zip code problem, the classifying handwritten digits, nearest neighbor classifiers do about as well as in any other method tried. So it's a powerful technique to have in the tool bag, and it's one of the techniques that we'll use for classification. But in the rest of the course, we'll cover other techniques as well, in particular, with the support vector machines, various forms of logistic regression and linear discriminant analysis.
+And so there's no cancellation of the $$\sigma$$s. The discriminant functions now have this distance term that involves $$\sigma_k$$, which is for the $$k^{\text{th}}$$ class. There's a term to do with the prior probability, and there's a determinant term that comes from the covariance matrix. And you can see it gives you a curved discriminant boundary. And the quadratic terms matter here, because they're different. In the left plot here, we see a case when the true boundary really should be linear. That's the dotted curve. And in this case, of course linear discriminant analysis does a good job. Quadratic discriminant analysis curves somewhat and gives a slight bent boundary. But it won't really affect most classification performance much. In the right hand plot, on the other hand, the true data came from a situation where the covariance were different. The Bayes decision boundary is curved, and the quadratic discriminant analysis pretty much got it, whereas linear discriminant analysis gives you quite a different boundary in that case. 
+
+*Slide 38:* 
+
+*Hastie:* Quadratic discriminant analysis is attractive if the number of variables is small. When the number of variables or features is large, you've got to estimate these big covariance matrices, and things can break down. And even for LDA it can break down. Here's where naive Bayes becomes attractive. It makes a much stronger assumption. It assumes that the covariance in each of the classes, although different, are diagonal.
+
+$$\delta_k(x)\propto\text{log}\left[\pi_k\displaystyle\prod_{j=1}{p}f_{kj}(x_j)\right]=-\frac{1}{2}\displaystyle\sum_{j=1}^{p}\frac{(x_j-\mu_{kj})^2}{\sigma_{kj}^2}+\text{log}\pi_k$$
+
+And so that's much fewer parameters. Now when you look at the discriminant functions, because diagonal and Gaussian means that the densities are independent and so we have this product here, when we take logs we get a relatively simple expression, which is in each class there's a contribution of the feature from the mean for the class scaled by the variance, there's the determinant term, and there's the prior term. This is the discriminant function for the $$k^{\text{th}}$$ class for naive Bayes. And you compute one of these for each of the classes, then you classify it. You can use *mixed* features for naive Bayes. And in that case, what we mean by that is some qualitative and some quantitative futures. For the quantitative ones, we'd use the Gaussian. And for the qualitative ones, we replace the Gaussian densities by just histograms or probability mass functions, in this case, over the discrete categories. Naive Bayes is very handy from this point of view. And even though it has strong assumptions, it often produces good classification results. Because also, once again in classification, we're mainly concerned about which class has the highest probability and not whether we got the probabilities exactly right. 
+
+*Slide 39:* 
+
+*Hastie:* OK. We've seen two forms of classification, logistic regression and linear discriminant analysis. And we saw its generalizations. How do they differ? It seems there may be similarities between the two. Now it turns out you can show for linear discriminant analysis that if you take it's-- We had expression for the probabilities for each of the classes. So if you have two classes, we can show that if you take the log odds, just like we did in logistic regression, which is the log of the probability for class one versus the probability for class two, it's a linear function of $$X$$ for two classes. It's got exactly the same form as logistic regression. They both give you linear logistic models. So the difference is in how the parameters are estimated. Logistic regression uses the conditional likelihood based on probability of $$Y$$ given $$X$$. Remember, it was using the probabilities of a 1 or a 0 given $$X$$ in each of the classes. And in machine learning, this is known as discriminative learning using the conditional distribution of $$Y$$ given $$X$$. Discriminant analysis, it turns out it's estimating these parameters over here using the full likelihood. Because it's using the distribution of $$X$$'s and $$Y$$'s, whereas logistic regression was only using the distribution of $$Y$$'s. And in that case, it's known as generative learning. Remember, we modelled the means and variances of $$X$$ in each of the classes, and we modeled the prior probability. So that can be seen as modelling the joint distribution of $$X$$ and $$Y$$. That's one way of seeing what's different between the two. But despite these differences, in practice the results are often very similar. And you can use one method with the other, and you're going to get very similar results. As a footnote, logistic regression can also fit quadratic boundaries. We used quadratic discriminant analysis to get quadratic boundaries. But we can fit quadratic boundaries by explicitly including quadratic terms in the model. Just like we did in linear regression, in logistic regression we can put in $$X^2$$'s and $$X_i$$'s times $$X_j$$'s and terms like that and just explicitly get a quadratic boundary. 
+
+*Slide 40:* 
+
+*Hastie:* OK. That's the end of this section. That's an introduction to classification using these two very popular methods. And later on in the class, you're going to see that we're going to come back to some of these methods and look at more general versions of them and build richer classification rules. And importantly, we'll discuss another very popular method called the support vector machine, which is another approach to classification. 
+
+*Tibshirani:* And by way of coming attractions, the next section is going to be on cross-validation and bootstrap. In that section, we'll get to meet Brad Efron, who's our colleague and also was my PhD supervisor many years ago. And he was the person who invented the bootstraps. So he'll tell us a bit about the bootstrap and how he proposed it in his 1980 paper. Oh, fantastic.
