@@ -407,7 +407,7 @@ And then we average them using this formula over here. So this is just like a we
 </center>
 {:refdef: style="text-align:center"}
 **Figure 4.12**-- *Gaussian density with 2 variables*
-{: refdef:}
+{: refdef}
 
 So it's one of these fancy-looking three dimensional plots. (It's beautiful.) Beautiful, isn't it? The height's color coded, could you make a plot like this, Rob? (I could try, and then you'd criticize it. You do criticize it.) The beautiful thing is that R made this plot with very little work from us. So there's two variables, $$x_1$$ and $$x_2$$, and you can see the Gaussian density in two dimensions looks like a bell function. And this is-- left hand case is the case when two variables are uncorrelated, so it's just really like a bell. And the right hand case is when there's correlation, so now it's like a stretched bell. See there's positive correlation between $$x_1$$ and $$x_2$$. So those are pictures of the densities. The formula for the density doesn't look nearly as pretty, and here it is over here.
 
