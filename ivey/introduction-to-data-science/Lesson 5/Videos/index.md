@@ -43,7 +43,7 @@ So what do we have here? Well, first of all, along the horizontal axis is the mo
 
 ##### Slide 4: 
 
-*Tibshirani:* OK, so we can't use training error to estimate test error, as the previous picture shows us. So what do we do? Well, the best solution, if we have a large test set, we can use that. So we typically take our model that we've applied to fit on the training set applied to test set. But very often, we don't have a large test set. We if we can't do that, what do we do? Well, there are some ways to get an idea of test error using an adjustment to training error. Basically, training error can be too small, as we've see in the previous picture. So these methods adjust the training error by increasing it by a factor that involves the amount of fitting that we've done to the data and the variance. And these methods include the *C~p~* statistic, the *AIC* and the *BIC*. We'll talk about these later on in the course, not in this section. Here instead, we're going to talk about cross-validation, validation and cross-validation. And these involve removing part of the data, then holding it out, fitting the model to the remaining part, and then applying the fitted model to the data that we've held out. And this is called validation, or cross-validation, as we'll see. 
+*Tibshirani:* OK, so we can't use training error to estimate test error, as the previous picture shows us. So what do we do? Well, the best solution, if we have a large test set, we can use that. So we typically take our model that we've applied to fit on the training set applied to test set. But very often, we don't have a large test set. We if we can't do that, what do we do? Well, there are some ways to get an idea of test error using an adjustment to training error. Basically, training error can be too small, as we've see in the previous picture. So these methods adjust the training error by increasing it by a factor that involves the amount of fitting that we've done to the data and the variance. And these methods include the $$C_p$$ statistic, the *AIC* and the *BIC*. We'll talk about these later on in the course, not in this section. Here instead, we're going to talk about cross-validation, validation and cross-validation. And these involve removing part of the data, then holding it out, fitting the model to the remaining part, and then applying the fitted model to the data that we've held out. And this is called validation, or cross-validation, as we'll see. 
 
 ##### Slide 5: 
 
@@ -58,7 +58,7 @@ So what do we have here? Well, first of all, along the horizontal axis is the mo
 </center>
 {:refdef: style="text-align:center;"}
 **Figure 5.2**-- *The Validation Process*
-{: refdef:}
+{: refdef}
 
 We have our data set here. I've divided it in two at random. The blue part on the left is the training set. And the orange part on the right is the validation or hold-out set. These observations, for example, 7, 22, 13 and more of them were at random chosen to be in the training set. Observation 91 was at random chosen to be in the hold-out set. We fit the model to the blue part. And then we apply it and predict the observations in the orange part. And that's validation. Or we might call that twofold validation, where we-- well, maybe I shouldn't call it twofold, because as we'll see, we don't cross over. This is simply a one-stage process. We divide it in half, train on one half and predict on the other half. 
 
@@ -192,7 +192,7 @@ $$\widehat{\text{SE}}(\text{CV}_K)=\sqrt{\displaystyle\sum_{k=1}^{K}(\text{Err}_
 
 So this is a useful quantity. When we would draw a CV curve, we should always put a standard error band around the curve to get an idea of the variability. So in these previous pictures, we should've had a standard error band around the curves to give us an idea of how variable they are. I say here is a useful estimate, but not quite valid. Why is that? Dr. Hastie? 
 
-*Hastie:* Well, I wonder why. Well, the thing is, we're computing the standard error if these were independent observations. But they're not strictly independent. Error~$$k$$~ overlaps with, Error~$$j$$~ because they share some training samples. So there's some correlation between them. But we use this anyway. 
+*Hastie:* Well, I wonder why. Well, the thing is, we're computing the standard error if these were independent observations. But they're not strictly independent. Error$$_k$$ overlaps with, Error$$_j$$ because they share some training samples. So there's some correlation between them. But we use this anyway. 
 
 *Tibshirani:* We use it, and it's actually quite a good estimate. And people have shown this mathematically. An important point being that is that the cross-validation separates the training part of the data from the validation part. When we talk about bootstrap method in the next part of this section, we'll see that that's not the case, and that's going to cause a problem. So cross-validation explicitly separates the training set from the validation set in order to get a good idea of test error. OK. So this again, I'll reemphasize that cross-validation is a very important technique to understand, both for quantitative responses and classification.
 
