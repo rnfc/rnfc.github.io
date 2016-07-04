@@ -429,7 +429,7 @@ So again, this is equivalent to the Lagrange formulation for ridge regression we
 </center>
 {:refdef: style="text-align:center"}
 **Figure 6.9**-- *Black: Sqaured bias, Green: Variance, Purple: MSE* 
-{: refdef
+{: refdef}
 {:refdef: style="text-align:center"}}
 *Comparison between lasso (solid) and ridge regression (dashed)*
 {: refdef}
