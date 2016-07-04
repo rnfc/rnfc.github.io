@@ -3,12 +3,13 @@ layout: resource
 title: "Lesson 2 - Videos"
 ---
 
+
+
 ## Statistical Learning and Regression
-<br>
+
 <center>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/WjyuiK5taS8?list=PL5-da3qGB5IDvuFPNoSqheihPOQNJpzyy" style="border:none" allowfullscreen></iframe>
 </center>
-
 
 ##### Slide 1: 
 
@@ -126,7 +127,7 @@ We've got $$p$$ features. It's just got $$p + 1$$ parameters. And it says the fu
 <img src="Images/2.5.PNG" alt="Linear vs. Quadratic" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
-**Figure 2.5**-- *Top plot:* $$\hat{f}_L(X) = \hat{\beta}_0 + \hat{\beta}_1X$$
+**Figure 2.5**-- *Top plot:* $$\hat{f}_L(X) = \hat{\beta}_0 + \hat{\beta}_1X$$ \n
 *Bottom plot:* $$\hat{f}_Q(X) = \hat{\beta}_0 + \hat{\beta}_1X + \hat{\beta}_2X^2$$
 {: refdef}
 
@@ -231,7 +232,9 @@ And that may be a better reflection of the performance of our model.
 <img src="Images/2.12.PNG" alt="Function Fitting" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
-**Figure 2.11**-- *Left: Black curve is truth* \n
+**Figure 2.11**-- *Left: Black curve is truth*
+{: refdef}
+{:refdef: style="text-align: center;"}
 *Right: Red curve is* $$\text{MSE}_{\textbf{Te}}$$, *Grey curve is* $$\text{MSE}_{\textbf{Tr}}$$
 {: refdef}
 
