@@ -347,7 +347,8 @@ So our current model starts off at 0. And now repeatedly we're going to add in t
 
 $$\hat{f}(x)=\displaystyle\sum_{b=1}{B}\lambda\hat{f}^b(x)$$
 
-It's the sum of shrunken trees all $$B$$ of them growing to the data. Now, these trees are not independent of each other like they were in random forest and boosting, because each tree was growing to the residuals left over from the previous collection of tress. 
+It's the sum of shrunken trees all $$B$$ of them growing to the data. Now, these trees are not independent of each other like they were in random forest and boosting, because each tree was growing to the residuals left over from the previous collection of trees.
+
 ##### Slide 43: 
 
 *Tibshirani:* OK. So what's the idea behind this procedure? Well for a single tree, we can fit a large tree to the data. And if we fit the data hard with a large tree we can overfit. So in contrast, to the idea boosting is to learn more slowly. So we start with a $$y$$. We build the tree to $$y$$. And it can sometimes be a small tree. But rather than accept the full tree we shrink it back by a lot. By, for example, a factor of 0.01. And then we take residuals and repeat. So the idea being that instead of overfitting, we're going to fit very slowly. And at each tree try to pick up a small piece of the signal with the next tree. So instead of trying to grab a lot of signal with a large amount of fitting, it fits very slowly in small parts, shrinking each time in order to approximate the signal without overfitting. And as a nice consequence, we don't actually have to grow very large trees as we did in random forests. Quite often, smaller trees fit in this slow sequential manner will be very effective. 
