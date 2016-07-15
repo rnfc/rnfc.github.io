@@ -63,7 +63,7 @@ So the sum of their squares is 1. That now makes the problem a sensible one, to 
 *Tibshirani:* Exactly. So here's an example. 
 
 <center>
-<img src=Images/10.1.PNG alt="PCA Example">
+<img src="Images/10.1.PNG" alt="PCA Example">
 </center>
 {:refdef: style="text-align:center"}
 **Figure 10.1**
@@ -116,7 +116,7 @@ It's going to be a linear combination. We've got it now indexed by 2 instead of 
 *Hastie:* But let's first look at the results. So here's the results.
 
 <center>
-<img src=Images/10.2.PNG alt="USA Arrests PCA plot">
+<img src="Images/10.2.PNG" alt="USA Arrests PCA plot">
 </center>
 {:refdef: style="text-align:center"}
 **Figure 10.2**
@@ -133,7 +133,7 @@ This picture is called a biplot. And it's a way of displaying the principal comp
 *Hastie:* It's customary also to produce a table of the loadings.
 
 <center>
-<img src=Images/10.3.PNG alt="PCA loadings" style="max-width:300px">
+<img src="Images/10.3.PNG" alt="PCA loadings" style="max-width:300px">
 </center>
 {:refdef: style="text-align:center"}
 **Figure 10.3**
@@ -146,7 +146,7 @@ And so this just summarizes what we saw in the picture. So we see that in the fi
 *Hastie:* OK. So that's the primary use of principal components to come up with summaries of the data that explain mostly what's going on. But there's another view of principal components. And that's in terms of approximating a cloud of data by a low-dimensional hyperplane. And it turns out these two views are equivalent to each other.
 
 <center>
-<img src=Images/10.4.PNG alt="Hyperplane PCA">
+<img src="Images/10.4.PNG" alt="Hyperplane PCA">
 </center>
 {:refdef: style="text-align:center"}
 **Figure 10.4**
@@ -163,7 +163,7 @@ So here's a data set. It's an artificial data set. In the left-hand plot, we see
 *Hastie:* Now, I deferred those points. Scaling of the variable matters. So here's our first two principal components and our biplot again.
 
 <center>
-<img src=Images/10.5.PNG alt="PCA Scaling">
+<img src="Images/10.5.PNG" alt="PCA Scaling">
 </center>
 {:refdef: style="text-align:center"}
 **Figure 10.5**
@@ -189,7 +189,7 @@ Again, the $$z_i$$'s are going to have mean 0, because the original $$X$$'s at m
 
 $$\frac{\sum_{i=1}^nz_{im}^2}{\sum_{j=1}^p\sum_{i=1}^nx_{ij}^2}$$
 <center>
-<img src=Images/10.6.PNG alt="Proportion Variance">
+<img src="Images/10.6.PNG" alt="Proportion Variance">
 </center>
 {:refdef: style="text-align:center"}
 **Figure 10.6**
@@ -232,7 +232,7 @@ So this left plot on the crime data shows the proportion of variance explained b
 *Tibshirani:* But let's start with the simplest method-- K-means clustering. Before we describe it, lets see an example of the result of K-means clustering.
 
 <center>
-<img src=Images/10.7.PNG alt="K Means Clustering">
+<img src="Images/10.7.PNG" alt="K Means Clustering">
 </center>
 {:refdef: style="text-align:center"}
 **Figure 10.7**
@@ -273,7 +273,7 @@ So here's our optimization problem now. Here's the within-cluster variation. And
 *Tibshirani:* So let's see an example. And then we'll go back and see why that algorithm actually minimizes the objective that we wrote down. So here's an example, actually the same example we had before. 
 
 <center>
-<img src=Images/10.8.PNG alt="K Means Example">
+<img src="Images/10.8.PNG" alt="K Means Example">
 </center>
 {:refdef: style="text-align:center"}
 **Figure 10.8**
@@ -298,7 +298,7 @@ Here's our data. It's unlabeled data. And we've chosen $$K$$ equals 3. So in the
 *Tibshirani:* So actually, here's an example. If this is for the same data, here's an example where we start the algorithm from six different starting configurations.
 
 <center>
-<img src=Images/10.9.PNG alt="Different Starting Values">
+<img src="Images/10.9.PNG" alt="Different Starting Values">
 </center>
 {:refdef: style="text-align:center"}
 **Figure 10.9**
@@ -325,7 +325,7 @@ Remember, a starting configuration was we assigned each point at random to one o
 *Tibshirani:* So let's see the main idea, just in a picture.
 
 <center>
-<img src=Images/10.10.PNG alt="Hierarchical Clustering">
+<img src="Images/10.10.PNG" alt="Hierarchical Clustering">
 </center>
 {:refdef: style="text-align:center"}
 **Figure 10.10**
@@ -338,7 +338,7 @@ So here's some data with five objects and two features on the horizontal-vertica
 *Tibshirani:* So this next slide summarizes now the clustering.
 
 <center>
-<img src=Images/10.11.PNG alt="Hierarchical Algorithm">
+<img src="Images/10.11.PNG" alt="Hierarchical Algorithm">
 </center>
 {:refdef: style="text-align:center"}
 **Figure 10.11**
@@ -351,7 +351,7 @@ Again, you see here on the left the series of joins that we just saw. And now, o
 *Tibshirani:* So here is another example. 
 
 <center>
-<img src=Images/10.12.PNG alt="Hierarchical Example">
+<img src="Images/10.12.PNG" alt="Hierarchical Example">
 </center>
 {:refdef: style="text-align:center"}
 **Figure 10.12**
@@ -364,7 +364,7 @@ There's 45 observations, again, in two dimensions. And in reality here, we imagi
 *Tibshirani:* So here is the result of hierarchical clustering of the 45 points. 
 
 <center>
-<img src=Images/10.13.PNG alt="Hierarchical Example 2">
+<img src="Images/10.13.PNG" alt="Hierarchical Example 2">
 </center>
 {:refdef: style="text-align:center"}
 **Figure 10.13**
@@ -387,7 +387,7 @@ And these are all the same dendrogram. But what I've done here is I've cut off t
 *Tibshirani:* So here's an example.
 
 <center>
-<img src=Images/10.14.PNG alt="Correlation Measure">
+<img src="Images/10.14.PNG" alt="Correlation Measure">
 </center>
 {:refdef: style="text-align:center"}
 **Figure 10.14**
@@ -404,7 +404,7 @@ And we can imagine this index, as Trevor said, could be time. We have three obse
 *Tibshirani:* So some practical issues-- a few more things. Well, scaling of the variables matter. And again, that's the case in K-means as well. So this slide actually refers to both K-means clustering and hierarchical clustering. (And principal components, for that matter.) Exactly-- right. And if the variables are not in the same units and one variable is in a unit that has very large numbers, then if you don't standardize the variables, that variable will dominate either principal components or clustering because the units are such that the squared distance for that variable is much larger. 
 
 <center>
-<img src=Images/10.15.PNG alt="Scaling Matters">
+<img src="Images/10.15.PNG" alt="Scaling Matters">
 </center>
 {:refdef: style="text-align:center"}
 **Figure 10.15**
@@ -427,7 +427,7 @@ So typically, if variable are not in the same units, one should standardize them
 *Tibshirani:* So doing that, we got the following clustering.
 
 <center>
-<img src=Images/10.16.PNG alt="Breast Cancer Clustering">
+<img src="Images/10.16.PNG" alt="Breast Cancer Clustering">
 </center>
 {:refdef: style="text-align:center"}
 **Figure 10.16**
@@ -440,7 +440,7 @@ So what do we see here? First of all, here are the 500 or so intrinsic genes. An
 *Tibshirani:* In particular, onto the last display of this. You look at these subgroups, and you look at their survival of these women, these are called Kaplan-Meier survival curves.
 
 <center>
-<img src=Images/10.17.PNG alt="Breast Cancer Survival Curves">
+<img src="Images/10.17.PNG" alt="Breast Cancer Survival Curves">
 </center>
 {:refdef: style="text-align:center"}
 **Figure 10.17**-- *Blue: Luminal A, Cyan: Luminal B, Pink: ERBB2+, Red: Basal*
