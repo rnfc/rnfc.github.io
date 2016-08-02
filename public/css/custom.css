@@ -42,7 +42,7 @@ span, a , p, li, table, tr, th, td{
 }
 
 code, code span {
-	font-size:0.8rem !important;
+	font-size:0.7rem !important;
 }
 
 div.container.content {
@@ -79,6 +79,11 @@ h1, h2, h3, h4, h5, h6, code, code span, span, a, li, p, table, tr, th, td, foot
     font-family: 'Lato', sans-serif;
 /*    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;*/
     /*font-weight: 600;*/
+}
+
+code span {
+    font-family: monospace;
+    font-size: 0.7rem;
 }
 
 /*.masthead {
