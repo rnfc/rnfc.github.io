@@ -1,0 +1,33 @@
+---
+title: "Bond Yields Modeling"
+author: "Rafael Nicolas Fermin Cota"
+date: "`r Sys.Date()`"
+---
+
+All major theories related to fixed income pricing, from simple yield to maturity comparisons to sophisticated stochastic models, are inherently quantitative and require a basic understanding of mathematics. Many students, however, including those interested in the bond market, often do not feel comfortable with mathematical topics; including [duration and volatility](Understanding_Duration_Volatility.pdf). This is true even if all that is required involves only a basic understanding of [calculus and optimization techniques](Numerical_Analysis_with_Optimiz.pdf) (e.g., [Newton methods](https://en.wikipedia.org/wiki/Newton%27s_method)). I have termed this fear of mathematics: "equation-phobia", and have worked tirelessly trying to help my students overcome it.
+
+Using spreadsheets, I was able to convert bond pricing from its pure math form into functional code, making it easier to understand. In my experience, I have found that most students can grasp the concept behind a topic like yield-to-maturity, however,  achieve a more intuitive understanding of the concept when they interact with [VBA/Python](https://newtonexcelbach.wordpress.com/) functions that use iterations in the calculation. By breaking down the math into step by step functions, students see the logic behind the equations. This module strongly correlates to my experience teaching spreadsheet modelling and programming within the [HBA](http://www.ivey.uwo.ca/hba/) curriculum at the [Ivey Business School](http://www.ivey.uwo.ca/).
+
+This module will put the design and construction of a fixed income [portfolio management tool](Tech_Report_Port_Mgmt_Platform.pdf), used to [detect mispriced bonds and credit spreads in the market](JP_Morgan_Yield_Curve_Model.pdf), into the center of class activity. The first stage will be in the fundamentals of [bond pricing and yield to maturities](Tech_Report_Yield_Sensitivity.pdf). There are numerous publications on the [yield curve fitting approaches](Monotone_Convex_Interpolation.pdf) with related empirical research yet few actually document practical implementations for operational purposes. Accordingly, I will describe and illustrate the implementation of a number of bond relative value models to detect mispriced bonds. The main benefit for this module relates to the concept of how market practitioners like traders and asset managers tend to price and measure credit risk of fixed-income securities. Many of the models described herein have already been implemented in EXCEL (using both VBA and Python) and [R](https://www.youtube.com/watch?v=TR2bHSJ_eck) (using [Rcpp](http://www.rcpp.org/)), some of which are generalized versions of models that I had developed for practical bond relative value in the hedge fund industry.
+
+I would like to thank Jonathon Barbaro for his excellent research assistance and relentless support.
+
+<a href="Tech_Report_Yield_Sensitivity.pdf" target="_blank">
+<button style="background-color: #555555;
+    padding: 10px 30px;
+    border-radius: 3px;
+    font-size: 15px;
+    cursor: pointer;
+    border: 0px;
+    color: white;
+    font-weight: 100;">Download YIELD_SENSITIVITY report</button>
+    
+<a href="Tech_Report_Port_Mgmt_Platform.pdf" target="_blank">
+<button style="background-color: #555555;
+    padding: 10px 30px;
+    border-radius: 3px;
+    font-size: 15px;
+    cursor: pointer;
+    border: 0px;
+    color: white;
+    font-weight: 100;">Download BOND_PORT_ANALYSIS report</button>
