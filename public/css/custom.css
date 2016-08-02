@@ -332,3 +332,7 @@ button.white-text {
     color: #bdbdbd;
     text-decoration: none;
 }
+
+ul li {
+    margin-bottom: 15px;
+}
