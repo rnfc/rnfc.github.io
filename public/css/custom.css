@@ -336,3 +336,25 @@ button.white-text {
 ul li {
     margin-bottom: 15px;
 }
+
+.modal-dialog.modal-lg {
+    width: 95%;
+}
+
+.modal-content {
+    height: 92vh;
+}
+
+iframe.interactive-demo-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.modal-body {
+    height:83vh;
+}
+
+code, kbd, pre, samp {
+    font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+}
