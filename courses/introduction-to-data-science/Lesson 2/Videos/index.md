@@ -258,10 +258,10 @@ Same setup. Well, now we see that the mean squared error, the linear model does 
 *Hastie:* And finally, here's quite a wiggly true function on the left.
 
 <center>
-<img src="Images/2.13.PNG" alt="Wiggly Function Fitting" style="max-height:400px">
+<img src="Images/2.14.PNG" alt="Wiggly Function Fitting" style="max-height:400px">
 </center>
 {:refdef: style="text-align: center;"}
-**Figure 2.12**-- *The truth is wiggly, so the more flexible fits do well*
+**Figure 2.13**-- *The truth is wiggly, so the more flexible fits do well*
 {: refdef}
 
 The linear model does a really lousy job. The most flexible model does about the best. The blue model and the green model are pretty good, pretty close together, in terms of the mean squared error on the test data. So I think this drums home the point. Again, the training mean squared error just keeps on going down. So this drums home the point that if we want to have a model that has good prediction error-- and that's measured here in terms of mean squared prediction error on the test data-- we'd like to be able to estimate this curve. And one way you can do that, the red curve. You can do that is to have a hold our test data set, that you can value the performance of your different models on the test data set. And we're going to talk about ways of doing this later on in the course. 
