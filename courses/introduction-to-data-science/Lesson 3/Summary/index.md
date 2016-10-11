@@ -609,7 +609,7 @@ Parametric methods often beat non-parametric ones when there are few observation
 |Least squares estimates for simple linear model | $$\hat{\beta}_1 = \frac{\displaystyle\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\displaystyle\sum_{i=1}^n (x_i - \bar{x})^2}, \quad \hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x}$$
 |Mean of $$x$$                                   | $$\bar{x} = \frac{1}{n} \sum_{i=1}^n x_i$$
 |Mean of $$y$$                                   | $$\bar{y} = \frac{1}{n} \sum_{i=1}^n y_i$$
-|Standard Error for $$\beta_0$$                                  | $$\mathrm{SE}(\hat{\beta}_0)^2 = \sigma^2 \left [ \frac{1}{n} + \frac{\bar{x}^2}{\displaystyle\sum_{i=1}^n (x_i - \bar{x})^2} \right ]$$
+|Standard Error for $$\hat{\beta}_0$$                                  | $$\mathrm{SE}(\hat{\beta}_0)^2 = \sigma^2 \left [ \frac{1}{n} + \frac{\bar{x}^2}{\displaystyle\sum_{i=1}^n (x_i - \bar{x})^2} \right ]$$
 |Standard Error for $$\hat{\beta}_1$$            | $$\mathrm{SE}(\hat{\beta}_1)^2 = \frac{\sigma^2}{\displaystyle\sum_{i=1}^n (x_i - \bar{x})^2}$$
 |95% Confidence Intervals                        | $$\begin{align*} \hat{\beta}_1 &\pm 2\cdot\mathrm{SE}(\hat{\beta}_1)\\ \hat{\beta}_0 &\pm 2\cdot\mathrm{SE}(\hat{\beta}_0)\end{align*}$$
 |Residual Sum of Squares                         | $$\mathrm{RSS} = \sum_{i=1}^n (y_i - \hat{y}_i)^2$$
