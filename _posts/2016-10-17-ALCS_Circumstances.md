@@ -28,7 +28,7 @@ The first thing we'll look at is how an individual hitter is expected to perform
 Inspired by the analyses and visualizations in the book, _The Science of Hitting_ by Ted Williams and John Underwood, we display hitters' batting averages across different regions of the strike zone. Since we already have the data for every pitch faced by the hitters over the season, we can easily map the true location of every hit and out for every batter. We’re only interested in hit/out probability and only need the last pitch of the at-bats. After this, we filter out any walks, sacrifice flies or sacrifice bunts so we’re left with only the batter’s true attempts. Since the last pitch for official at-bats over one season is not a very large number and we want to get an idea of the probability of a hit depending on location, we run the data through a [generalized additive model](https://en.wikipedia.org/wiki/Generalized_additive_model). This gives us the probabilities of a hit for every point in our grid. Now we lump these into buckets of probabilities for visualization, and we end up with some nice-looking heatmaps like the following for Jose Bautista (because whether he stays or goes next year, he will always be regarded among the greatest baseball players to have played for this city):
 
 <center>
-<img style="max-height: 620px;"" src='public/images/2016-10-17-ALCS_Pitcher-Batter_Heatmaps/1-jose-2016.png'/>
+<img src='/public/images/2016-10-17-ALCS_Pitcher-Batter_Heatmaps/1-jose-2016.png' style="max-height: 620px;"/>
 </center>
 
 This graph shows the strike zone from the perspective of the catcher. The darker colours represent a higher probability of the batter hitting the ball. We see from this chart that Jose has a pretty sizeable sweet spot in middle-to-left region of the strike zone (dark blue). This verifies what we already know about Jose-- that he is stronger inside the strike zone. Keep in mind that as we move away from the strike zone, the probabilities become less meaningful since there are fewer pitches in thrown in those regions and the likelihood of a swing decreases.
@@ -36,7 +36,7 @@ This graph shows the strike zone from the perspective of the catcher. The darker
 You can also see that, in 2016, Jose did not hit over .300 in any region of the plate. Compare that with his heatmap for the 2015 season and you’ll see a drastic difference. 
 
 <center>
-<img style="max-height: 620px;" src='public/images/2016-10-17-ALCS_Pitcher-Batter_Heatmaps/2-jose-2015.png'/>
+<img src='/public/images/2016-10-17-ALCS_Pitcher-Batter_Heatmaps/2-jose-2015.png' style="max-height: 620px;"/>
 </center>
 
 This puts in perspective the kind of year he’s had-- thanks to two of the most bizarre injuries a baseball player can face. There is a whole breadth of analysis we can perform to realize that the 2016 season was only a blip in Jose's career and not a downward trend, but that is a discussion for another day. 
@@ -46,7 +46,7 @@ This puts in perspective the kind of year he’s had-- thanks to two of the most
 We can perform a similar analysis for pitchers as well by plotting out the regions in the strike zone where they allow a high percentage of hits. It's the same concept as before, where we divide the strike zone into coordinates and plot the probabilities of hits at each point. The only difference is that this time, we map all pitches thrown by a pitcher as opposed to the hitters where we only took when an official out or a hit was recorded. Again, we eliminate sac flies, sac bunts and walks. Let's take a look at the map for Aaron Sanchez who is having a break-out year despite all the controversy around his pitch limit:
 
 <center>
-<img style="max-height: 620px;" src='public/images/2016-10-17-ALCS_Pitcher-Batter_Heatmaps/3-sanchez.png'/>
+<img src='/public/images/2016-10-17-ALCS_Pitcher-Batter_Heatmaps/3-sanchez.png' style="max-height: 620px;"/>
 </center>
 
 Here, you can see that its lights out over a majority of the zone with small spots of high hit probabilities perfectly in the middle and on the right side of the zone (which is very interesting to see). Again, keep in mind that the large dark area on the right beyond the strike zone is largely meaningless since there is minimal data for this region and hitters are not swinging at pitches that far away from the zone. We are very confident that Aaron is going to repeat his success again in Game 4 of the ALCS. 
@@ -58,7 +58,7 @@ Now, we can combine the two maps for a batter and a pitcher to get an understand
 We have seen this play out in the first two games already. Let's set the stage for a key matchup in Monday night's game: Josh Donaldson vs. Trevor Bauer. Let's look at how the matchup between those two will look like based on their hit/hits allowed probabilities over the season. 
 
 <center>
-<img style="max-height: 620px;" src='public/images/2016-10-17-ALCS_Pitcher-Batter_Heatmaps/4-josh-bauer.png'/>
+<img src='/public/images/2016-10-17-ALCS_Pitcher-Batter_Heatmaps/4-josh-bauer.png' style="max-height: 620px;"/>
 </center>
 
 On this graph, the red region represents the area that is favourable for Bauer and the blue shows regions favourable to Donaldson. The lighter regions are neutral. From this map, we can see that Donaldson has a significant advantage on the inside part of the plate towards the middle of the strike zone, while Bauer is stronger on the inside corners. This will make for a very exciting matchup as Donaldson will be looking to jump on any mistakes by Bauer on the inside part of the plate. Maybe Bauer's drone-injured pinky plays a role in this game?
@@ -72,13 +72,13 @@ If you've been following the series at all then you know about the questionable 
 We use a similar strategy as the batter-pitcher matchup discussed above to discover regions on the strike zone where an umpire usually calls a strike and see if these regions creep into the objective strike zone. This gives a clear picture of the umpire's true strike zone over the season. Let's take a look at Laz Diaz's heatmap to find out where he's likely to call a strike:
 
 <center>
-<img style="max-height: 620px;" src='public/images/2016-10-17-ALCS_Pitcher-Batter_Heatmaps/5-laz-diaz.png'/>
+<img src='/public/images/2016-10-17-ALCS_Pitcher-Batter_Heatmaps/5-laz-diaz.png' style="max-height: 620px;"/>
 </center>
 
 The dark blue represents locations where the umpire is most likely to call a strike. From the heatmap, Diaz's strike zone seems to be shifted towards the left and down. Diaz has a tendency to call strikes even when they are outside the strike zone to the left and underneath. This makes it tougher for hitters who might rightfully pass on a pitch that's low or outside and still get called out. On the other hand, the top right corner is more likely to be a ball, making it harder for high fastball pitchers to get swings and misses if the umpire is less likely to call a strike even when it is hittable. We understand that usually it is not the location of the zone, but the consistency of calls that frustrates the players. At least this graph gives them an idea of what to expect before going into a game.
 
 <center>
-<img style="max-height: 620px;" src='public/images/2016-10-17-ALCS_Pitcher-Batter_Heatmaps/6-strikethree.png'/>
+<img src='/public/images/2016-10-17-ALCS_Pitcher-Batter_Heatmaps/6-strikethree.png' style="max-height: 620px;"/>
 <font size = "2"> Melvin Upton gets called out by Laz Diaz on a questionable pitch called strike in game one of the ALCS</font>
 </center>
 
@@ -87,7 +87,7 @@ The dark blue represents locations where the umpire is most likely to call a str
 Performing the identical calculations on all pitches thrown by a pitcher over the season, we can get the true strike zone for that pitcher. This strike zone would be based on all pitches called balls or strikes. For example, let's see Andrew Miller's strike zone, who has been extremely hard to figure out for the Blue Jays bats:
 
 <center>
-<img style="max-height: 620px;" src='public/images/2016-10-17-ALCS_Pitcher-Batter_Heatmaps/7-miller.png'/>
+<img src='/public/images/2016-10-17-ALCS_Pitcher-Batter_Heatmaps/7-miller.png' style="max-height: 620px;"/>
 </center>
 
 He usually gets strike calls outside the objective strike zone to the bottom left of the strike zone. We have seen many of his insane sliders in the series to know how hard it can be for umpires to see those all the way through the zone. It's probably much better for a pitcher like Miller when he is matched up with an umpire like Laz Diaz because he has a higher tendency to call those strikes. We clearly saw this pan out in Game 1 with the calls against Melvin Upton, Jr. and Edwin Encarnacion. 
@@ -97,7 +97,7 @@ He usually gets strike calls outside the objective strike zone to the bottom lef
 So, why not combine the two graphs and visualize the favourable zones for a pitcher with a given umpire behind the plate? Monday night's matchup has Marcus Stroman up against Trevor Bauer with Umpire Brian Gorman calling strikes and balls. 
 
 <center>
-<img style="max-height: 620px;" src='public/images/2016-10-17-ALCS_Pitcher-Batter_Heatmaps/8-stroman-gorman.png'/>
+<img src='/public/images/2016-10-17-ALCS_Pitcher-Batter_Heatmaps/8-stroman-gorman.png' style="max-height: 620px;"/>
 </center>
 
 The blue area here represents where the pitcher has a better shot of getting called strikes, the red is the areas the pitcher may want to avoid. Sure enough, Stroman is stronger at the bottom part of the strike zone. However, it might be worthwhile to consider throwing in the top left corner as Umpire Brian Gorman is more likely to call those strikes than pitches across the bottom edge. 
@@ -111,13 +111,13 @@ Let's take a look at the two starting pitchers for game three, Stroman and Bauer
 We will start with Stroman and Santana:
 
 <center>
-<img style="max-height: 620px;" src='public/images/2016-10-17-ALCS_Pitcher-Batter_Heatmaps/9-stroman-santana.png'/>
+<img src='/public/images/2016-10-17-ALCS_Pitcher-Batter_Heatmaps/9-stroman-santana.png' style="max-height: 620px;"/>
 </center>
 
 Next Bauer and Encarnacion:
 
 <center>
-<img style="max-height: 620px;" src='public/images/2016-10-17-ALCS_Pitcher-Batter_Heatmaps/10-bauer-eddie.png'/>
+<img src='/public/images/2016-10-17-ALCS_Pitcher-Batter_Heatmaps/10-bauer-eddie.png' style="max-height: 620px;"/>
 </center>
 
 Stroman seems to own the strike zone against Santana; however, Santana has a lot of favourable areas in the top right region above the strike zone. In contrast, Edwin has a much better chance of making contact with balls in the strike zone and balls thrown down and away.  In general, however, Santana has a higher probability of making contact against Stroman than Eddie does against Bauer. 
