@@ -9,7 +9,7 @@ author: "Timothy Art, Abhinav Jindal, and Jonathon Barbaro"
 
 
 
-_By Timothy Art, Abhinav Jindal, Jonathon Barbaro, and Rafael Nicolas Fermin Cota_
+_By Timothy Art, Jonathon Barbaro, Rafael Nicolas Fermin Cota, and Abhinav Jindal_
 
 After beating the Texas Rangers in a 3-0 series sweep during the ALDS, the Toronto Blue Jays now find themselves in an uncomfortable position down 0-2 against the Cleveland Indians. Despite great starts from Marco Estrada and J.A. Happ, it looks as though the Jays' bats have gone cold once again. Cleveland's starters and the bullpen have been exceptional, shutting down the Jays' offence to 1 run in 2 games. However, the Jays' hitters have had their opportunities--with multiple runners in scoring position--but have mostly come up short with the exception of the Donaldson double in Game 2. 
 
