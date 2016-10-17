@@ -9,7 +9,7 @@ author: "Timothy Art, Abhinav Jindal, and Jonathon Barbaro"
 
 
 
-_By Timothy Art, Abhinav Jindal, Jonathon Barbaro, and Rafael Nicolas Fermin Cota_
+_By Timothy Art, Abhinav Jindal, and Jonathon Barbaro_
 
 <style>
 .inline-image {
@@ -23,7 +23,7 @@ In the interest of finding the reason behind the Jays’ lack of hitting, let’
 
 ## Data 
 
-All data comes from the _PITCHf/x database_. We are using the data recorded for every game played in the 2016 season so far, which totals to about 2430 regular season games and the first round and a half of the playoffs. 
+All data comes from the _PITCHf/x database_ using the amazing [`pitchRx`](http://cpsievert.github.io/pitchRx/) package by Carson Sievert. We are using the data recorded for every game played in the 2016 season so far, which totals to about 2430 regular season games and the first round and a half of the playoffs. 
 
 ## Batter-Pitcher Heatmaps
 
