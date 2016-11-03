@@ -270,7 +270,7 @@ We first define our folds, five folds cross-validation. Before we do any fitting
 
 $$\alpha=\frac{\sigma_Y^2-\sigma_{XY}}{\sigma_X^2+\sigma_Y^2-2\sigma_{XY}} \\ \text{where } \sigma_X^2=\text{Var}(X)\text{, }\sigma_Y^2=\text{Var}(Y)\text{, and }\sigma_{XY}=\text{Cov}(X,Y)$$
 
-$$\sigma_Y^2$$, that's the difference of $$Y$$, there's the variance of $$X$$. This is the covariance between $$X$$ and $$Y$$. And they're defined here. So in other words, if we know the variance of $$X$$, the variance of $$Y$$, and their covariance, then this is the best amount proportion to put into $$X$$, and the remaining goes into $$Y$$, to minimize the total variance. (Those are population quantities, aren't they?) Those are population quantities. 
+$$\sigma_Y^2$$, that's the variance of $$Y$$, there's the variance of $$\sigma_X^2$$. $$\text{Cov}(X,Y)$$ is the covariance between $$X$$ and $$Y$$. And they're defined here. So in other words, if we know the variance of $$X$$, the variance of $$Y$$, and their covariance, then this is the best amount proportion to put into $$X$$, and the remaining goes into $$Y$$, to minimize the total variance. (Those are population quantities, aren't they?) Those are population quantities. 
 
 ##### Slide 25: 
 
@@ -316,17 +316,17 @@ Each one is a value of $$\hat{\alpha}$$, and they average around 0.6. (It's call
 
 $$\bar{\alpha}=\frac{1}{1000}\displaystyle\sum_{r=1}^{1000}\hat{\alpha}_r=0.5996$$
 
-And here we've done that, and that's 0.083. So the standard error of $$\hat{\alpha}$$ is roughly 0.083. 
+And here we've done that, and that's 0.5996. So the standard error of $$\hat{\alpha}$$ is roughly 0.083. 
 
 *Hastie:* The standard error of an estimator is the standard deviation in that sampling distribution. So if you're able to recompute the estimator many, many times from your samples, the standard deviation is called the standard error. 
 
-*Tibshirani:* Right. So if we repeat this experiment, we expect each time that, on average, $$\hat{\alpha}$$ will be about 0.6, and would vary by a standard deviation of 0.0.83. 
+*Tibshirani:* Right. So if we repeat this experiment, we expect each time that, on average, $$\hat{\alpha}$$ will be about 0.6, and would vary by a standard deviation of 0.083. 
 
 $$\sqrt{\frac{1}{1000-1}\displaystyle\sum_{r=1}^{1000}(\hat{\alpha}_r-\bar{\alpha})^2}=0.083$$
 
 ##### Slide 29: 
 
-*Tibshirani:* Which we're seeing in this histogram, right? It's averaging about 0.08, and the standard deviation is about 0.08 of this histogram. 
+*Tibshirani:* Which we're seeing in this histogram, right? It's averaging about 0.6, and the standard deviation is about 0.08 of this histogram. 
 
 ##### Slide 30: 
 
