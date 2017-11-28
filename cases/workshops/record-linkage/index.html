@@ -41,11 +41,14 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 <div class="tutorial container-fluid main-container">
 
-    
+
 <a class="center" href="/cases/workshops">&#8678; Back to workshops</a>
 
 <div id="header">
 <h1 class="title">Guide to understanding reclin</h1>
+<h3>
+  <i>By Hattie Zhou</i>
+</h3>
 </div>
 
 
@@ -80,42 +83,42 @@ y &lt;- as.ldat(y)</code></pre>
 <p><code>ldat</code> objects resemble a list object, except that they are stored as external pointers.</p>
 <pre class="r"><code>str(x)</code></pre>
 <pre><code>List of 12
- $ first_name:Class 'lvec' &lt;externalptr&gt; 
+ $ first_name:Class 'lvec' &lt;externalptr&gt;
   ..- attr(*, &quot;type&quot;)= int 3
-  ..- attr(*, &quot;attributes&quot;)=&lt;environment: 0x7fb64d8d9800&gt; 
- $ last_name :Class 'lvec' &lt;externalptr&gt; 
+  ..- attr(*, &quot;attributes&quot;)=&lt;environment: 0x7fb64d8d9800&gt;
+ $ last_name :Class 'lvec' &lt;externalptr&gt;
   ..- attr(*, &quot;type&quot;)= int 3
-  ..- attr(*, &quot;attributes&quot;)=&lt;environment: 0x7fb64d8ec678&gt; 
- $ gender    :Class 'lvec' &lt;externalptr&gt; 
+  ..- attr(*, &quot;attributes&quot;)=&lt;environment: 0x7fb64d8ec678&gt;
+ $ gender    :Class 'lvec' &lt;externalptr&gt;
   ..- attr(*, &quot;type&quot;)= int 3
-  ..- attr(*, &quot;attributes&quot;)=&lt;environment: 0x7fb64d8f8540&gt; 
- $ birth_date:Class 'lvec' &lt;externalptr&gt; 
+  ..- attr(*, &quot;attributes&quot;)=&lt;environment: 0x7fb64d8f8540&gt;
+ $ birth_date:Class 'lvec' &lt;externalptr&gt;
   ..- attr(*, &quot;type&quot;)= int 3
-  ..- attr(*, &quot;attributes&quot;)=&lt;environment: 0x7fb64d9029c0&gt; 
- $ ethnicity :Class 'lvec' &lt;externalptr&gt; 
+  ..- attr(*, &quot;attributes&quot;)=&lt;environment: 0x7fb64d9029c0&gt;
+ $ ethnicity :Class 'lvec' &lt;externalptr&gt;
   ..- attr(*, &quot;type&quot;)= int 3
-  ..- attr(*, &quot;attributes&quot;)=&lt;environment: 0x7fb64d90daa0&gt; 
- $ SSN       :Class 'lvec' &lt;externalptr&gt; 
+  ..- attr(*, &quot;attributes&quot;)=&lt;environment: 0x7fb64d90daa0&gt;
+ $ SSN       :Class 'lvec' &lt;externalptr&gt;
   ..- attr(*, &quot;type&quot;)= int 1
-  ..- attr(*, &quot;attributes&quot;)=&lt;environment: 0x7fb64d9188e0&gt; 
- $ med_number:Class 'lvec' &lt;externalptr&gt; 
+  ..- attr(*, &quot;attributes&quot;)=&lt;environment: 0x7fb64d9188e0&gt;
+ $ med_number:Class 'lvec' &lt;externalptr&gt;
   ..- attr(*, &quot;type&quot;)= int 0
-  ..- attr(*, &quot;attributes&quot;)=&lt;environment: 0x7fb64d923000&gt; 
- $ state     :Class 'lvec' &lt;externalptr&gt; 
+  ..- attr(*, &quot;attributes&quot;)=&lt;environment: 0x7fb64d923000&gt;
+ $ state     :Class 'lvec' &lt;externalptr&gt;
   ..- attr(*, &quot;type&quot;)= int 3
-  ..- attr(*, &quot;attributes&quot;)=&lt;environment: 0x7fb64d92e2a0&gt; 
- $ city      :Class 'lvec' &lt;externalptr&gt; 
+  ..- attr(*, &quot;attributes&quot;)=&lt;environment: 0x7fb64d92e2a0&gt;
+ $ city      :Class 'lvec' &lt;externalptr&gt;
   ..- attr(*, &quot;type&quot;)= int 3
-  ..- attr(*, &quot;attributes&quot;)=&lt;environment: 0x7fb64d939380&gt; 
- $ address   :Class 'lvec' &lt;externalptr&gt; 
+  ..- attr(*, &quot;attributes&quot;)=&lt;environment: 0x7fb64d939380&gt;
+ $ address   :Class 'lvec' &lt;externalptr&gt;
   ..- attr(*, &quot;type&quot;)= int 3
-  ..- attr(*, &quot;attributes&quot;)=&lt;environment: 0x7fb64d944310&gt; 
- $ zip       :Class 'lvec' &lt;externalptr&gt; 
+  ..- attr(*, &quot;attributes&quot;)=&lt;environment: 0x7fb64d944310&gt;
+ $ zip       :Class 'lvec' &lt;externalptr&gt;
   ..- attr(*, &quot;type&quot;)= int 1
-  ..- attr(*, &quot;attributes&quot;)=&lt;environment: 0x7fb64d95ff58&gt; 
- $ id        :Class 'lvec' &lt;externalptr&gt; 
+  ..- attr(*, &quot;attributes&quot;)=&lt;environment: 0x7fb64d95ff58&gt;
+ $ id        :Class 'lvec' &lt;externalptr&gt;
   ..- attr(*, &quot;type&quot;)= int 1
-  ..- attr(*, &quot;attributes&quot;)=&lt;environment: 0x7fb64d96b498&gt; 
+  ..- attr(*, &quot;attributes&quot;)=&lt;environment: 0x7fb64d96b498&gt;
  - attr(*, &quot;class&quot;)= chr &quot;ldat&quot;</code></pre>
 <p>From here on, we will refer to the master data set as <code>x</code> and the batch data set as <code>y</code>.</p>
 </div>
@@ -295,7 +298,7 @@ Matching probability: 0.001605353.</code></pre>
 <pre class="r"><code>lweights &lt;- weights(umprob, rpairs)</code></pre>
 <p>We can see the calculated weights:</p>
 <pre class="r"><code>lweights$weights</code></pre>
-<pre><code>lvec of type numeric with length 149500 
+<pre><code>lvec of type numeric with length 149500
 Printing first 20 values:
  [1]  -9.293055  -9.728563  -7.569214  -4.734396  -6.306440  -5.358929  -8.530261  -3.737784  -7.751575
 [10]  -7.392298  -7.147309  -6.292688 -10.934357  -8.660368  -8.621041  -6.015274  -5.807315  -5.316380
@@ -305,15 +308,15 @@ Printing first 20 values:
 <p>Generally, the weight distribution follows a U-shape with the majority of the record pairs falling into the lowest weight brackets. This is expected as two data sets with 1000 records each will generate 1000,000 record pairs without blocking, but will only have at most 1000 true links. There will be a number of record pairs in the highest weight brackets that are the most probable links. We want to start by examining the lowest points in this U-shape since we want to find the tipping point in the weight distribution that separates the links from the non-links. Higher <code>nbreak</code> is especially useful where there is a large number of record pairs as it offers more precise estimates of weight brackets with the fewest observations.</p>
 <pre class="r"><code>weight.distribution &lt;- weight_dist(lweights, nbreak = 30); weight.distribution</code></pre>
 <pre><code>
-(-15.7,-8.52] (-8.52,-1.29]  (-1.29,5.93]   (5.93,13.2]   (13.2,20.4]   (20.4,27.6]   (27.6,34.8] 
-        32549        115134          1572             6             1             2             3 
-  (34.8,42.1]   (42.1,49.3]   (49.3,56.5]   (56.5,63.7]     (63.7,71]     (71,78.2]   (78.2,85.4] 
-           15            11            13             4             1             0             0 
-  (85.4,92.6]   (92.6,99.9]    (99.9,107]     (107,114]     (114,122]     (122,129]     (129,136] 
-            0             0             0             0             0             0             0 
-    (136,143]     (143,150]     (150,158]     (158,165]     (165,172]     (172,179]     (179,187] 
-            0             0             0             0             0             0             0 
-    (187,194]     (194,201] 
+(-15.7,-8.52] (-8.52,-1.29]  (-1.29,5.93]   (5.93,13.2]   (13.2,20.4]   (20.4,27.6]   (27.6,34.8]
+        32549        115134          1572             6             1             2             3
+  (34.8,42.1]   (42.1,49.3]   (49.3,56.5]   (56.5,63.7]     (63.7,71]     (71,78.2]   (78.2,85.4]
+           15            11            13             4             1             0             0
+  (85.4,92.6]   (92.6,99.9]    (99.9,107]     (107,114]     (114,122]     (122,129]     (129,136]
+            0             0             0             0             0             0             0
+    (136,143]     (143,150]     (150,158]     (158,165]     (165,172]     (172,179]     (179,187]
+            0             0             0             0             0             0             0
+    (187,194]     (194,201]
             0           189 </code></pre>
 </div>
 <div id="selecting-thresholds" class="section level2">
@@ -347,7 +350,7 @@ Pair: 149260/149500; weight: 7.890392
 3     719 cozapena pike 29694
 31 346 tivagir junction 85854
 =======================================================
-Weight =  10 
+Weight =  10
 239  ( 0.1599 %) pairs with larger weight.
 =======================================================
 Pair: 149261/149500; weight: 10.60413
@@ -380,7 +383,7 @@ Pair: 149263/149500; weight: 24.79618
 <p>When one threshold is given, record pairs above the threshold are classified as links and pairs below the threshold are classified as non-links. Links are indicated by a <code>class</code> of 2 and non-links are indicated by 0. When two thresholds are given, pairs with weights between the two thresholds are classified as possible links, indicated by a <code>class</code> of 1.</p>
 <pre class="r"><code>lclass &lt;- classify(lweights, 10)
 lclass$class</code></pre>
-<pre><code>lvec of type numeric with length 149500 
+<pre><code>lvec of type numeric with length 149500
 Printing first 20 values:
  [1] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</code></pre>
 </div>
@@ -455,7 +458,7 @@ head(linkresult, 6)</code></pre>
                                             <h5>Links</h5>
                                             <button class="submit btn btn-main featured small"><a href="https://github.com/djvanderlaan/reclin" class="gray pointer-cursor" target="_blank">Reclin</a></button>
                                         </div>
-    
+
 </div>
 
 <script>
